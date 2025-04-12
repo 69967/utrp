@@ -122,7 +122,7 @@ hook.Add("PopulateWeapons", "zzz_TacRP_SubCategories", function(pnlContent, tree
     local cvar = TacRP.ConVars["spawnmenu_subcats"]:GetInt()
     -- if cvar == 0 then return end
 
-    local sortbytiers = TacRP.ConVars["spawnmenu_sortbytiers"]:GetBool()
+    local sortbytiers = false --TacRP.ConVars["spawnmenu_sortbytiers"]:GetBool()
 
     timer.Simple(0, function()
         -- Loop through the weapons and add them to the menu
@@ -206,17 +206,17 @@ hook.Add("PopulateWeapons", "zzz_TacRP_SubCategories", function(pnlContent, tree
                     end
 
                     -- Create the clickable icon
-                    if sortbytiers then
-                        table.sort(subcatWeps, function(a, b)
-                            if (a.Quality == b.Quality) then
-                                return a.PrintName < b.PrintName
-                            else
-                                return a.Quality < b.Quality
-                            end
-                        end)
-                    else
-                        table.SortByMember(subcatWeps, "PrintName")
-                    end
+                    --if sortbytiers then
+                    --    table.sort(subcatWeps, function(a, b)
+                    --        if (a.Quality == b.Quality) then
+                    --            return a.PrintName < b.PrintName
+                    --        else
+                    --            return a.Quality < b.Quality
+                    --        end
+                    --    end)
+                    --else
+                    table.SortByMember(subcatWeps, "PrintName")
+                    --end
 
                     for _, ent in ipairs(subcatWeps) do
                         spawnmenu.CreateContentIcon("tacrp_weapon", self.PropPanel, {
