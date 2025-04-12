@@ -1,0 +1,21 @@
+"VertexLitGeneric"
+{
+	$basetexture	"models/tacint_extras/rhino60ds/pt25_diff3"
+	$bumpmap	"models/tacint_extras/rhino60ds/pt25_ddn"
+	
+	"$color2" "[ 0.45 0.45 0.45 ]"
+
+	$phong	"1"
+	$phongboost	"6"
+	$phongfresnelranges	"[0.07 0.4 0.07]"
+	
+	$normalmapalphaenvmapmask	"0"
+	$envmap	"env_cubemap"
+	$envmaptint	"[1 1 1]"
+	$envmapfresnel 1
+	
+	$rimlight               1
+	$rimlightexponent       8
+	$rimlightboost          .2	
+
+}

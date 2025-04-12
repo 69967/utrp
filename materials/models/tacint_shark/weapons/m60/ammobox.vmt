@@ -1,0 +1,7 @@
+"VertexlitGeneric"
+{
+"$basetexture" "models\tacint_shark\weapons\m60\Ammobox"
+"$envmap" "env_cubemap"
+"$envmapmask" "models\tacint_shark\weapons\m60\ammobox_ref"
+"$envmaptint" [0.5 0.5 0.5]
+}

@@ -1,0 +1,13 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint_extras/mosin/MN9130_PEM_SIDE_DIFF"
+	"$bumpmap" "models/tacint_extras/mosin/MN9130_PEM_SIDE_NORM"
+	"$surfaceprop" "Metal"
+	"$nocull" 1
+	"$phong" "1"
+	"$phongboost" "0.25"
+	"$phongexponent" "3"
+	"$phongfresnelranges"	"[ 0.25 0.5 0.9 ]"
+	"$phongalbedotint" "0"
+
+}

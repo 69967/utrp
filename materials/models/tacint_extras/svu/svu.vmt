@@ -1,0 +1,12 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint_extras/svu/svu_diffuse"
+	"$bumpmap" "models/tacint_extras/svu/svu_normals"
+
+	// "$normalmapalphaenvmapmask" "1"
+ 	// "$phong" "1"
+	// "$phongexponent" "30"
+	// "$phongboost" "0.7"
+	// "$phongfresnelranges" "[0.2 2 2]"
+	// "$phongalbedotint" "1"
+}

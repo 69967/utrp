@@ -1,0 +1,19 @@
+"VertexlitGeneric"
+{
+"$basetexture"  "models\tacint_shark\weapons\aek\aek971_D"
+"$bumpmap"     "models\tacint_shark\weapons\aek\aek971_n"
+$envmapmask"models\tacint_shark\weapons\aek\aek971_s"
+"$phong" "1"
+"$phongexponenttexture" "models\tacint_shark\weapons\aek\aek971_s"
+//"$phongexponent" "50"
+"$phongboost" "0.2"
+"$phongfresnelranges""[0.5 1.5 3.0]"//"[0.1 0.4 .8]"
+"$halflambert""1"
+"$nocull" "1"
+
+"$rimlight" "0"
+"$rimlightexponent" "35"
+"$rimlightboost""1"
+"$rimmask" "1"
+
+}

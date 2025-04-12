@@ -1,0 +1,18 @@
+VertexLitGeneric
+{
+$baseTexture	"models\tacint\weapons\v_models\obrez\308Cartridge_d"
+$bumpmap	"models\tacint\weapons\v_models\obrez\308Cartridge_n"
+
+$normalmapalphaenvmapmask 1
+$envmap "models\tacint\weapons\v_models\obrez\copper"
+$envmapfresnel 0
+$envmaptint "[0.01 0.01 0.01]"
+
+$phong 1
+$phongboost 0.01
+$phongexponent 5
+//$phongexponentTexture "models\ammo\10mm\10mmCartridge_s"
+//$phongalbedotint 1
+$phongtint "[255 150 100]"
+$phongfresnelranges "[2 4 8]"
+}

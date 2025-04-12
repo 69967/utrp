@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint_extras/mosin/Kar_Lens_Diff"
+	"$surfaceprop" "Metal"
+	"$nocull" 1
+}

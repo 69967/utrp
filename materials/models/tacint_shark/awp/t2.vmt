@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$baseTexture" "models\tacint_shark\awp\T2"
+	"$nocull" "1"
+}

@@ -1,0 +1,20 @@
+"VertexLitGeneric"
+
+{
+	"$phong"	1
+	"$energyconservative"	1
+	"$blinn_fresnel"	1
+	"$bumpscale"	0.70
+	"$reflectivity"	0.2
+	"$gloss"	0.3
+	"$fresnel"	1.00
+	"$wrap"	0.47
+	"$basetexture"	"models\tacint_extras\galil_sniper\v_galilsniper_tint"
+	"$bumpmap" "models\tacint_extras\galil_sniper\v_galilsniper_normal"
+	//"$envmap"		"env_cubemap"
+	
+	"$rimscale"				"1"
+	"$rimpower"				"0.32"
+	"$rimcolorblend"		"0.9"
+	"$rimmask"				"0.83"
+}

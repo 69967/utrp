@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$basetexture" 		"models\tacint_extras\hk416\Plate"
+	"$normalmapalphaenvmapmask" "1"
+	"$phong" 		"1"
+	"$phongexponent" 	"40"
+	"$phongboost" "0.75"
+	"$phongfresnelranges" "[1 3 6]"
+}

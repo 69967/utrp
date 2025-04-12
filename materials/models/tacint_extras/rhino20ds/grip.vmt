@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"	"models\tacint_extras\rhino20ds\grip"
+	//"$envmap" 		"env_cubemap"
+	// "$envmapmask"	"models\tacint_extras\rhino20ds\grip_spec"
+	"$color2"	"[ 1 1 1 ]"
+}
+

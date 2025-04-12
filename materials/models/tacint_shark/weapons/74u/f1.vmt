@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" 	"models\tacint_shark\weapons\74u\F1"
+	"$bumpmap" 	"models\tacint_shark\weapons\74u\f1_nor"
+	"$phong" 			"1"
+	"$phongexponent" 		"35"
+	"$phongboost" 			"1.7"	
+	"$phongfresnelranges"		"[1.5 10.1 7.1]"
+}

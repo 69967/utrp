@@ -1,0 +1,23 @@
+
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint/weapons/v_models/m202/decals"
+	
+	
+	//"$color2" "[ .4 .4 .4 ]"
+	"$blendtintbybasealpha" "1"
+	
+	$phong 1
+	$phongboost "0.600000"
+	$phongfresnelranges "[.5 10 35]"
+	$phongexponent 40
+	$phongalbedotint 1
+	$rimlight 0
+	$rimlightexponent 55
+	$rimlightboost "0.300000"
+	$halflambert 0
+	$envmapfresnel 0
+	$envmapfresnelminmaxexp "[0 0 0]"
+	$envmaptint "[.03 .03 .03]"
+	$envmapsaturation 1
+}

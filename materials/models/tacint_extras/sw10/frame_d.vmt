@@ -1,0 +1,13 @@
+"VertexlitGeneric"
+{
+	$basetexture "models/tacint_extras/sw10/frame_d.vtf"
+	$bumpmap "models/tacint_extras/sw10/frame_n.vtf"
+	$ambientocculusion "models/tacint_extras/sw10/frame_s.vtf"
+	
+	$phong 1
+	$phongalbedotint 1
+	$phongboost 20
+	$phongfresnelranges "[.5 1 48]"
+	$phongexponenttexture models/tacint_extras/sw10/exponent.vtf
+	$lightwarptexture models/tacint_extras/sw10/lightwarp.vtf
+}

@@ -1,0 +1,25 @@
+"VertexLitGeneric"
+{
+    "$basetexture" "models\tacint_extras\luty\Weapon_rgb"
+    "$bumpmap" "models\tacint_extras\luty\Weapon_n"
+    "$phongexponenttexture" "models\tacint_extras\luty\Weapon_e"
+
+    "$color2" "[0.2 0.2 0.2]"
+    "$blendtintbybasealpha" "1"
+
+    "$phong" "1"
+    "$phongboost" "1"
+    "$phongfresnelranges" "[0 0.5 1]"
+    "$phongalbedotint" "0"
+
+    //rimlight doesn't properly show in hlmv, make sure you're changing these values in game
+    "$rimlight" "1"
+    "$rimlightexponent" "100"
+    "$rimmask" "1"
+    "$rimlightboost" "1"
+
+    "$normalmapalphaenvmapmask" "1"
+    "$envmapfresnel" "1"
+    "$envmap" "env_cubemap"
+    "$envmaptint" "[0.2 0.2 0.2]"
+}

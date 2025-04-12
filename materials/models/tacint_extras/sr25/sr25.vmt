@@ -1,0 +1,13 @@
+VertexLitGeneric
+{
+	"$basetexture" "models\tacint_extras\sr25\sr25"
+	
+	//"$envmap" "env_cubemap"
+	"$envmaptint" "[.2 .2 .2]"
+	"$basemapalphaphongmask" 	"1"
+	"$phong" 			"1"
+	"$phongexponent"                                   "5"
+	"$phongboost" 			"2"
+	"$phongfresnelranges"		"[0.1 0.4 .8]"//"[0.1 0.4 .8]"
+	"$halflambert"			"1"
+}

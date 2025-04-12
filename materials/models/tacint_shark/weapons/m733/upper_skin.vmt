@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\tacint_shark\weapons\m733\upper_skin"
+	"$bumpmap" "models\tacint_shark\weapons\m733\upper_skin_normal"
+}

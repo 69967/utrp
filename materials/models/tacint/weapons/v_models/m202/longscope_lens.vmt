@@ -1,0 +1,21 @@
+"VertexLitGeneric"
+{
+	$basetexture	"models/tacint/weapons/v_models/m202/longscope_lens_c"
+	"$translucent" "1"
+	$bumpmap	"models/tacint/weapons/v_models/m202/acog_lens_n"
+	
+	"$envmap" "env_cubemap"
+	"$envmapcontrast" 0.9
+	"$envmapsaturation" 0.6
+	$envmaptint "[ 0.5 0.5 0.5 ]"
+	$envmapfresnel "0.01"
+
+	$phong                      		1
+//	$phongexponent                      "20"
+	$phongboost                         "0.5"
+	$phongfresnelranges         "[0.1 0.5 0.5]"
+	$phongalbedotint             "1"
+	$normalmapalphaphongmask    	1
+
+	"$PhongExponentTexture"		"models/tacint/weapons/v_models/m202/longscope_lens_s"
+}

@@ -1,0 +1,6 @@
+VertexLitGeneric
+{
+	"$baseTexture" "models\tacint_extras\ak74\lense"
+	"$transparent" 1
+	"$additive" 1
+}

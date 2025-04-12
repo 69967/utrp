@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+    "$baseTexture" "models\tacint_extras\addons\pbs5"
+    "$envmap" "env_cubemap"
+    "$envmapmask" "models\tacint_extras\addons\pbs5_ref"
+}

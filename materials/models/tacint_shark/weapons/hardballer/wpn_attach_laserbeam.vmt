@@ -1,0 +1,20 @@
+"Unlittwotexture"
+{
+	"$baseTexture" "models\tacint_shark\weapons\hardballer\wpn_attach_laserbeam"
+	"$texture2"	"models/Weapons/V_smg1/noise"	
+	"$additive" "1"
+	"$nocull" "1"
+
+	"Proxies"
+	{
+
+		"TextureScroll"
+		{
+			"texturescrollvar" "$texture2transform"
+			"texturescrollrate" 4
+			"texturescrollangle" -50
+		}
+
+
+	}	
+}

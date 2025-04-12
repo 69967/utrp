@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint_shark/weapons/hkcaws/main"
+	"$bumpmap" "models/tacint_shark/weapons/hkcaws/main_bump"
+	"$nocull" 1
+	"$color2" "[8 8 8]"
+	
+	$surfaceprop "weapon"
+	
+	"$phong" 1
+	"$phongboost"				6
+	"$phongexponent"				50
+	"$phongfresnelranges"		"[1 8 6]"
+	"$phongalbedotint" "1"
+}

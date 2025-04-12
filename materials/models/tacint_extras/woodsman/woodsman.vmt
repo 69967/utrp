@@ -1,0 +1,14 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/tacint_extras/woodsman/Woodsman"
+	"$bumpmap" "models/tacint_extras/woodsman/Woodsman_norm"
+	"$nocull" "1"
+	"$normalmapalphaenvmapmask" "1"
+ 	"$phong" "1"
+	"$phongexponent" "30"
+	"$phongboost" "0.7"
+	"$phongfresnelranges" "[0.2 2 2]"
+	"$phongalbedotint" "1"
+
+
+}

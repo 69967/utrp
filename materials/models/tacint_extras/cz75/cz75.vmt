@@ -1,0 +1,25 @@
+VertexLitGeneric
+{
+
+	"$basetexture" 	"models/tacint_extras/cz75/cz75"
+	"$bumpmap" 	"models/tacint_extras/cz75/cz75_norm"
+	"$normalmapalphaenvmapmask" "1"
+	"$color2" "[2 2 2]"
+	// "$envmap" "env_cubemap"
+	// "$envmaptint" "[ 0.1 0.1 0.2 ]"
+	// "$envmapconstrast" "1"
+
+	// "$phong"     "0"
+	// "$phongexponent"  "30"
+	// "$phongboost"   "1.6"
+	// "$phongfresnelranges"   "[1 9 3]"
+	// "$phongtint" "[0.7 0.9 1]"
+	// "$phongwarptexture"  "models/tacint_extras/cz75/phongwarp"
+	// "$phongalbedotint" "1"
+	// "$halflambert" "1"
+
+	// "$rimlight" "0"
+	// "$rimlightexponent" "26"
+	// "$rimlightboost" "0.2"
+	"$nocull" "1"
+}
