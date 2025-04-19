@@ -7,12 +7,11 @@ AddCSLuaFile()
 SWEP.PrintName = "SIG P226"
 SWEP.AbbrevName = "P226"
 SWEP.Category = "UTRP Handguns"
-SWEP.SubCatType = "3.45 ACP Pistols"
-
+SWEP.SubCatType = "29mm Pistols"
 
 SWEP.Description = "Handgun with superior range and precision but low capacity."
 
-SWEP.Trivia_Caliber = ".45 ACP"
+SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "SIG Sauer AG"
 SWEP.Trivia_Year = "1984"
 
@@ -31,14 +30,14 @@ SWEP.Slot = 1
 
 // "ballistics"
 
-SWEP.Damage_Max = 34
-SWEP.Damage_Min = 15
-SWEP.Range_Min = 3250
-SWEP.Range_Max = 4500
-SWEP.Penetration = 4
+SWEP.Damage_Max = 25
+SWEP.Damage_Min = 10
+SWEP.Range_Min = 3500
+SWEP.Range_Max = 5000
+SWEP.Penetration = 5
 SWEP.ArmorPenetration = 0
-SWEP.ArmorBonus = 0
-SWEP.MuzzleVelocity = 30000
+SWEP.ArmorBonus = 1.2
+SWEP.MuzzleVelocity = 32500
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -52,23 +51,23 @@ SWEP.BodyDamageMultipliers = {
 }
 
 SWEP.Firemode = 1
-SWEP.RPM = 600
+SWEP.RPM = 500
 SWEP.ShootTimeMult = 0.5
 SWEP.JamFactor = 0.0002
 
 SWEP.Spread = 0.005
-SWEP.RecoilSpreadPenalty = 0.0025
+SWEP.RecoilSpreadPenalty = 0.0015
 SWEP.HipFireSpreadPenalty = 0.01
 SWEP.MoveSpreadPenalty = 0.0033
 
-SWEP.RecoilPerShot = 1.2
-SWEP.RecoilMaximum = 20
-SWEP.RecoilResetTime = 0.33
+SWEP.RecoilPerShot = 1
+SWEP.RecoilMaximum = 30
+SWEP.RecoilResetTime = 0.275
 SWEP.RecoilDissipationRate = 50
 SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 0.5
-SWEP.RecoilKick = 1.33
+SWEP.RecoilVisualKick = 0.4
+SWEP.RecoilKick = 1
 SWEP.RecoilStability = 0
 
 SWEP.MoveSpeedMult = 1

@@ -67,6 +67,7 @@ SWEP.Spread = 0.005
 SWEP.RecoilSpreadPenalty = 0.00125
 SWEP.HipFireSpreadPenalty = 0.01
 SWEP.MoveSpreadPenalty = 0.0033
+SWEP.ShootTimeMult = 0.5
 
 SWEP.RecoilPerShot = 0.5
 SWEP.RecoilMaximum = 10

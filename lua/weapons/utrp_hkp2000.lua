@@ -25,10 +25,6 @@ SWEP.WorldModel = "models/weapons/tacint/w_p2000.mdl"
 
 SWEP.Slot = 1
 
-
-
-SWEP.Slot = 1
-
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
 SWEP.Range_Min = 3500
@@ -66,7 +62,7 @@ SWEP.RecoilDissipationRate = 50
 SWEP.RecoilFirstShotMult = 1
 
 SWEP.RecoilVisualKick = 0.4
-SWEP.RecoilKick = 1.25
+SWEP.RecoilKick = 1
 SWEP.RecoilStability = 0
 
 SWEP.MoveSpeedMult = 1

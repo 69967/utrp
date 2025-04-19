@@ -94,7 +94,7 @@ SWEP.RPMMultSemi = 1 // modify RPM while in semi mode
 
 SWEP.Spread = 0.01
 
-SWEP.ShootTimeMult = 1
+SWEP.ShootTimeMult = 0.5
 
 SWEP.Bipod = false // Weapon can deploy bipod
 SWEP.BipodRecoil = 0.35 // Recoil Amount multiplier per shot
