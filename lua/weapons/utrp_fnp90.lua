@@ -24,26 +24,26 @@ SWEP.WorldModel = "models/weapons/tacint/w_p90.mdl"
 
 SWEP.Slot = 2
 
-// "ballistics"
-
-SWEP.Damage_Max = 34
-SWEP.Damage_Min = 20
-SWEP.Range_Min = 6000
-SWEP.Range_Max = 9000
-SWEP.Penetration = 8
-SWEP.ArmorPenetration = 0.1
+SWEP.Damage_Max = 20
+SWEP.Damage_Min = 5
+SWEP.Range_Min = 4500
+SWEP.Range_Max = 6500
+SWEP.Penetration = 7
+SWEP.ArmorPenetration = 0
+SWEP.ArmorBonus = 1.75
 SWEP.ArmorBonus = 2
+
 SWEP.MuzzleVelocity = 40000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
     [HITGROUP_CHEST] = 1.5,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 0.75,
-    [HITGROUP_RIGHTARM] = 0.75,
-    [HITGROUP_LEFTLEG] = 0.75,
-    [HITGROUP_RIGHTLEG] = 0.75,
-    [HITGROUP_GEAR] = 0.75
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
+    [HITGROUP_GEAR] = 0.8
 }
 
 // misc. shooting

@@ -33,7 +33,7 @@ SWEP.Slot = 1
 
 // "ballistics"
 
-SWEP.Damage_Max = 20
+SWEP.Damage_Max = 15
 SWEP.Damage_Min = 5
 SWEP.Range_Min = 3500
 SWEP.Range_Max = 4500
@@ -62,7 +62,7 @@ SWEP.RPM = 500
 SWEP.RPMMultSemi = 1
 
 SWEP.Spread = 0.004
-SWEP.RecoilSpreadPenalty = 0.001
+SWEP.RecoilSpreadPenalty = 0.00025
 SWEP.HipFireSpreadPenalty = 0.025
 SWEP.MoveSpreadPenalty = 0.0033
 
@@ -79,7 +79,7 @@ SWEP.RecoilStability = 0
 SWEP.MoveSpeedMult = 1
 SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
-SWEP.ReloadSpeedMult = 0.65
+SWEP.ReloadSpeedMult = 0.633
 
 SWEP.AimDownSightsTime = 0.2
 SWEP.SprintToFireTime = 0.2

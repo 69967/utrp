@@ -38,7 +38,7 @@ SWEP.Range_Min = 6000
 SWEP.Range_Max = 9000
 SWEP.Penetration = 6
 SWEP.ArmorPenetration = 0.775
-SWEP.MuzzleVelocity = 27500
+SWEP.MuzzleVelocity = 42500
 
 
 SWEP.BodyDamageMultipliers = {
@@ -105,7 +105,7 @@ SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
 SWEP.SprintAng = Angle(30, -22, -15)
-SWEP.SprintPos = Vector(0, 0, -9)
+SWEP.SprintPos = Vector(0, 0, -12)
 
 SWEP.SightAng = Angle(0.2, 0, 0)
 SWEP.SightPos = Vector(-4.16, -7.5, -4.65)
