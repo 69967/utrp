@@ -25,55 +25,6 @@ SWEP.WorldModel = "models/weapons/tacint_shark/w_1022.mdl"
 
 SWEP.Slot = 2
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 14,
-        Damage_Min = 11,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 7.5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.9,
-            [HITGROUP_RIGHTLEG] = 0.9,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 12,
-        Damage_Min = 10,
-        Range_Min = 1200,
-        Range_Max = 6000,
-        RPM = 420,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.9,
-            [HITGROUP_RIGHTLEG] = 0.9,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_PVE] = {
-        Damage_Max = 15,
-        Damage_Min = 34,
-        Range_Min = 1200,
-        Range_Max = 3000,
-        RPM = 200,
-    },
-    [TacRP.BALANCE_OLDSCHOOL] = {
-        RecoilSpreadPenalty = 0.005,
-        RecoilDissipationRate = 8
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.MarksmanRifle
-
 // "ballistics"
 
 SWEP.Damage_Max = 12
@@ -85,11 +36,11 @@ SWEP.ArmorPenetration = 0.85
 SWEP.ArmorBonus = 0.25
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 3,
+    [HITGROUP_HEAD] = 8,
     [HITGROUP_CHEST] = 1.5,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 0.9,
-    [HITGROUP_RIGHTARM] = 0.9,
+    [HITGROUP_LEFTARM] = 0.75,
+    [HITGROUP_RIGHTARM] = 0.75,
     [HITGROUP_LEFTLEG] = 0.75,
     [HITGROUP_RIGHTLEG] = 0.75,
     [HITGROUP_GEAR] = 0.75
@@ -104,23 +55,22 @@ SWEP.Firemode = 1
 SWEP.RPM = 450
 SWEP.RPMMultSemi = 0.75
 
-SWEP.Spread = 0.0005
-
 SWEP.ShootTimeMult = 0.5
 
-SWEP.RecoilPerShot = 1
+SWEP.RecoilPerShot = 0.2
 SWEP.RecoilMaximum = 4
-SWEP.RecoilResetTime = 0.1 // time after you stop shooting for recoil to start dissipating
-SWEP.RecoilDissipationRate = 10
-SWEP.RecoilFirstShotMult = 0.5
+SWEP.RecoilResetTime = 0.25
+SWEP.RecoilDissipationRate = 100
+SWEP.RecoilFirstShotMult = 0.75
 
 SWEP.RecoilVisualKick = 0.1
 SWEP.RecoilKick = 0.1
-SWEP.RecoilStability = 0.85
+SWEP.RecoilStability = 0
 
-SWEP.RecoilSpreadPenalty = 0.0015
+SWEP.Spread = 0.0015
+SWEP.RecoilSpreadPenalty = 0.00075
 SWEP.HipFireSpreadPenalty = 0.01
-SWEP.PeekPenaltyFraction = 0.5
+SWEP.MoveSpreadPenalty = 0.004
 
 SWEP.CanBlindFire = true
 
@@ -132,8 +82,8 @@ SWEP.SightedSpeedMult = 0.85
 
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.2
-SWEP.SprintToFireTime = 0.34
+SWEP.AimDownSightsTime = 0.425
+SWEP.SprintToFireTime = 0.425
 
 SWEP.Sway = 0.75
 SWEP.ScopedSway = 0.1
@@ -142,7 +92,7 @@ SWEP.FreeAimMaxAngle = 4
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 
@@ -150,13 +100,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -4)
+SWEP.PassivePos = Vector(0, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(7, -3, -2)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -9)
 
 SWEP.SprintMidPoint = {
     Pos = Vector(4, 5, 2),
@@ -204,7 +154,7 @@ SWEP.QCA_Muzzle = 1
 // ditto for shell
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.EjectEffect = 1
 
 // anims

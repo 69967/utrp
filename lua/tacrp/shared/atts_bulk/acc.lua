@@ -492,9 +492,7 @@ ATT = {}
 
 ATT.PrintName = "Fold Stock"
 ATT.Icon = Material("entities/tacrp_att_acc_foldstock.png", "mips smooth")
-ATT.Description = "Keep stock folded, improving handling significantly at the cost of recoil."
-ATT.Pros = {"rating.handling", "rating.maneuvering"}
-ATT.Cons = {"stat.recoilkick", "stat.scopedsway"}
+ATT.Description = "Improve handling significantly at the cost of recoil and spread."
 
 ATT.Free = true
 
@@ -502,28 +500,19 @@ ATT.Category = "acc_foldstock"
 
 ATT.SortOrder = 0.5
 
-ATT.Mult_RecoilVisualKick = 2
-
-ATT.Mult_SightedSpeedMult = 1.25
-ATT.Mult_HipFireSpreadPenalty = 0.7
-
-ATT.Add_RecoilKick = 1
-ATT.Mult_RecoilKick = 1.5
-
--- ATT.Mult_SprintToFireTime = 0.75
--- ATT.Mult_AimDownSightsTime = 0.75
-ATT.Add_SprintToFireTime = -0.08
-ATT.Add_AimDownSightsTime = -0.08
-
-ATT.Add_ScopedSway = 0.1
-ATT.Mult_ScopedSway = 2
-ATT.Mult_Sway = 0.8
-ATT.Add_FreeAimMaxAngle = -1
+ATT.Mult_RecoilVisualKick = 1.2
+ATT.Mult_RecoilKick = 1.2
+ATT.Mult_RecoilSpreadPenalty = 1.5
+ATT.Mult_Spread = 3
+ATT.Mult_SightedSpeedMult = 1.05
+ATT.Add_SprintToFireTime = -0.07
+ATT.Add_AimDownSightsTime = -0.07
+ATT.Add_ScopedSway = 0.2
 
 ATT.InstalledElements = {"foldstock"}
 
 ATT.TryUnholster = true
-ATT.Mult_HolsterTimeMult = 0.5
+ATT.Mult_HolsterTimeMult = 0.75
 
 TacRP.LoadAtt(ATT, "acc_foldstock")
 -- #endregion
@@ -535,9 +524,7 @@ ATT = {}
 
 ATT.PrintName = "Adjust Stock"
 ATT.Icon = Material("entities/tacrp_att_acc_foldstock.png", "mips smooth")
-ATT.Description = "Shorten stock to improve handling somewhat at the cost of recoil."
-ATT.Pros = {"rating.handling", "rating.maneuvering"}
-ATT.Cons = {"stat.recoilkick", "stat.scopedsway"}
+ATT.Description = "Shorten stock to improve handling somewhat at the cost of recoil and spread."
 
 ATT.Free = true
 
@@ -545,26 +532,19 @@ ATT.Category = "acc_foldstock2"
 
 ATT.SortOrder = 0.5
 
-ATT.Mult_RecoilVisualKick = 1.65
-ATT.Mult_SightedSpeedMult = 1.125
-ATT.Mult_HipFireSpreadPenalty = 0.85
-
-ATT.Add_RecoilKick = 0.5
-ATT.Mult_RecoilKick = 1.25
-
--- ATT.Mult_SprintToFireTime = 0.85
--- ATT.Mult_AimDownSightsTime = 0.85
-ATT.Add_SprintToFireTime = -0.04
-ATT.Add_AimDownSightsTime = -0.04
-
+ATT.Mult_RecoilVisualKick = 1.1
+ATT.Mult_RecoilKick = 1.1
+ATT.Mult_RecoilSpreadPenalty = 1.25
+ATT.Mult_Spread = 1.33
+ATT.Mult_SightedSpeedMult = 1.05
+ATT.Add_SprintToFireTime = -0.05
+ATT.Add_AimDownSightsTime = -0.05
 ATT.Add_ScopedSway = 0.1
-ATT.Mult_Sway = 0.9
-ATT.Add_FreeAimMaxAngle = -0.5
 
 ATT.InstalledElements = {"foldstock"}
 
 ATT.TryUnholster = true
-ATT.Mult_HolsterTimeMult = 0.75
+ATT.Mult_HolsterTimeMult = 0.66
 
 TacRP.LoadAtt(ATT, "acc_foldstock2")
 -- #endregion

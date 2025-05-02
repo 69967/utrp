@@ -136,9 +136,6 @@ ATT.Category = "silencer"
 ATT.SortOrder = 8
 
 ATT.Add_Vol_Shoot = -25
-ATT.Mult_MuzzleVelocity = 0.9
-ATT.Add_RecoilStability = 0.07
-ATT.Add_Spread = 0.0025
 
 ATT.Add_Pitch_Shoot = -2.5
 

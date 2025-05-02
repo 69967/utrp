@@ -32,12 +32,12 @@ SWEP.Slot = 2
 
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 5000
-SWEP.Range_Max = 8000
+SWEP.Range_Min = 4500
+SWEP.Range_Max = 7000
 SWEP.Penetration = 5
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 1.2
-SWEP.MuzzleVelocity = 35000
+SWEP.MuzzleVelocity = 33500
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -68,8 +68,8 @@ SWEP.MoveSpreadPenalty = 0.004
 
 SWEP.RecoilPerShot = 1
 SWEP.RecoilMaximum = 30
-SWEP.RecoilResetTime = 0.275
-SWEP.RecoilDissipationRate = 50
+SWEP.RecoilResetTime = 0.25
+SWEP.RecoilDissipationRate = 100
 SWEP.RecoilFirstShotMult = 1
 
 SWEP.RecoilVisualKick = 0.5
@@ -81,13 +81,12 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.26
-SWEP.SprintToFireTime = 0.26
+SWEP.AimDownSightsTime = 0.35
+SWEP.SprintToFireTime = 0.35
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 3
-
+SWEP.FreeAimMaxAngle = 2
 
 // hold types
 
@@ -99,13 +98,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, 0, -7)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -4, -3)
 
 SWEP.SprintAng = Angle(30, -22, -15)
-SWEP.SprintPos = Vector(0, 0, -9)
+SWEP.SprintPos = Vector(0, 0, -16)
 
 SWEP.SightAng = Angle(-0.03, 0.2, 0)
 SWEP.SightPos = Vector(-4.58, -7.5, -2.75)
@@ -159,7 +158,7 @@ SWEP.AnimationTranslationTable = {
     ["fire2"] = "fire2_M",
     ["fire3"] = "fire3_M",
     ["fire4"] = {"fire4_M", "fire4_L", "fire4_R"},
-    ["melee"] = {"melee1", "melee2"}
+    ["melee"] = "melee2"
 }
 
 SWEP.ProceduralIronFire = {
@@ -238,7 +237,7 @@ SWEP.Attachments = {
     },
     [4] = {
         PrintName = "Accessory",
-        Category = {"acc", "acc_foldstock2", "acc_sling", "acc_duffle", "acc_extmag_smg"},
+        Category = {"acc", "acc_foldstock", "acc_sling", "acc_duffle", "acc_extmag_smg"},
         AttachSound = "tacrp/weapons/flashlight_on.wav",
         DetachSound = "tacrp/weapons/flashlight_off.wav",
     },

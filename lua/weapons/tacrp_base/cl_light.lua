@@ -305,18 +305,18 @@ function SWEP:DoMuzzleLight()
     lamp:SetTexture("tacrp/muzzleflash_light")
     local val1, val2
     if self:GetValue("Silencer") then
-        val1, val2 = math.Rand(0.2, 0.4), math.Rand(100, 105)
+        val1, val2 = math.Rand(0.02, 0.02), math.Rand(75, 80)
         lamp:SetBrightness(val1)
         lamp:SetFOV(val2)
     else
-        val1, val2 = math.Rand(2, 3), math.Rand(115, 120)
+        val1, val2 = math.Rand(0.05, 0.1), math.Rand(75, 80)
         lamp:SetBrightness(val1)
         lamp:SetFOV(val2)
     end
 
-    lamp:SetFarZ(600)
-    lamp:SetPos(self:GetMuzzleOrigin() + self:GetShootDir():Forward() * 8)
-    lamp:SetAngles(self:GetShootDir() + Angle(math.Rand(-1, 1), math.Rand(-1, 1), math.Rand(0, 360)))
+    lamp:SetFarZ(1000)
+    lamp:SetPos(self:GetMuzzleOrigin() + self:GetShootDir():Forward() * 37)
+    lamp:SetAngles(self:GetShootDir() + Angle(math.Rand(20, 20), math.Rand(-1, 1), math.Rand(0, 360)))
     lamp:Update()
 
     self.MuzzleLight = lamp

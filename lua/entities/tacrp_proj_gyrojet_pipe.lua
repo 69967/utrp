@@ -26,7 +26,7 @@ end
 
 function ENT:Detonate()
     local attacker = self.Attacker or self:GetOwner() or self
-    local inflictor = attacker.GetWeapon and attacker:GetWeapon("tacrp_sd_gyrojet")
+    local inflictor = attacker.GetWeapon and attacker:GetWeapon("utrp_gyrojet")
     local dmg = inflictor and inflictor.GetValue and inflictor:GetValue("Damage_Max") or 75
     if attacker:IsNPC() and !TacRP.ConVars["npc_equality"]:GetBool() then
         dmg = dmg * 0.25
@@ -41,6 +41,10 @@ function ENT:Detonate()
     if self:WaterLevel() > 0 then
         util.Effect("WaterSurfaceExplosion", fx)
     else
+        fx:SetMagnitude(5)
+        fx:SetScale(10)
+        fx:SetRadius(10)
+        util.Effect("Sparks", fx)
         util.Effect("HelicopterMegaBomb", fx)
     end
 

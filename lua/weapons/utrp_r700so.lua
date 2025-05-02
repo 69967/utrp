@@ -53,7 +53,7 @@ SWEP.MuzzleVelocity = 40000
 
 SWEP.Firemode = 1
 
-SWEP.FiremodeName = "Bolt-Action" // only used externally for firemode name distinction
+SWEP.FiremodeName = "Bolt-Action"
 
 SWEP.RPM = 50
 
@@ -93,7 +93,10 @@ SWEP.ReloadSpeedMult = 0.8
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
 
-SWEP.FreeAimMaxAngle = 4
+SWEP.AimDownSightsTime = 0.3
+SWEP.SprintToFireTime = 0.3
+
+SWEP.FreeAimMaxAngle = 3
 
 // hold types
 
@@ -106,7 +109,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_AR2
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -1, -6)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 15, -45)
 SWEP.BlindFirePos = Vector(1, -2, -3)

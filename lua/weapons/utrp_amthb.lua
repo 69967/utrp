@@ -74,12 +74,12 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.225
-SWEP.SprintToFireTime = 0.225
+SWEP.AimDownSightsTime = 0.26
+SWEP.SprintToFireTime = 0.25
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 5
+SWEP.FreeAimMaxAngle = 1
 
 SWEP.Ammo = "pistol"
 SWEP.Ammo_Expanded = "ti_pistol_heavy"
@@ -95,8 +95,8 @@ SWEP.HoldTypeBlindFire = "pistol"
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
-SWEP.PassiveAng = Angle(3, 0, 0)
-SWEP.PassivePos = Vector(0, -1, -6)
+SWEP.PassiveAng = Angle(0, 0, 0)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)

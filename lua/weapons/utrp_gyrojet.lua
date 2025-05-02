@@ -4,15 +4,15 @@ SWEP.Spawnable = true
 AddCSLuaFile()
 
 // names and stuff
-SWEP.PrintName = "Ouyr PRP-1"
+SWEP.PrintName = "Inventar M1-B"
 SWEP.Category = "UTRP Handguns"
 
 SWEP.SubCatType = "0Other Pistols"
 
-SWEP.Description = ".\n[for law enforcement use only.]"
+SWEP.Description = "A British-made rocket pistol.\n\n\n[for law enforcement use only.]"
 
 SWEP.Trivia_Caliber = "12mm Minirockets"
-SWEP.Trivia_Manufacturer = "Ouyr"
+SWEP.Trivia_Manufacturer = "Inventar"
 SWEP.Trivia_Year = "1962"
 
 SWEP.Faction = TacRP.FACTION_NEUTRAL
@@ -37,11 +37,11 @@ SWEP.Damage_Min = 150
 SWEP.Range_Min = 9000
 SWEP.Range_Max = 9000
 
-SWEP.Penetration = 10
+SWEP.Penetration = 1
 SWEP.ArmorPenetration = 100
 
 SWEP.ShootEnt = "tacrp_proj_gyrojet"
-SWEP.ShootEntForce = 20000
+SWEP.ShootEntForce = 60000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -60,11 +60,11 @@ SWEP.Firemode = 1
 
 SWEP.RPM = 400
 
-SWEP.Spread = 0.0025
+SWEP.Spread = 0.00001
 
 SWEP.ShootTimeMult = 0.25
 
-SWEP.JamFactor = 0
+SWEP.JamFactor = 0.01
 
 SWEP.RecoilPerShot = 1
 SWEP.RecoilMaximum = 4
@@ -73,9 +73,7 @@ SWEP.RecoilDissipationRate = 4
 SWEP.RecoilFirstShotMult = 1
 
 SWEP.RecoilVisualKick = 1
-
 SWEP.RecoilKick = 2
-
 SWEP.RecoilSpreadPenalty = 0.01
 
 SWEP.CanBlindFire = true
@@ -85,16 +83,15 @@ SWEP.CanBlindFire = true
 SWEP.MoveSpeedMult = 1
 SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
+SWEP.ReloadSpeedMult = 0.8
 
-SWEP.ReloadSpeedMult = 1
+SWEP.AimDownSightsTime = 0.25
+SWEP.SprintToFireTime = 0.25
 
-SWEP.AimDownSightsTime = 0.2
-SWEP.SprintToFireTime = 0.2
+SWEP.Sway = 0.33
+SWEP.ScopedSway = 0.2
 
-SWEP.Sway = 1.05
-SWEP.ScopedSway = 0.5
-
-SWEP.FreeAimMaxAngle = 3
+SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
@@ -106,7 +103,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0.2, -1, -7.5)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)

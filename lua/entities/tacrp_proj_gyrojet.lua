@@ -108,7 +108,7 @@ function ENT:Impact(data, collider)
     util.Effect("MetalSpark", fx)
 
     local attacker = self.Attacker or self:GetOwner() or self
-    local inflictor = attacker.GetWeapon and attacker:GetWeapon("tacrp_sd_gyrojet")
+    local inflictor = attacker.GetWeapon and attacker:GetWeapon("utrp_gyrojet")
     local dmg = inflictor and inflictor.GetValue and inflictor:GetValue("Damage_Max") or 75
     self:FireBullets({
         Attacker = attacker,

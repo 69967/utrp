@@ -28,7 +28,6 @@ SWEP.WorldModel = "models/weapons/tacint_extras/w_ar15pistol.mdl"
 
 SWEP.Slot = 1
 
-// "ballistics"
 SWEP.Damage_Max = 38
 SWEP.Damage_Min = 15
 SWEP.Range_Min = 4250
@@ -56,7 +55,7 @@ SWEP.RPM = 650
 SWEP.RPMMultSemi = 0.7
 
 SWEP.Spread = 0.003
-SWEP.RecoilSpreadPenalty = 0.0012
+SWEP.RecoilSpreadPenalty = 0.001
 SWEP.HipFireSpreadPenalty = 0.01
 SWEP.MoveSpreadPenalty = 0.004
 
@@ -82,13 +81,13 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.65
 
-SWEP.AimDownSightsTime = 0.25
-SWEP.SprintToFireTime = 0.25
+SWEP.AimDownSightsTime = 0.3
+SWEP.SprintToFireTime = 0.3
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
 
-SWEP.FreeAimMaxAngle = 3.5
+SWEP.FreeAimMaxAngle = 1.5
 
 // hold types
 
@@ -100,7 +99,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -1, -7)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)

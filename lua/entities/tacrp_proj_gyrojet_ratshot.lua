@@ -27,7 +27,7 @@ end
 function ENT:Detonate()
     local dir = self:GetForward()
     local attacker = self.Attacker or self:GetOwner() or self
-    local inflictor = attacker.GetWeapon and attacker:GetWeapon("tacrp_sd_gyrojet")
+    local inflictor = attacker.GetWeapon and attacker:GetWeapon("utrp_gyrojet")
     local damage = inflictor and inflictor:GetValue("Damage_Max") or 50
     if attacker:IsNPC() and !TacRP.ConVars["npc_equality"]:GetBool() then
         damage = damage * 0.25

@@ -29,12 +29,12 @@ SWEP.Slot = 2
 
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 4250
-SWEP.Range_Max = 7250
+SWEP.Range_Min = 4500
+SWEP.Range_Max = 7000
 SWEP.Penetration = 5
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 1.2
-SWEP.MuzzleVelocity = 30000
+SWEP.MuzzleVelocity = 33500
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -79,12 +79,12 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.225
-SWEP.SprintToFireTime = 0.225
+SWEP.AimDownSightsTime = 0.3
+SWEP.SprintToFireTime = 0.3
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 3
+SWEP.FreeAimMaxAngle = 2
 
 // hold types
 
@@ -96,13 +96,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, 0, -7)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
 SWEP.SprintAng = Angle(30, -30, -15)
-SWEP.SprintPos = Vector(0, 0, -6)
+SWEP.SprintPos = Vector(0, 0, -16)
 
 SWEP.SightAng = Angle(0.05, 0, 0)
 SWEP.SightPos = Vector(-4.64, -3, -1.87)

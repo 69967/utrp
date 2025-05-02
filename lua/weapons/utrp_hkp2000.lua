@@ -10,8 +10,7 @@ SWEP.Category = "UTRP Handguns"
 
 SWEP.SubCatType = "29mm Pistols"
 
-SWEP.Description = "Well-rounded, run-of-the-mill police handgun."
-SWEP.Description_Quote = "\"Raus! Raus! Raus!\""
+SWEP.Description = "A compact, ergonomic pistol."
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
@@ -27,8 +26,8 @@ SWEP.Slot = 1
 
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 3500
-SWEP.Range_Max = 5000
+SWEP.Range_Min = 3250
+SWEP.Range_Max = 4750
 SWEP.Penetration = 5
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 1.2
@@ -51,7 +50,7 @@ SWEP.ShootTimeMult = 0.5
 SWEP.JamFactor = 0.0002
 
 SWEP.Spread = 0.005
-SWEP.RecoilSpreadPenalty = 0.0015
+SWEP.RecoilSpreadPenalty = 0.00175
 SWEP.HipFireSpreadPenalty = 0.01
 SWEP.MoveSpreadPenalty = 0.0033
 
@@ -62,7 +61,7 @@ SWEP.RecoilDissipationRate = 50
 SWEP.RecoilFirstShotMult = 1
 
 SWEP.RecoilVisualKick = 0.4
-SWEP.RecoilKick = 1
+SWEP.RecoilKick = 1.05
 SWEP.RecoilStability = 0
 
 SWEP.MoveSpeedMult = 1
@@ -70,12 +69,12 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.225
-SWEP.SprintToFireTime = 0.225
+SWEP.AimDownSightsTime = 0.23
+SWEP.SprintToFireTime = 0.23
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 5
+SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
@@ -87,7 +86,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -1, -6)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)
@@ -104,14 +103,14 @@ SWEP.SightPos = Vector(-3.47, 0, -3.35)
 SWEP.CorrectivePos = Vector(0, 0, 0)
 SWEP.CorrectiveAng = Angle(0, 0, 0)
 
-SWEP.HolsterVisible = true
+SWEP.HolsterVisible = false
 SWEP.HolsterSlot = TacRP.HOLSTER_SLOT_PISTOL
 SWEP.HolsterPos = Vector(0, 3, -4)
 SWEP.HolsterAng = Angle(90, 0, 0)
 
 // reload
 
-SWEP.ClipSize = 15 // 13 not realism :(
+SWEP.ClipSize = 13
 SWEP.Ammo = "pistol"
 
 SWEP.ReloadUpInTime = 0.85

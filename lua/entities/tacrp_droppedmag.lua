@@ -66,7 +66,7 @@ function ENT:Initialize()
 
         local phys = self:GetPhysicsObject()
         if !phys:IsValid() then
-            self:PhysicsInitBox(Vector(-1, -1, -1), Vector(1, 1, 1))
+            self:PhysicsInitBox(Vector(-1, -1, -1), Vector(1, 10, 1))
         end
     end
 

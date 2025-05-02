@@ -81,12 +81,12 @@ SWEP.ShootingSpeedMult = 0.9
 SWEP.SightedSpeedMult = 0.9
 SWEP.ReloadSpeedMult = 0.633
 
-SWEP.AimDownSightsTime = 0.2
-SWEP.SprintToFireTime = 0.2
+SWEP.AimDownSightsTime = 0.24
+SWEP.SprintToFireTime = 0.24
 
 SWEP.Sway = 0.5
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 3
+SWEP.FreeAimMaxAngle = 1
 
 // reload
 
@@ -104,7 +104,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -6.25)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)

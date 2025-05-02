@@ -32,25 +32,25 @@ SWEP.Slot = 1
 
 // "ballistics"
 
-SWEP.Damage_Max = 10
+SWEP.Damage_Max = 12
 SWEP.Damage_Min = 4
 SWEP.Range_Min = 2000
 SWEP.Range_Max = 4000
 SWEP.Penetration = 3
 SWEP.ArmorPenetration = 0.1
 SWEP.ArmorBonus = 0
-SWEP.Num = 12
+SWEP.Num = 5
 
 SWEP.MuzzleVelocity = 30000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 3,
-    [HITGROUP_CHEST] = 1.25,
-    [HITGROUP_STOMACH] = 0.9,
-    [HITGROUP_LEFTARM] = 0.75,
-    [HITGROUP_RIGHTARM] = 0.75,
-    [HITGROUP_LEFTLEG] = 0.75,
-    [HITGROUP_RIGHTLEG] = 0.75,
+    [HITGROUP_CHEST] = 1.675,
+    [HITGROUP_STOMACH] = 1,
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
     [HITGROUP_GEAR] = 0.75
 }
 
@@ -62,8 +62,8 @@ SWEP.FiremodeName = "Double-Action"
 
 SWEP.RPM = 160
 
-SWEP.Spread = 0.04
-SWEP.ShotgunPelletSpread = 0.015
+SWEP.Spread = 0.02
+SWEP.ShotgunPelletSpread = 0.016
 
 SWEP.ShootTimeMult = 1
 
@@ -88,8 +88,9 @@ SWEP.SightedSpeedMult = 0.9
 
 SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.25
-SWEP.SprintToFireTime = 0.25
+SWEP.AimDownSightsTime = 0.26
+SWEP.SprintToFireTime = 0.26
+SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
@@ -101,7 +102,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_REVOLVER
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -6.25)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)

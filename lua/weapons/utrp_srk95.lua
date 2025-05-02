@@ -6,13 +6,12 @@ AddCSLuaFile()
 // names and stuff
 SWEP.PrintName = "Sako RK 95"
 SWEP.AbbrevName = "RK 95"
-SWEP.Category = "Tactical RP"
+SWEP.Category = "UTRP Longarms"
 
 SWEP.SubCatTier = "3Security"
-SWEP.SubCatType = "4Assault Rifle"
+SWEP.SubCatType = "77.62x39mm Automatic Rifles"
 
-SWEP.Description = "Finnish AK derivative with high armor penetration and extended magazine."
-SWEP.Description_Quote = "Despite its looks... Actually, this one's pretty much an AK."
+SWEP.Description = "Finnish AK derivative"
 
 SWEP.Trivia_Caliber = "7.62x39mm"
 SWEP.Trivia_Manufacturer = "SAKO"
@@ -28,120 +27,66 @@ SWEP.WorldModel = "models/weapons/tacint_shark/w_rk95.mdl"
 
 SWEP.Slot = 2
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 27,
-        Damage_Min = 19,
-        ArmorPenetration = 0.95,
-
-        RPM = 600,
-        RecoilKick = 5,
-        ClipSize = 35,
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 16,
-        Damage_Min = 11,
-
-        Range_Min = 400,
-        Range_Max = 2000,
-
-        RPM = 600,
-
-        RecoilSpreadPenalty = 0.0025,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 2.5,
-            [HITGROUP_CHEST] = 1.25,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 0.9,
-            [HITGROUP_RIGHTARM] = 0.9,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_PVE] = {
-        Damage_Max = 8,
-        Damage_Min = 4,
-    },
-    [TacRP.BALANCE_OLDSCHOOL] = {
-        HipFireSpreadPenalty = 0.009,
-        RecoilSpreadPenalty = 0.0045,
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.AssaultRifle
-
-// "ballistics"
-
-SWEP.Damage_Max = 25
-SWEP.Damage_Min = 18
-SWEP.Range_Min = 900 // distance for which to maintain maximum damage
-SWEP.Range_Max = 3000 // distance at which we drop to minimum damage
-SWEP.Penetration = 10 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.875
-SWEP.ArmorBonus = 2
+SWEP.Damage_Max = 50
+SWEP.Damage_Min = 20
+SWEP.Range_Min = 4500
+SWEP.Range_Max = 7000
+SWEP.Penetration = 5
+SWEP.ArmorPenetration = 0.33
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 5,
-    [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1.2,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 0.85,
-    [HITGROUP_RIGHTLEG] = 0.85,
-    [HITGROUP_GEAR] = 0.9
+    [HITGROUP_HEAD] = 10,
+    [HITGROUP_CHEST] = 1.5,
+    [HITGROUP_STOMACH] = 1.25,
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
+    [HITGROUP_GEAR] = 0.8
 }
 
-SWEP.MuzzleVelocity = 27000
+SWEP.MuzzleVelocity = 40000
 
 // misc. shooting
 
-SWEP.Firemodes = {
-    2,
-    1
-}
+SWEP.Firemodes = {2, 1}
+SWEP.RPM = 700
+SWEP.JamFactor = 0.0002
 
-SWEP.RPM = 550
-
-SWEP.Spread = 0.006
+SWEP.Spread = 0.0015
+SWEP.RecoilSpreadPenalty = 0.0005
+SWEP.HipFireSpreadPenalty = 0.01
+SWEP.MoveSpreadPenalty = 0.0075
 
 SWEP.ShootTimeMult = 0.5
 
-SWEP.RecoilResetInstant = false
-SWEP.RecoilPerShot = 1
-SWEP.RecoilMaximum = 8
-SWEP.RecoilResetTime = 0
-SWEP.RecoilDissipationRate = 28
+SWEP.RecoilPerShot = 2.5
+SWEP.RecoilMaximum = 40
+SWEP.RecoilResetTime = 0.25
+SWEP.RecoilDissipationRate = 100
 SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 1
-SWEP.RecoilKick = 6
-SWEP.RecoilStability = 0.45
-SWEP.RecoilAltMultiplier = 250
+SWEP.RecoilVisualKick = 0.6
+SWEP.RecoilKick = 1.1
+SWEP.RecoilStability = 0
+SWEP.RecoilAltMultiplier = 0
 
-SWEP.RecoilSpreadPenalty = 0.0032
-SWEP.HipFireSpreadPenalty = 0.03
+SWEP.MoveSpeedMult = 0.9
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.8
 
-SWEP.CanBlindFire = true
+SWEP.ReloadSpeedMult = 0.65
 
-// handling
+SWEP.AimDownSightsTime = 0.45
+SWEP.SprintToFireTime = 0.45
 
-SWEP.MoveSpeedMult = 0.92
-SWEP.ShootingSpeedMult = 0.85
-SWEP.SightedSpeedMult = 0.65
-
-SWEP.ReloadSpeedMult = 0.47
-
-SWEP.AimDownSightsTime = 0.37
-SWEP.SprintToFireTime = 0.38
-
-SWEP.Sway = 1.25
-SWEP.ScopedSway = 0.15
+SWEP.Sway = 0.5
+SWEP.ScopedSway = 0.1
+SWEP.FreeAimMaxAngle = 3
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 
@@ -149,13 +94,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -4.2)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(5, 0, -2)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -16)
 
 SWEP.SightAng = Angle(0.09, -0.7, -0.4)
 SWEP.SightPos = Vector(-4.68, -8.5, -3.05)
@@ -169,7 +114,7 @@ SWEP.HolsterPos = Vector(5, -2, -6)
 SWEP.HolsterAng = Angle(0, 0, 0)
 
 
-SWEP.ClipSize = 32
+SWEP.ClipSize = 30
 SWEP.Ammo = "ar2"
 
 SWEP.ReloadTimeMult = 1.2
@@ -189,7 +134,7 @@ SWEP.Sound_Shoot = "^" .. path .. "fire1.wav"
 SWEP.Sound_Shoot_Silenced = path .. "suppressed_fire1.wav"
 
 SWEP.Vol_Shoot = 120
-SWEP.ShootPitchVariance = 2.5 // amount to vary pitch by each shot
+SWEP.ShootPitchVariance = 2.5
 
 // effects
 
@@ -198,7 +143,7 @@ SWEP.QCA_Muzzle = 1
 // ditto for shell
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_ak47"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.EjectEffect = 2
 
 // anims
@@ -210,7 +155,7 @@ SWEP.AnimationTranslationTable = {
     ["fire2"] = "fire2_M",
     ["fire3"] = "fire3_M",
     ["fire4"] = {"fire4_M", "fire4_L", "fire4_R"},
-    ["melee"] = {"melee1", "melee2"},
+    ["melee"] = "melee2",
     ["jam"] = "mid_reload"
 }
 

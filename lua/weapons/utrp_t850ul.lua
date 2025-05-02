@@ -89,7 +89,7 @@ SWEP.SprintToFireTime = 0.2
 
 SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
-SWEP.FreeAimMaxAngle = 5
+SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
@@ -101,7 +101,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_REVOLVER
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -6.25)
+SWEP.PassivePos = Vector(-1, 0, -7)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)

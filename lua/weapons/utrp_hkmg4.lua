@@ -10,7 +10,7 @@ SWEP.Category = "UTRP Longarms"
 
 SWEP.SubCatType = "9Machine Guns"
 
-SWEP.Description = "Machine gun with huge volume of fire."
+SWEP.Description = "Machine gun"
 
 SWEP.Trivia_Caliber = "5.56x45mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
@@ -25,6 +25,15 @@ SWEP.WorldModel = "models/weapons/tacint/w_mg4.mdl"
 SWEP.Slot = 2
 SWEP.SlotAlt = 3
 
+SWEP.Damage_Max = 38
+SWEP.Damage_Min = 15
+SWEP.Range_Min = 6250
+SWEP.Range_Max = 9250
+SWEP.Penetration = 6
+SWEP.ArmorPenetration = 0.775
+SWEP.MuzzleVelocity = 43750
+
+
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
     [HITGROUP_CHEST] = 1.5,
@@ -33,61 +42,45 @@ SWEP.BodyDamageMultipliers = {
     [HITGROUP_RIGHTARM] = 0.8,
     [HITGROUP_LEFTLEG] = 0.8,
     [HITGROUP_RIGHTLEG] = 0.8,
-    [HITGROUP_GEAR] = 0.8
+    [HITGROUP_GEAR] = 0.9
 }
-
-// "ballistics"
-
-SWEP.Damage_Max = 38
-SWEP.Damage_Min = 15
-SWEP.Range_Min = 7000
-SWEP.Range_Max = 10000
-SWEP.Penetration = 6
-SWEP.ArmorPenetration = 0.8
-
-SWEP.MuzzleVelocity = 40000
 
 // misc. shooting
 
-SWEP.Firemode = 2
+SWEP.Firemodes = {2, 1}
+SWEP.RPM = 890
+SWEP.JamFactor = 0.0001
 
-SWEP.RPM = 900
-
-SWEP.Spread = 0.002
+SWEP.Spread = 0.0015
+SWEP.RecoilSpreadPenalty = 0.0006
+SWEP.HipFireSpreadPenalty = 0.03
+SWEP.MoveSpreadPenalty = 0.008
 
 SWEP.ShootTimeMult = 0.5
 
 SWEP.RecoilPerShot = 2.2
-SWEP.RecoilMaximum = 50
-SWEP.RecoilResetTime = 0.33
+SWEP.RecoilMaximum = 20
+SWEP.RecoilResetTime = 0.25
 SWEP.RecoilDissipationRate = 100
 SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 0.4
-SWEP.RecoilKick = 0.4
+SWEP.RecoilVisualKick = 0.25
+SWEP.RecoilKick = 0.5
 SWEP.RecoilStability = 0
+SWEP.RecoilAltMultiplier = 0
 
-SWEP.MoveSpreadPenalty = 0.015
-SWEP.HipFireSpreadPenalty = 0.025
-SWEP.RecoilSpreadPenalty = 0.0007
-SWEP.PeekPenaltyFraction = 0.125
+SWEP.MoveSpeedMult = 0.85
+SWEP.ShootingSpeedMult = 0.85
+SWEP.SightedSpeedMult = 0.8
+SWEP.ReloadSpeedMult = 0.65
 
-// handling
+SWEP.AimDownSightsTime = 0.5
+SWEP.SprintToFireTime = 0.5
 
-SWEP.MoveSpeedMult = 0.9
-SWEP.ShootingSpeedMult = 0.9
-SWEP.SightedSpeedMult = 0.875
-
-SWEP.ReloadSpeedMult = 0.2
-SWEP.ReloadSpeedMultTime = 1
-
-SWEP.AimDownSightsTime = 0.3
-SWEP.SprintToFireTime = 0.3
-
-SWEP.Sway = 2
+SWEP.Sway = 0.75
 SWEP.ScopedSway = 0.2
 
-SWEP.FreeAimMaxAngle = 7
+SWEP.FreeAimMaxAngle = 4
 
 SWEP.Bipod = true
 SWEP.BipodRecoil = 0.3
@@ -103,13 +96,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, 0, -8)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -4, -3)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(5, 0, -5)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -16)
 
 SWEP.SightAng = Angle(-0.11, -0.6, 0)
 SWEP.SightPos = Vector(-4.55, -7.5, -3.7)
@@ -173,7 +166,7 @@ SWEP.AnimationTranslationTable = {
     ["fire2"] = "fire2_L",
     ["fire3"] = "fire3_L",
     ["fire4"] = {"fire4_M", "fire4_L", "fire4_R"},
-    ["melee"] = {"melee1", "melee2"}
+    ["melee"] = "melee1"
 }
 
 // attachments

@@ -216,7 +216,7 @@ ATT.SortOrder = 3
 
 ATT.Add_ClipSize = -2
 
-ATT.Mult_ShootEntForce = 0.15
+ATT.Mult_ShootEntForce = 0.05
 
 ATT.Mult_ShootTimeMult = 2.5
 ATT.Mult_RPM = 0.5
