@@ -30,7 +30,7 @@ SWEP.Range_Max = 4500
 SWEP.Penetration = 4
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 0
-SWEP.MuzzleVelocity = 30000
+SWEP.MuzzleVelocity = 29000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -106,7 +106,7 @@ SWEP.HolsterAng = Angle(90, 0, 0)
 
 // reload
 
-SWEP.ClipSize = 17
+SWEP.ClipSize = 10
 SWEP.Ammo = "pistol"
 SWEP.Ammo_Expanded = "ti_pistol_heavy"
 

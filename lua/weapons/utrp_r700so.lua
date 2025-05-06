@@ -28,11 +28,11 @@ SWEP.Slot = 1
 
 SWEP.Damage_Max = 50
 SWEP.Damage_Min = 30
-SWEP.Range_Min = 2750
-SWEP.Range_Max = 4225
+SWEP.Range_Min = 3250
+SWEP.Range_Max = 5000
 SWEP.Penetration = 8
 SWEP.ArmorPenetration = 1
-SWEP.JamFactor = 0.0002
+SWEP.JamFactor = 0.00005
 
 
 SWEP.BodyDamageMultipliers = {

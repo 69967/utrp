@@ -36,7 +36,7 @@ SWEP.Range_Max = 4250
 SWEP.Penetration = 4
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 0
-SWEP.MuzzleVelocity = 29000
+SWEP.MuzzleVelocity = 28000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 20,
