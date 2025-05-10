@@ -41,7 +41,7 @@ SWEP.Penetration = 1
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 0
 
-SWEP.MuzzleVelocity = 35000
+SWEP.MuzzleVelocity = 29000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
@@ -113,7 +113,7 @@ SWEP.BlindFireSuicideAng = Angle(-130, 0, 45)
 SWEP.BlindFireSuicidePos = Vector(25, 15, -6)
 
 SWEP.SprintAng = Angle(0, -20, 0)
-SWEP.SprintPos = Vector(2, 0, -8)
+SWEP.SprintPos = Vector(0, 0, -8)
 
 SWEP.SightAng = Angle(-0.025, 0, 0)
 SWEP.SightPos = Vector(-3.34, 0, -3.52)

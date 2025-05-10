@@ -785,43 +785,12 @@ function SWEP:DrawHUDBackground()
             surface.SetTextColor(col)
             surface.DrawText("⌂")
 
-            if armor >= 100 then
-                drawarmorsquare(3, cx1, cy1)
-            elseif armor > 75 then
-                drawarmorsquare(2, cx1, cy1)
-            else
-                drawarmorsquare(1, cx1, cy1)
-            end
-
-            if armor >= 75 then
-                drawarmorsquare(3, cx2, cy1)
-            elseif armor > 50 then
-                drawarmorsquare(2, cx2, cy1)
-            else
-                drawarmorsquare(1, cx2, cy1)
-            end
-
-            if armor >= 50 then
-                drawarmorsquare(3, cx2, cy2)
-            elseif armor > 25 then
-                drawarmorsquare(2, cx2, cy2)
-            else
-                drawarmorsquare(1, cx2, cy2)
-            end
-
-            if armor >= 25 then
-                drawarmorsquare(3, cx1, cy2)
-            elseif armor > 0 then
-                drawarmorsquare(2, cx1, cy2)
-            else
-                drawarmorsquare(1, cx1, cy2)
-            end
         elseif TacRP.ConVars["minhud"]:GetBool() and self:ShouldDrawBottomBar() then
             local bipod = self:GetValue("Bipod")
-            local w = TacRP.SS(110)
+            local w = TacRP.SS(100)
             local h = TacRP.SS(16)
-            local x = ScrW() / 2 - w / 2
-            local y = ScrH() - h - TacRP.SS(8)
+            local x = ScrW() *.422
+            local y = ScrH() *.005
 
             if bipod then x = x - h / 2 - TacRP.SS(2) end
 
