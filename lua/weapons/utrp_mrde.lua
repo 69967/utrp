@@ -40,7 +40,7 @@ SWEP.Penetration = 10
 SWEP.ArmorPenetration = 0.85
 SWEP.ArmorBonus = 5
 
-SWEP.MuzzleVelocity = 10000
+SWEP.MuzzleVelocity = 35000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,

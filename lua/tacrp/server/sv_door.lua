@@ -45,15 +45,13 @@ function TacRP.DoorBust(ent, vel, attacker)
             net.Broadcast()
         end)
 
-        -- Make it not collide with players after a bit cause that's annoying
-        -- timer.Create("TacRP_DoorBust_" .. prop:EntIndex(), 2, 1, function()
-        --     if IsValid(prop) then
-        --         prop:SetCollisionGroup(COLLISION_GROUP_WEAPON)
-        --         local c = prop:GetColor()
-        --         prop:SetRenderMode(RENDERMODE_TRANSALPHA)
-        --         prop:SetColor(Color(c.r, c.g, c.b, c.a * 0.8))
-        --     end
-        -- end)
+         timer.Create("utrp_doorcolrm" .. prop:EntIndex(), 3, 0, function()
+             if IsValid(prop) and math.abs(prop:GetAngles().p+90) <= 15 or math.abs(prop:GetAngles().p-90) <= 15  then
+                 prop:SetCollisionGroup(COLLISION_GROUP_WEAPON)
+                 prop:SetRenderMode(RENDERMODE_TRANSALPHA)
+				 timer.Remove("utrp_doorcolrm" .. prop:EntIndex())
+             end
+         end)
 
         -- Reset it after a while
         timer.Simple(1, function()

@@ -38,7 +38,7 @@ SWEP.Penetration = 12
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 5
 
-SWEP.MuzzleVelocity = 40000
+SWEP.MuzzleVelocity = 36000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 20,
@@ -152,7 +152,7 @@ SWEP.QCA_Muzzle = 2
 SWEP.QCA_Eject = 0
 SWEP.EjectEffect = 0
 
-SWEP.MuzzleEffect = "muzzleflash_1"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 
 // anims
 

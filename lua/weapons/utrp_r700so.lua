@@ -47,7 +47,7 @@ SWEP.BodyDamageMultipliers = {
 }
 
 
-SWEP.MuzzleVelocity = 40000
+SWEP.MuzzleVelocity = 34000
 
 // misc. shooting
 
@@ -124,7 +124,7 @@ SWEP.BlindFireSuicideAng = Angle(0, 135, 0)
 SWEP.BlindFireSuicidePos = Vector(-2, 45, -35)
 
 SWEP.SprintAng = Angle(0, -20, 0)
-SWEP.SprintPos = Vector(0, 0, -8)
+SWEP.SprintPos = Vector(-2, 0, -8)
 
 SWEP.SightAng = Angle(0.03, 0.4, 0)
 SWEP.SightPos = Vector(-2.68, -6.5, -3.05)

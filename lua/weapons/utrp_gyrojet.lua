@@ -112,7 +112,7 @@ SWEP.BlindFireSuicideAng = Angle(-135, 0, 45)
 SWEP.BlindFireSuicidePos = Vector(25, 19, -5)
 
 SWEP.SprintAng = Angle(0, -20, 0)
-SWEP.SprintPos = Vector(0, 0, -9)
+SWEP.SprintPos = Vector(-1, 0, -9)
 
 SWEP.SightAng = Angle(0.06, -0.4, 0)
 SWEP.SightPos = Vector(-3.35, 1, -4)
