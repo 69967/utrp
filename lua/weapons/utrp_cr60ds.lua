@@ -58,7 +58,7 @@ SWEP.RPM = 300
 
 SWEP.Spread = 0.001
 
-SWEP.ShootTimeMult = 1
+SWEP.ShootTimeMult = 0.5
 
 SWEP.Spread = 0.0033
 SWEP.RecoilSpreadPenalty = 0.0015
@@ -155,7 +155,7 @@ SWEP.MuzzleEffect = "muzzleflash_suppressed"
 
 SWEP.AnimationTranslationTable = {
     ["deploy"] = "draw",
-    ["fire"] = {"shoot1", "shoot2", "shoot3"},
+    ["fire"] = {"shoot1", "shoot3"},
     ["fire_iron"] = "shoot1",
     ["blind_fire"] = {"blind_shoot1", "blind_shoot2"},
     ["melee"] = {"melee1", "melee2"},

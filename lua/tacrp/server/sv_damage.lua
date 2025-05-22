@@ -1,85 +1,64 @@
-local function dcalc(dmginfo, ap, dmg, ab, apen)
-
-	local dtype=nil
-
-	if dmginfo:IsDamageType(DMG_BULLET) then dtype = 1
-	elseif dmginfo:IsDamageType(DMG_BUCKSHOT) then dtype = 2
-	elseif dmginfo:IsDamageType(DMG_BLAST) then dtype = 3
-	elseif dmginfo:IsDamageType(DMG_SLASH) then dtype = 4
-	end
-
-	if dtype == 1 and ap*2 < ab*20 then
-		dmg=ab*6
-		apen=0.5
-	elseif dtype == 1 then
-		dmg=ab*4
-		apen=0
-	elseif dtype == 2 then
-		ab=0.25
-		apen=0.25
-	elseif dtype == 3 then
-		ab=0.33
-		apen=0.75
-	elseif dtype == 4 then
-		ab=0.1
-		apen=0
-	else
-		ab=0.1
-		apen=0.33
-	end
-
-	local hdmg=dmg*apen
-	local admg=dmg*ab
-
-	return hdmg, admg
-end
-
 hook.Add("EntityTakeDamage", "armordam", function(ply, dmginfo)
-	if TacRP.ConVars["armorpenetration"] == false then return end
-	if ply.IsPlayer() == false then return end
-	if ply:Armor() == 0 then return end
-	if dmginfo:GetDamage() < 1 or dmginfo:IsDamageType(DMG_BULLET + DMG_BUCKSHOT + DMG_BLAST + DMG_SLASH + DMG_CLUB) == false then return end
+    if not TacRP.ConVars["armorpenetration"] or not ply:IsPlayer() or ply:Armor() == 0 or
+       dmginfo:GetDamage() < 1 or not dmginfo:IsDamageType(DMG_BULLET + DMG_BUCKSHOT + DMG_BLAST + DMG_SLASH + DMG_CLUB) then
+        return
+    end
 
-	local ent=dmginfo:GetInflictor()
-	local wep=nil
+    local ent = dmginfo:GetInflictor()
+	local wep = nil
+	local ab = nil
+    if ent:Alive() then wep = ent:GetActiveWeapon() ab = wep:GetValue("ArmorBonus") end print(ab)
+    local dmg = dmginfo:GetDamage()
+	local gdmg = 0
+    local ap, hp, hg = ply:Armor(), ply:Health(), ply:LastHitGroup()
 
-	if ent:Alive() then
-		wep = ent:GetActiveWeapon()
-	end
-
-	local dmg=nil
-	local ab=nil
-	local apen=nil
-
-	if wep and wep.ArcticTacRP then
-		dmg = dmginfo:GetDamage()
-		ab = wep:GetValue("ArmorBonus")
-		apen = wep:GetValue("ArmorPenetration")
-	else
-		dmg = dmginfo:GetDamage()
-		ab = 0
-		apen = 0
-	end
-
-	local ap=ply:Armor()
-	local hp=ply:Health()
-	local hg=ply:LastHitGroup()
-
-	if ent:Alive() and hg ~= 0 and hg ~= 2 and hg ~=3 then --0,2,3:generic, stomach, chest; models may assign hitgroups differently.
-		ply:SetHealth(hp-dmg)
-		dmginfo:SetDamage(0)
-	else
-		local hdmg, admg = dcalc(dmginfo, ap, dmg, ab, apen)
-		ply:SetArmor(math.max(ap-admg, 0))
-		ply:SetHealth(hp-hdmg)
-		dmginfo:SetDamage(0)
-		print(ply:LastHitGroup())
-	end
+    if ent:Alive() and hg ~= 0 and hg ~= 2 and hg ~= 3 then
+        ply:SetHealth(hp - dmg)
+    else
+        local dtype = dmginfo:IsDamageType(DMG_BULLET) and 1 or
+                      dmginfo:IsDamageType(DMG_BUCKSHOT) and 2 or
+                      dmginfo:IsDamageType(DMG_BLAST) and 3 or
+                      dmginfo:IsDamageType(DMG_SLASH) and 4 or 0
+        if dtype == 1 then
+            if ap+ap < ab * 20 then
+                gdmg = ab * 4
+                apen = dmg*0.015
+				dmg = 0
+            else
+                gdmg = ab * 4
+                apen = 0
+				dmg = 0
+            end
+        elseif dtype == 2 then
+            ab = 0.25
+            apen = 0.25
+        elseif dtype == 3 then
+            ab = 0.33
+            apen = 0.75
+        elseif dtype == 4 then
+            ab = 0.1
+            apen = 0
+        else
+            ab = 0.1
+            apen = 0.33
+        end
+		ply:SetArmor(ap - dmg * ab and ap - gdmg or 0)
+        ply:SetHealth(hp - dmg * apen)
+    end
+    dmginfo:SetDamage(0)
 end)
 
 hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
+
+		for _, wep in ipairs( ply:GetWeapons() ) do
+		if not wep.ArcticTacRP then continue end
+		
+			ply:DropWeapon( wep, Vector(0.05, 5, -1.7), Vector(0.01, 2, -1.7))
+		end 
+
     local wep = ply:GetActiveWeapon()
     if !IsValid(wep) or !wep.ArcticTacRP or !wep:GetPrimedGrenade() then return end
+	if wep then TacRP.DropWeapon(wep) end
     local nade = wep:GetValue("PrimaryGrenade") and TacRP.QuickNades[wep:GetValue("PrimaryGrenade")] or wep:GetGrenade()
     if nade then
         local ent = nade.GrenadeEnt
@@ -144,46 +123,125 @@ hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
     end
 end)
 
---[[ TODO func to Drop weapons on death from their holster positions in trp
+--[[ See how fast your/tacrp's functions are
+
+local start = SysTime()
+for i = 1, 10000 do
+    -- Run hook code here
+end
+print("Time: ", (SysTime() - start) * 1000, "ms")
+
+]]
+
+
+
+--[[ TODO Damage count for bleed timers
+
+	local tdam = hdmg or dmg
+	if tdam > 10 and timer.exists == false then
+	timer.create("bleedtimer" ..ply:SteamID64()), 6, 5 function())
+		if tdam then 
+			dmginfo:SetDamage(tdam / 5)
+			tdam - 5
+
+	for _, weptbl in pairs(weapons.GetList()) do
+    if weptbl.ArcticTacRP then
+        print(weptbl.ClassName, weptbl.HolsterPos) -- may just be Vector(0,0,0) unless set
+    end
+end
+
+]]
+
+--[[ TODO salvage some of this code to make ammunition drop into james inventory
+	 Should be: [however much ammo they have - clipsize1, clipsize 2] grabbbed by for loop and placed in inventory
+
+if not TacRP.AttachmentLookup then
+    TacRP.AttachmentLookup = {}
+    for id, data in pairs(TacRP.Attachments_Index) do
+        TacRP.AttachmentLookup[data.ID] = id
+    end
+end
+
+local function HasAttachments(wep)
+    local attachments = wep:GetValue("Attachments")
+    if not attachments then return false end
+
+    for _, att in pairs(attachments) do
+        if istable(att) and att.Installed and att.Installed ~= "" then
+            return true
+        end
+    end
+
+    return false
+end
+
+local function DropAllTacRPWeaponsWithAttachments(ply)
+    if not IsValid(ply) or not ply:IsPlayer() then return end
 
     for _, wep in ipairs(ply:GetWeapons()) do
+        if not wep.ArcticTacRP then continue end
+        if not HasAttachments(wep) then continue end
+
         local class = wep:GetClass()
-        local primaryAmmoType = wep:GetPrimaryAmmoType()
-        local ammoCount = ply:GetAmmoCount(primaryAmmoType)
+        local weptbl = weapons.Get(class)
+        if not weptbl then continue end
 
-        -- Remove the weapon *before* spawning to avoid ammo duplication
-        if wep.ArcticTacRP then ply:StripWeapon(class) end
+        local holPos = weptbl.HolsterPos or Vector(0, 0, 0)
+        local holAng = weptbl.HolsterAng or Angle(0, 0, 0)
 
-        -- Create weapon entity
+        local worldAng = ply:EyeAngles()
+        worldAng:RotateAroundAxis(worldAng:Up(), holAng.y)
+        worldAng:RotateAroundAxis(worldAng:Right(), holAng.p)
+        worldAng:RotateAroundAxis(worldAng:Forward(), holAng.r)
+
+        local dropPos = ply:GetPos() + holPos + worldAng:Forward() * 10
+
+        local clip1 = wep:Clip1()
+        local clip2 = wep:Clip2()
+        local ammoType = wep:GetPrimaryAmmoType()
+        local ammoCount = ply:GetAmmoCount(ammoType)
+
+        local savedAttachments = table.Copy(wep:GetValue("Attachments"))
+
+        -- Strip weapon
+        ply:StripWeapon(class)
+        ply:RemoveAmmo(ammoCount, ammoType)
+
         local dropped = ents.Create(class)
         if not IsValid(dropped) then continue end
 
-        local dropPos = basePos + Angle(0, angleOffset, 0):Forward() * 30
         dropped:SetPos(dropPos)
-        dropped:SetAngles(Angle(0, math.random(0, 360), 0))
+        dropped:SetAngles(worldAng)
         dropped:Spawn()
 
-        -- Set correct ammo
-        if dropped:IsWeapon() and primaryAmmoType >= 0 then
-            dropped:SetClip1(wep:Clip1()) -- current mag
-            dropped:SetClip2(wep:Clip2()) -- if used
-            dropped:SetNWInt("DroppedAmmo", ammoCount) -- optional, to save it if needed
+        if dropped:IsWeapon() then
+            dropped:SetClip1(clip1)
+            dropped:SetClip2(clip2)
+            dropped:SetNWInt("DroppedAmmo", ammoCount)
+
+            -- Reapply attachments properly
+            for slot, att in pairs(savedAttachments) do
+                if istable(att) and att.Installed and att.Installed ~= "" then
+                    local index = TacRP.AttachmentLookup[att.Installed]
+                    if index then
+                        dropped:Attach(slot, index, true)
+                    else
+                        print("[TacRP] Warning: Unknown attachment ID", att.Installed)
+                    end
+                end
+            end
         end
 
-        -- Remove the ammo from the player to avoid duplication
-        ply:RemoveAmmo(ammoCount, primaryAmmoType)
-
-        -- Physics impulse
         local phys = dropped:GetPhysicsObject()
         if IsValid(phys) then
             phys:Wake()
             phys:ApplyForceCenter(VectorRand() * 100)
         end
-
-        angleOffset = angleOffset + 45
     end
 end
 
-concommand.Add("drop_my_weapons", function(ply)
-    DropAllWeapons(ply)
+concommand.Add("drop_tacrp_attached_weapons", function(ply)
+    DropAllTacRPWeaponsWithAttachments(ply)
 end)
+
+]]

@@ -30,7 +30,7 @@ SWEP.Damage_Min = 20
 SWEP.Range_Min = 5000
 SWEP.Range_Max = 8000
 SWEP.Penetration = 5
-SWEP.ArmorPenetration = 0.33
+SWEP.ArmorBonus = 3
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,

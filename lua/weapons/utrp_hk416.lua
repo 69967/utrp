@@ -37,7 +37,7 @@ SWEP.Damage_Min = 15
 SWEP.Range_Min = 6000
 SWEP.Range_Max = 9000
 SWEP.Penetration = 6
-SWEP.ArmorPenetration = 0.775
+SWEP.ArmorBonus = 4
 SWEP.MuzzleVelocity = 43300
 
 
