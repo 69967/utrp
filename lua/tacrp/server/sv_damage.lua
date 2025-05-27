@@ -1,52 +1,61 @@
-hook.Add("EntityTakeDamage", "armordam", function(ply, dmginfo)
-    if not TacRP.ConVars["armorpenetration"] or not ply:IsPlayer() or ply:Armor() == 0 or
-       dmginfo:GetDamage() < 1 or not dmginfo:IsDamageType(DMG_BULLET + DMG_BUCKSHOT + DMG_BLAST + DMG_SLASH + DMG_CLUB) then
-        return
-    end
+local dtb = bit.bor(DMG_BULLET, DMG_BUCKSHOT, DMG_BLAST, DMG_SLASH, DMG_CLUB)
+local b = 0
+local dtmap = {
+	[DMG_BULLET] = { ab = nil, apen = 0.015, dtype = 1 },
+	[DMG_BUCKSHOT] = { ab = 0.25, apen = 0.25, dtype = 2 },
+	[DMG_BLAST] = { ab = 0.33, apen = 0.75, dtype = 3 },
+	[DMG_SLASH] = { ab = 0.1, apen = 0, dtype = 4 },
+	[DMG_CLUB] = { ab = 0.1, apen = 0.33, dtype = 0 }
+}
 
-    local ent = dmginfo:GetInflictor()
-	local wep = nil
-	local ab = nil
-    if ent:Alive() then wep = ent:GetActiveWeapon() ab = wep:GetValue("ArmorBonus") end print(ab)
-    local dmg = dmginfo:GetDamage()
-	local gdmg = 0
-    local ap, hp, hg = ply:Armor(), ply:Health(), ply:LastHitGroup()
+hook.Add("ScalePlayerDamage", "armordam", function(ply, hitgroup, dmginfo)
+	if not TacRP.ConVars["armorpenetration"] or ply:Armor() < 1 or not dmginfo:IsDamageType(dtb) then return end
 
-    if ent:Alive() and hg ~= 0 and hg ~= 2 and hg ~= 3 then
-        ply:SetHealth(hp - dmg)
-    else
-        local dtype = dmginfo:IsDamageType(DMG_BULLET) and 1 or
-                      dmginfo:IsDamageType(DMG_BUCKSHOT) and 2 or
-                      dmginfo:IsDamageType(DMG_BLAST) and 3 or
-                      dmginfo:IsDamageType(DMG_SLASH) and 4 or 0
-        if dtype == 1 then
-            if ap+ap < ab * 20 then
-                gdmg = ab * 4
-                apen = dmg*0.015
-				dmg = 0
-            else
-                gdmg = ab * 4
-                apen = 0
-				dmg = 0
-            end
-        elseif dtype == 2 then
-            ab = 0.25
-            apen = 0.25
-        elseif dtype == 3 then
-            ab = 0.33
-            apen = 0.75
-        elseif dtype == 4 then
-            ab = 0.1
-            apen = 0
-        else
-            ab = 0.1
-            apen = 0.33
-        end
-		ply:SetArmor(ap - dmg * ab and ap - gdmg or 0)
-        ply:SetHealth(hp - dmg * apen)
-    end
-    dmginfo:SetDamage(0)
+	local ent = dmginfo:GetInflictor()
+	local a, hp, dmg = ent:Alive(), ply:Health(), dmginfo:GetDamage()
+
+	if a and not (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
+		ply:SetHealth(hp - dmg)
+	else	
+		local wep, ab
+		if a then 
+			wep = ent:GetActiveWeapon() ab = wep:GetValue("ArmorBonus") 
+		end
+
+		local ap, gdmg, dtype, apen = ply:Armor(), 0
+	
+		for dtkey, data in pairs(dtmap) do
+				if dmginfo:IsDamageType(dtkey) then
+					ab = data.ab or ab
+					apen = data.apen
+					dtype = data.dtype
+					break
+				end
+			end
+			if dtype == 1 then
+				if ap+ap < ab * 20 then
+					gdmg = ab * 4
+					apen = dmg * 0.015
+					dmg = 0
+				else
+					gdmg = ab * 4
+					apen = 0
+					dmg = 0
+				end
+			end
+			ply:SetArmor(math.max(ap - dmg * ab and ap - gdmg, 0))
+			ply:SetHealth(hp - dmg * apen and hp - apen)
+			if ap > 0 then b=3 end
+		end
+	ply:SetBloodColor(b)
+	dmginfo:SetDamage(0)
 end)
+
+--[[
+local startTime = SysTime() --beginning of hook
+print("EntityTakeDamage hook took " .. (SysTime() - startTime) .. " seconds to run.") --before "end)"
+Convert to seconds to miliseconds	https://www.convertworld.com/en/time/seconds.html
+]]
 
 hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
 
