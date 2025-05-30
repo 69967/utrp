@@ -1,54 +1,78 @@
+function calcbleed(ply, hpl, hp)
+
+	local sid = ply:SteamID64()
+	ply.hp, ply.cbl = ply.hp or hp, ply.cbl or hpl
+
+	if timer.Exists("BleedT" .. sid) then
+		ply.cbl = ply.cbl + hpl
+	else
+		timer.Create("BleedT" .. sid, 10, 0, function()
+			local tr = util.TraceLine({
+				start = ply:EyePos() + Vector(30,0,0),
+				endpos = ply:GetPos() + Vector(0,0,-1000),
+				mask = MASK_NPCWORLDSTATIC
+			})
+
+			if ply.cbl > 10 then
+				ply:SetHealth(ply.hp - ply.cbl*0.1)
+				ply.cbl = ply.cbl - 4
+				util.Decal("Blood", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal) --TODO replace with bloodstain ent
+			else
+				timer.Remove("BleedT" .. sid())
+			end
+		end)
+	end
+end
+
 local dtb = bit.bor(DMG_BULLET, DMG_BUCKSHOT, DMG_BLAST, DMG_SLASH, DMG_CLUB)
-local b = 0
 local dtmap = {
-	[DMG_BULLET] = { ab = nil, apen = 0.015, dtype = 1 },
+	[DMG_BULLET] = { ab = nil, apen = nil, dtype = 1 },
 	[DMG_BUCKSHOT] = { ab = 0.25, apen = 0.25, dtype = 2 },
 	[DMG_BLAST] = { ab = 0.33, apen = 0.75, dtype = 3 },
 	[DMG_SLASH] = { ab = 0.1, apen = 0, dtype = 4 },
 	[DMG_CLUB] = { ab = 0.1, apen = 0.33, dtype = 0 }
-}
+}		
 
-hook.Add("ScalePlayerDamage", "armordam", function(ply, hitgroup, dmginfo)
-	if not TacRP.ConVars["armorpenetration"] or ply:Armor() < 1 or not dmginfo:IsDamageType(dtb) then return end
-
+hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
 	local ent = dmginfo:GetInflictor()
-	local a, hp, dmg = ent:Alive(), ply:Health(), dmginfo:GetDamage()
+	local a, hp, ap, dmg, apen, b, hpl, wep, ab, dtype = ent:Alive(), ply:Health(), ply:Armor(), dmginfo:GetDamage(), 0, 0
 
-	if a and not (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
+	if a and ap > 0 and not dmginfo:IsDamageType(dtb) and not (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
 		ply:SetHealth(hp - dmg)
-	else	
-		local wep, ab
-		if a then 
-			wep = ent:GetActiveWeapon() ab = wep:GetValue("ArmorBonus") 
+	else
+		if a then
+			wep = ent:GetActiveWeapon()
+			ab = wep:GetValue("ArmorBonus")
+			apen = wep:GetValue("ArmorPenetration")
 		end
 
-		local ap, gdmg, dtype, apen = ply:Armor(), 0
-	
 		for dtkey, data in pairs(dtmap) do
-				if dmginfo:IsDamageType(dtkey) then
-					ab = data.ab or ab
-					apen = data.apen
-					dtype = data.dtype
-					break
-				end
+			if dmginfo:IsDamageType(dtkey) then
+				ab = data.ab or ab
+				apen = data.apen
+				dtype = data.dtype
+				break
 			end
-			if dtype == 1 then
-				if ap+ap < ab * 20 then
-					gdmg = ab * 4
-					apen = dmg * 0.015
-					dmg = 0
-				else
-					gdmg = ab * 4
-					apen = 0
-					dmg = 0
-				end
-			end
-			ply:SetArmor(math.max(ap - dmg * ab and ap - gdmg, 0))
-			ply:SetHealth(hp - dmg * apen and hp - apen)
-			if ap > 0 then b=3 end
 		end
+
+		if dtype == 1 and ap*3 < ab*50 then
+			apen = 0.5
+		else
+			if hitgroup == 2 then
+				dmg = dmg*0.6667 --inverts 1.5x dmgmult on chest
+			end
+		end
+
+		ply:SetArmor(math.max(ap - dmg * ab, 0))
+		ply:SetHealth(hp - dmg * apen)
+		if ap > 0 then b=3 end
+	end
+
+	hpl = dmg
 	ply:SetBloodColor(b)
 	dmginfo:SetDamage(0)
+
+	if hpl < 20 then return else calcbleed(ply, hpl, hp) end
 end)
 
 --[[
