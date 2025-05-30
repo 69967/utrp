@@ -757,6 +757,7 @@ local conVars = {
         max = 1,
     },
 
+
     {
         name = "cust_drop",
         default = "1",
@@ -1402,6 +1403,7 @@ local function menu_server_ti(panel)
         command = "TacRP_npc_atts"
     })
 
+
     header(panel, "\nMiscellaneous")
     panel:AddControl("checkbox", {
         label = "Client Authoratitive Hitreg",
@@ -1504,6 +1506,7 @@ local function menu_balance_ti(panel)
     })
     panel:ControlHelp("If set to 0, headshots will not do any bonus damage.")
 
+
     header(panel, "\nRecoil")
     panel:AddControl("checkbox", {
         label = "Bloom Modifies Recoil",
@@ -1564,6 +1567,7 @@ local function menu_balance_ti(panel)
         min = 0.5,
         max = 1.5,
     })
+
 
     header(panel, "\nAmmo & Reloading")
     panel:AddControl("checkbox", {
@@ -1750,6 +1754,7 @@ local function menu_atts_ti(panel)
         max = 10,
     })
 end
+
 
 local function menu_equipment_ti(panel)
     header(panel, "Grenades")

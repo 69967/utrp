@@ -266,6 +266,7 @@ function SWEP:DrawGrenadeHUD()
     surface.SetTextPos(tx + w / 2 - name_w / 2, ty - h * 0.5 - TacRP.SS(28) + TacRP.SS(12) - name_h / 2)
     surface.DrawText(name)
 
+
     -- Description
 
     surface.SetDrawColor(0, 0, 0, 200 * a)

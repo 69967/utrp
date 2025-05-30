@@ -138,6 +138,7 @@ hook.Add("InitPostEntity", "TacRP_Slot", function()
     end, "slotty")
 end)
 
+
 if CLIENT then
     net.Receive("tacrp_updateslot", slotty)
 
@@ -182,6 +183,7 @@ if CLIENT then
             draw.SimpleText(text, font, ScrW() / 2, ScrH() / 2 + TacRP.SS(32) + h / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         end
     end)
+
 
     concommand.Add("tacrp_drop", function(ply, cmd, args, argStr)
         if !TacRP.ConVars["allowdrop"]:GetBool() then return end

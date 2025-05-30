@@ -30,6 +30,7 @@ function SWEP:Melee(alt)
     self:ToggleBlindFire(TacRP.BLINDFIRE_NONE)
     self:ScopeToggle(0)
 
+
     local dmg = self:GetValue("MeleeDamage") * self:GetConfigDamageMultiplier()
     local range = self:GetValue("MeleeRange")
     local delay = self:GetValue("MeleeDelay")

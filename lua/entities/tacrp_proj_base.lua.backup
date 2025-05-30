@@ -49,6 +49,7 @@ ENT.FlareColor = nil
 ENT.FlareSizeMin = 200
 ENT.FlareSizeMax = 250
 
+
 // Guided projectile related
 ENT.SteerDelay = 0 // Delay before steering logic kicks in
 ENT.SteerSpeed = 60 // Turn rate in degrees per second

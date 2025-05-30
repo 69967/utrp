@@ -140,6 +140,7 @@ function SWEP:Holster(wep)
         end
     end
 
+
     if self:GetHolsterTime() > CurTime() then return false end -- or self:GetPrimedGrenade()
 
     if !TacRP.ConVars["holster"]:GetBool() or (self:GetHolsterTime() != 0 and self:GetHolsterTime() <= CurTime()) or !IsValid(wep) then
