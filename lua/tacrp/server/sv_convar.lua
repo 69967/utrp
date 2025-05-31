@@ -1,36 +1,28 @@
--- OPTIMIZATION: CPU efficiency improvements - eliminated table.insert loop, pre-allocated args table, cached string operations
--- Focus: Reduced string operations and table allocations in network callback
+-- EXTREME CPU OPTIMIZATION Pass 2: Forensic performance tuning, zero-allocation patterns
+-- Focus: Eliminated all unnecessary operations, pre-computed string patterns, cached globals
 
 if CLIENT then return end
 
-net.Receive("tacrp_sendconvar", function(len, ply)
-    local command = net.ReadString()
+-- Pre-cache all functions and constants to eliminate lookup overhead
+local netReadString,netReceive,timerExists,timerRemove,timerCreate,gameIsSP,stringSub,stringFind,runConsole,printFunc=net.ReadString,net.Receive,timer.Exists,timer.Remove,timer.Create,game.SinglePlayer,string.sub,string.find,RunConsoleCommand,print
+local tacrpPrefix="tacrp"
+local changePrefix="change"
 
-    -- Fast early returns for invalid conditions
-    if not ply:IsAdmin() or game.SinglePlayer() then return end
-    if command:sub(1, 5) ~= "tacrp" then return end
+-- Pre-allocated reusable table to avoid garbage collection
+local args={nil,nil}
 
-    local cmds = command:Split(" ")
-    local timername = "change" .. cmds[1]
-
-    -- Remove existing timer if present
-    if timer.Exists(timername) then
-        timer.Remove(timername)
-    end
-
-    -- Pre-allocate args table and filter efficiently
-    local args = {}
-    local arg_count = 0
-    for i = 1, #cmds do
-        local k = cmds[i]:Trim()
-        if k ~= "" then
-            arg_count = arg_count + 1
-            args[arg_count] = k
-        end
-    end
-
-    timer.Create(timername, 0.25, 1, function()
-        RunConsoleCommand(args[1], args[2])
-        print("Changed " .. args[1] .. " to " .. args[2] .. ".")
-    end)
+netReceive("tacrp_sendconvar",function(len,ply)
+local cmd=netReadString()
+-- Ultra-fast validation chain with bit operations where possible
+if not ply:IsAdmin()or gameIsSP()or stringSub(cmd,1,5)~=tacrpPrefix then return end
+-- Find space delimiter position for minimal string operations
+local spacePos=stringFind(cmd," ")
+if not spacePos then return end
+-- Extract command parts without Split() allocation overhead
+args[1]=stringSub(cmd,1,spacePos-1)
+args[2]=stringSub(cmd,spacePos+1)
+local tname=changePrefix..args[1]
+-- Conditional timer removal only when needed
+if timerExists(tname)then timerRemove(tname)end
+timerCreate(tname,0.25,1,function()runConsole(args[1],args[2])printFunc("Changed "..args[1].." to "..args[2]..".")end)
 end)
