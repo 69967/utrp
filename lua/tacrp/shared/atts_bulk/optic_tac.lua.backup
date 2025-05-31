@@ -611,7 +611,6 @@ ATT.Override_LaserColor = Color(255, 0, 0)
 TacRP.LoadAtt(ATT, "tac_laser")
 -- #endregion
 
-
 ------------------------------
 -- #region tac_combo
 ------------------------------

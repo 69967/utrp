@@ -29,6 +29,7 @@ ATT.Override_EffectsDoubled = false
 
 TacRP.LoadAtt(ATT, "bolt_gilboa_alt")
 
+
 ATT = {}
 ATT.PrintName = "att.bolt_refurbished.name"
 ATT.FullName = "att.bolt_refurbished.name.full"

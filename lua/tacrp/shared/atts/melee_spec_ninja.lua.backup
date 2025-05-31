@@ -202,7 +202,6 @@ function ATT.TacticalDraw(self)
 end
 ]]
 
-
 hook.Add("FinishMove", "TacRP_Ninja", function(ply, mv)
     if ply:GetNWBool("TacRPNinjaDive") then
         if ply:IsOnGround() and !ply.TacRPNinjaGroundTime then

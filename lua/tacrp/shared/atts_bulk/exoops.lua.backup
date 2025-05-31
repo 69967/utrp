@@ -24,6 +24,7 @@ ATT.Add_RecoilKick = -1
 ATT.Mult_RecoilSpreadPenalty = 0.85
 ATT.Mult_MuzzleVelocity = 1.1
 
+
 ATT.Override_Sound_Shoot = "^tacint_shark/weapons/masada/65_unsil.wav"
 ATT.Override_Sound_Shoot_Silenced = "^tacint_shark/weapons/masada/65_sil.wav"
 
@@ -233,6 +234,7 @@ ATT.Override_ScopeFOV = 90 / 2
 ATT.Override_ScopeHideWeapon = true
 
 ATT.InstalledElements = {"scope"}
+
 
 TacRP.LoadAtt(ATT, "optic_g36c_scope")
 

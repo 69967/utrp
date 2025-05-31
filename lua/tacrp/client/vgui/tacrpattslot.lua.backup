@@ -132,6 +132,7 @@ function PANEL:Paint(w, h)
 
     local col_bg, col_corner, col_text, col_image = self:GetColors()
 
+
     surface.SetDrawColor(col_bg)
     surface.DrawRect(0, 0, w, h)
     TacRP.DrawCorneredBox(0, 0, w, h, col_corner)

@@ -20,7 +20,6 @@ local function hold(wep)
             and wep:GetNextSecondaryFire() < CurTime()
 end
 
-
 --[[]
 ATT.Hook_SecondaryAttack = function(wep)
     -- if wep:StillWaiting() then return end
@@ -59,7 +58,6 @@ ATT.Hook_PostThink = function(wep)
     local ft = FrameTime()
 
     if !IsFirstTimePredicted() then return end
-
 
     if !wep:GetOutOfBreath() then
         if canhold and wep:GetHoldBreathAmount() > 0.05 then

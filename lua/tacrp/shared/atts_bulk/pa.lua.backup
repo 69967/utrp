@@ -250,6 +250,7 @@ end
 TacRP.LoadAtt(ATT, "ammo_m202_harpoon")
 -- #endregion
 
+
 ------------------------------
 -- #region ammo_m202_he
 ------------------------------
@@ -298,6 +299,7 @@ ATT.InstalledElements = {"bolt"}
 
 TacRP.LoadAtt(ATT, "optic_mosin_irons")
 
+
 ATT = {}
 
 ATT.PrintName = "PU"
@@ -324,6 +326,7 @@ ATT.Mult_ShootTimeMult = 1.15
 ATT.InstalledElements = {"scope1", "bolt"}
 
 TacRP.LoadAtt(ATT, "optic_mosin_pu")
+
 
 ATT = {}
 
@@ -352,6 +355,7 @@ ATT.InstalledElements = {"scope2", "bolt"}
 
 TacRP.LoadAtt(ATT, "optic_mosin_pem")
 
+
 ATT = {}
 
 ATT.PrintName = "PE"
@@ -379,6 +383,7 @@ ATT.InstalledElements = {"scope3", "bolt"}
 
 TacRP.LoadAtt(ATT, "optic_mosin_pe")
 
+
 ATT = {}
 
 ATT.PrintName = "Bayonet"
@@ -405,6 +410,7 @@ ATT.Override_Sound_MeleeHit = "tacint_extras/mosin/melee_hitworld.ogg"
 ATT.Override_Sound_MeleeHitBody = "tacint_extras/mosin/melee_hitbody.ogg"
 
 TacRP.LoadAtt(ATT, "muzz_mosin_bayonet")
+
 
 ATT = {}
 
@@ -441,6 +447,7 @@ ATT.Override_MuzzleEffect = "muzzleflash_suppressed"
 
 TacRP.LoadAtt(ATT, "muzz_svu_supp")
 
+
 ATT = {}
 
 ATT.PrintName = "Bayonet"
@@ -469,6 +476,7 @@ ATT.Override_Sound_MeleeHitBody = "tacint_extras/mosin/melee_hitbody.ogg"
 
 TacRP.LoadAtt(ATT, "muzz_sks_bayonet")
 
+
 ------------------------------
 -- #region tac_cz75_mag
 ------------------------------
@@ -493,6 +501,7 @@ ATT.Add_Sway = 0.25
 ATT.Add_ScopedSway = 0.1
 
 TacRP.LoadAtt(ATT, "tac_cz75_mag")
+
 
 ------------------------------
 -- #region barrel_coachgun_short
@@ -533,6 +542,7 @@ ATT.Mult_Range_Max = 0.5
 ATT.Override_Sound_Shoot = "^tacint_extras/coachgun/coach_fire1.wav"
 
 TacRP.LoadAtt(ATT, "barrel_coachgun_short")
+
 
 ------------------------------
 -- #region muzz_pistol_comp
@@ -588,6 +598,7 @@ ATT.Mult_MuzzleVelocity = 1.5
 
 TacRP.LoadAtt(ATT, "ammo_automag3_30carbine")
 
+
 ATT = {}
 
 ATT.PrintName = "No. 32 Scope"
@@ -610,9 +621,11 @@ ATT.Mult_Spread = 0.25
 ATT.Add_AimDownSightsTime = 0.03
 ATT.Mult_ReloadTimeMult = 1.1
 
+
 ATT.InstalledElements = {"scope"}
 
 TacRP.LoadAtt(ATT, "optic_smle_no32")
+
 
 ------------------------------
 -- Flare Pistol Ammo
@@ -639,6 +652,7 @@ end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_incendiary")
 
+
 ATT = {}
 
 ATT.PrintName = "Smoke"
@@ -659,6 +673,7 @@ if engine.ActiveGamemode() == "terrortown" then
 end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_smoke")
+
 
 ATT = {}
 
@@ -701,6 +716,7 @@ if engine.ActiveGamemode() == "terrortown" then
 end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_heal")
+
 
 ATT = {}
 
@@ -774,6 +790,7 @@ end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_bird")
 
+
 ATT = {}
 
 ATT.PrintName = "att.ammo_shotgun_slugs.name"
@@ -815,11 +832,13 @@ ATT.Override_BodyDamageMultipliers = {
     [HITGROUP_GEAR] = 0.75
 }
 
+
 if engine.ActiveGamemode() == "terrortown" then
     ATT.Free = true
 end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_slug")
+
 
 ATT = {}
 
@@ -880,6 +899,7 @@ end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_flashbang")
 
+
 ATT = {}
 
 ATT.PrintName = "Breach"
@@ -938,6 +958,7 @@ ATT.Hook_PostShootEnt = function(wep, rocket)
 end
 
 TacRP.LoadAtt(ATT, "ammo_p2a1_rock")
+
 
 ATT = {}
 

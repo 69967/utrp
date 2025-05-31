@@ -242,6 +242,7 @@ ATT.Override_MuzzleEffect = "muzzleflash_suppressed"
 TacRP.LoadAtt(ATT, "muzz_supp_weighted")
 -- #endregion
 
+
 ------------------------------
 -- #region muzz_brake_aggressor
 ------------------------------

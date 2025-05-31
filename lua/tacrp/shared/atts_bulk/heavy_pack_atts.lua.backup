@@ -37,6 +37,7 @@ ATT.Free = true
 
 TacRP.LoadAtt(ATT, "trigger_spas_semi")
 
+
 --SPAS HL2 Altfire
 ATT = {}
 
@@ -67,6 +68,7 @@ ATT.Mult_RecoilStability = 0.8
 
 TacRP.LoadAtt(ATT, "trigger_spas_freeman")
 
+
 --intervention mlg sound
 ATT = {}
 
@@ -91,6 +93,7 @@ ATT.Category = "m200_mlg"
 ATT.Override_Sound_Shoot = "^tacint_shark/intervention/fire_mlg.wav"
 
 TacRP.LoadAtt(ATT, "sound_m200_mlg")
+
 
 --Hardballer Laser
 ATT = {}
@@ -125,6 +128,7 @@ ATT.TacticalName = "hint.tac.laser"
 ATT.InstalledElements = {"lazur"}
 
 TacRP.LoadAtt(ATT, "hardballer_laser")
+
 
 -- SMAW Tri
 ATT = {}
@@ -265,6 +269,7 @@ ATT.Override_Damage_Min = 75
 
 TacRP.LoadAtt(ATT, "ammo_25mm_airburst")
 
+
 -- 25mm Flechette
 ATT = {}
 
@@ -303,6 +308,7 @@ ATT.Override_Sound_ShootAdd = "^TacRP/weapons/m4star10/fire-2.wav"
 ATT.Override_Pitch_Shoot = 108
 
 TacRP.LoadAtt(ATT, "ammo_25mm_buckshot")
+
 
 -- 25mm HEAT
 ATT = {}

@@ -128,7 +128,6 @@ In lieu of a better idea, I've elected to give the surplus attachments some dubi
 
 <p>Furthermore, the chance to jam is now based on ammo type, with attachments adding a "Jam Factor" instead of modifying percentage chances directly. This should help prevent pistols, shotguns and snipers from jamming too infrequently compared to automatic high fire rate guns.</p>
 
-
 <h3>Free Aim Rework</h3>
 <p>Free Aim was one of those features that nobody liked - admittedly, not even myself. But I couldn't not give it another chance.</p>
 <ul>
@@ -1585,7 +1584,6 @@ function TacRP.CreateNewsPanel(open)
                     gui.OpenURL(self2.Hyperlink)
                 end
             end
-
 
             if BRANCH != "unknown" then
                 local html = vgui.Create("DHTML", self)

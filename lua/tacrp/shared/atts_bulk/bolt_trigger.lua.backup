@@ -207,6 +207,7 @@ ATT.Mult_MuzzleVelocity = 1.15
 ATT.Mult_QuickScopeSpreadPenalty = 0.5
 ATT.Mult_QuickScopeTime = 0.5
 
+
 TacRP.LoadAtt(ATT, "bolt_tactical")
 -- #endregion
 

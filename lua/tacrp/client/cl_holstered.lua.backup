@@ -108,7 +108,6 @@ hook.Add( "HUDDrawTargetID", "TacRP_FlashlightGlint", function()
         end
     end
 
-
     -- Smoke
     for i, ent in ipairs(TacRP.ClientSmokeCache) do
         if !IsValid(ent) or !ent.TacRPSmoke then table.remove(TacRP.ClientSmokeCache, i) continue end

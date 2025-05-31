@@ -68,6 +68,7 @@ ATT.Add_MeleePerkAgi = -0.05
 
 TacRP.LoadAtt(ATT, "melee_boost_int")
 
+
 ATT = {}
 ATT.PrintName = "Lifestealer"
 ATT.Icon = Material("entities/tacrp_att_melee_boost_lifesteal.png", "mips smooth")
