@@ -211,16 +211,6 @@ function SWEP:CreateCustomizeHUD()
     function newsbutton.DoClick(self2)
         LocalPlayer():ConCommand("tacrp_news")
     end
-    TacRP.FetchNews(function()
-        if !self.CustomizeHUD then return end
-
-        for i, v in ipairs(TacRP.NewsLoaded) do
-            if IsValid(newsbutton) and !TacRP.NewsRead[v.Key] then
-                newsbutton.flash = v.Type or "article"
-                break
-            end
-        end
-    end)
 
     self.StaticStats = false
 end

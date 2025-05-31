@@ -160,6 +160,7 @@ elseif CLIENT then
 
             drawit(self, pos2, ang2, a)
 
+
         end
     end
 

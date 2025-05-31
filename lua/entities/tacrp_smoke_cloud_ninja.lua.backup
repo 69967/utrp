@@ -103,6 +103,7 @@ end
 
 function ENT:Think()
 
+
     if SERVER then
         if !self:GetOwner():IsValid() then self:Remove() return end
 

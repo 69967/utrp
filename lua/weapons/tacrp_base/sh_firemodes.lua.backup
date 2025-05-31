@@ -91,7 +91,7 @@ function SWEP:HasFiremode(mode, base)
     local valfunc = base and self.GetBaseValue or self.GetValue
 
     if valfunc(self, "Firemodes") then
-        for _, v in ipairs(valfunc(self, "Firemodes")) do
+        for _, v in pairs(valfunc(self, "Firemodes")) do
             if v == mode or (mode < 0 and v < 0) then return true end
         end
         return false
@@ -103,7 +103,7 @@ end
 function SWEP:GetFiremodeBurstLength(base)
     local valfunc = base and self.GetBaseValue or self.GetValue
     if valfunc(self, "Firemodes") then
-        for _, v in ipairs(valfunc(self, "Firemodes")) do
+        for _, v in pairs(valfunc(self, "Firemodes")) do
             if v < 0 then return -v end
         end
         return false

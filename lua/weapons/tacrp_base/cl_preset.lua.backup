@@ -47,6 +47,7 @@ function SWEP:LoadPreset(filename)
             continue
         end
 
+
         if att == self.Attachments[i].Installed then continue end
         if !TacRP.GetAttTable(att) then continue end
 
