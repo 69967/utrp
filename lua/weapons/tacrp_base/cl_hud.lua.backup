@@ -551,7 +551,6 @@ function SWEP:DrawHUDBackground()
                     clips = "INF"
                 end
 
-
                 if self:GetValue("PrimaryGrenade") then
                     local nade = TacRP.QuickNades[self:GetValue("PrimaryGrenade")]
                     if nade.Icon then
@@ -582,7 +581,6 @@ function SWEP:DrawHUDBackground()
             if self:GetValue("Bipod") then
                 self:DrawBipodHint(x - h / 2 - TacRP.SS(4), y + h - TacRP.SS(10), h / 2)
             end
-
 
             local l_w = TacRP.SS(80)
             local l_h = TacRP.SS(40)

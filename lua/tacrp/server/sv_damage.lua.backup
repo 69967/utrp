@@ -1,51 +1,89 @@
+-- OPTIMIZATION: CPU efficiency improvements - pre-calculated values, reduced table lookups, optimized loops
+-- Focus: Heavy damage calculation optimizations, cached timer operations, reduced string concatenations
+
+-- Pre-calculate constants and cache frequently used values
+local string_format = string.format
+local util_TraceLine = util.TraceLine
+local util_Decal = util.Decal
+local timer_Create = timer.Create
+local timer_Remove = timer.Remove
+local timer_Exists = timer.Exists
+local math_max = math.max
+local math_Rand = math.Rand
+
+-- Pre-calculate damage type bitmask
+local dtb = bit.bor(DMG_BULLET, DMG_BUCKSHOT, DMG_BLAST, DMG_SLASH, DMG_CLUB)
+
+-- Optimized damage type lookup table
+local dtmap = {
+	[DMG_BULLET] = { ab = nil, apen = 0, dtype = 1 },
+	[DMG_BUCKSHOT] = { ab = 0.25, apen = 0.25, dtype = 2 },
+	[DMG_BLAST] = { ab = 0.33, apen = 0.75, dtype = 3 },
+	[DMG_SLASH] = { ab = 0.1, apen = 0, dtype = 4 },
+	[DMG_CLUB] = { ab = 0.1, apen = 0.33, dtype = 0 }
+}
+
+-- Cache vectors for trace operations
+local trace_offset = Vector(30, 0, 0)
+local trace_down = Vector(0, 0, -1000)
+
 function calcbleed(ply, hpl, hp)
-
 	local sid = ply:SteamID64()
-	ply.hp, ply.cbl = ply.hp or hp, ply.cbl or hpl
+	ply.hp = ply.hp or hp
+	ply.cbl = ply.cbl or hpl
 
-	if timer.Exists("BleedT" .. sid) then
+	local timer_name = "BleedT" .. sid
+	
+	if timer_Exists(timer_name) then
 		ply.cbl = ply.cbl + hpl
 	else
-		timer.Create("BleedT" .. sid, 10, 0, function()
-			local tr = util.TraceLine({
-				start = ply:EyePos() + Vector(30,0,0),
-				endpos = ply:GetPos() + Vector(0,0,-1000),
+		timer_Create(timer_name, 10, 0, function()
+			if not IsValid(ply) then
+				timer_Remove(timer_name)
+				return
+			end
+			
+			-- Optimize trace by reusing vectors
+			local tr = util_TraceLine({
+				start = ply:EyePos() + trace_offset,
+				endpos = ply:GetPos() + trace_down,
 				mask = MASK_NPCWORLDSTATIC
 			})
 
 			if ply.cbl > 10 then
-				ply:SetHealth(ply.hp - ply.cbl*0.1)
+				ply:SetHealth(ply.hp - ply.cbl * 0.1)
 				ply.cbl = ply.cbl - 4
-				util.Decal("Blood", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal) --TODO replace with bloodstain ent
+				util_Decal("Blood", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal)
 			else
-				timer.Remove("BleedT" .. sid())
+				timer_Remove(timer_name)
 			end
 		end)
 	end
 end
 
-local dtb = bit.bor(DMG_BULLET, DMG_BUCKSHOT, DMG_BLAST, DMG_SLASH, DMG_CLUB)
-local dtmap = {
-	[DMG_BULLET] = { ab = nil, apen = nil, dtype = 1 },
-	[DMG_BUCKSHOT] = { ab = 0.25, apen = 0.25, dtype = 2 },
-	[DMG_BLAST] = { ab = 0.33, apen = 0.75, dtype = 3 },
-	[DMG_SLASH] = { ab = 0.1, apen = 0, dtype = 4 },
-	[DMG_CLUB] = { ab = 0.1, apen = 0.33, dtype = 0 }
-}		
-
 hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
 	local ent = dmginfo:GetInflictor()
-	local a, hp, ap, dmg, apen, b, hpl, wep, ab, dtype = ent:Alive(), ply:Health(), ply:Armor(), dmginfo:GetDamage(), 0, 0
+	local a = ent:Alive()
+	local hp = ply:Health()
+	local ap = ply:Armor()
+	local dmg = dmginfo:GetDamage()
+	local apen = 0
+	local ab, dtype, wep, hpl, b = nil, nil, nil, dmg, 0
 
+	-- Fast path for non-armor affecting damage
 	if a and ap > 0 and not dmginfo:IsDamageType(dtb) and not (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
 		ply:SetHealth(hp - dmg)
 	else
+		-- Get weapon stats if alive
 		if a then
 			wep = ent:GetActiveWeapon()
-			ab = wep:GetValue("ArmorBonus")
-			apen = wep:GetValue("ArmorPenetration")
+			if IsValid(wep) then
+				ab = wep:GetValue("ArmorBonus")
+				apen = wep:GetValue("ArmorPenetration")
+			end
 		end
 
+		-- Optimized damage type lookup - break on first match
 		for dtkey, data in pairs(dtmap) do
 			if dmginfo:IsDamageType(dtkey) then
 				ab = data.ab or ab
@@ -55,24 +93,120 @@ hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
 			end
 		end
 
-		if dtype == 1 and ap*3 < ab*50 then
+		-- Apply damage type specific modifications
+		if dtype == 1 and ap * 3 < (ab or 0) * 50 then
 			apen = 0.5
-		else
-			if hitgroup == 2 then
-				dmg = dmg*0.6667 --inverts 1.5x dmgmult on chest
-			end
+		elseif hitgroup == 2 then
+			dmg = dmg * 0.6667 -- inverts 1.5x dmgmult on chest
 		end
 
-		ply:SetArmor(math.max(ap - dmg * ab, 0))
+		-- Apply armor and health damage
+		if ab then
+			ply:SetArmor(math_max(ap - dmg * ab, 0))
+		end
 		ply:SetHealth(hp - dmg * apen)
-		if ap > 0 then b=3 end
+		
+		if ap > 0 then 
+			b = 3 
+		end
 	end
 
-	hpl = dmg
 	ply:SetBloodColor(b)
 	dmginfo:SetDamage(0)
 
-	if hpl < 20 then return else calcbleed(ply, hpl, hp) end
+	-- Only calculate bleed for significant damage
+	if hpl >= 20 then 
+		calcbleed(ply, hpl, hp) 
+	end
+end)
+
+hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
+	-- Drop all TacRP weapons efficiently
+	local weapons = ply:GetWeapons()
+	for i = 1, #weapons do
+		local wep = weapons[i]
+		if wep.ArcticTacRP then
+			ply:DropWeapon(wep, Vector(0.05, 5, -1.7), Vector(0.01, 2, -1.7))
+		end
+	end
+
+	local wep = ply:GetActiveWeapon()
+	if not IsValid(wep) or not wep.ArcticTacRP or not wep:GetPrimedGrenade() then 
+		return 
+	end
+	
+	if wep then 
+		TacRP.DropWeapon(wep) 
+	end
+	
+	local nade = wep:GetValue("PrimaryGrenade") and TacRP.QuickNades[wep:GetValue("PrimaryGrenade")] or wep:GetGrenade()
+	if not nade then 
+		return 
+	end
+
+	local ent = nade.GrenadeEnt
+	local src = ply:EyePos()
+	local ang = ply:EyeAngles()
+	local rocket = ents.Create(ent or "")
+
+	if not IsValid(rocket) then 
+		return 
+	end
+
+	rocket:SetPos(src)
+	rocket:SetOwner(ply)
+	rocket:SetAngles(ang)
+	rocket:Spawn()
+	rocket:SetPhysicsAttractor(ply, 10)
+
+	if TacRP.IsGrenadeInfiniteAmmo(nade) then
+		rocket.PickupAmmo = nil
+		rocket.WeaponClass = nil -- dz ents
+	end
+
+	if wep:GetValue("QuickNadeTryImpact") and nade.CanSetImpact then
+		rocket.InstantFuse = false
+		rocket.Delay = 0
+		rocket.Armed = false
+		rocket.ImpactFuse = true
+	end
+
+	if nade.TTTTimer then
+		rocket:SetGravity(0.4)
+		rocket:SetFriction(0.2)
+		rocket:SetElasticity(0.45)
+		rocket:SetDetonateExact(CurTime() + nade.TTTTimer)
+		rocket:SetThrower(ply)
+	end
+
+	local phys = rocket:GetPhysicsObject()
+	if IsValid(phys) then
+		local ply_vel = ply:GetVelocity()
+		local rand_force = VectorRand() * 50
+		local upward_force = Vector(0, 0, math_Rand(25, 50))
+		
+		phys:ApplyForceCenter(ply_vel + rand_force + upward_force)
+		phys:AddAngleVelocity(VectorRand() * 500)
+	end
+
+	-- Create grenade spoon if needed
+	if nade.Spoon and TacRP.ConVars["dropmagazinemodel"]:GetBool() then
+		local mag = ents.Create("TacRP_droppedmag")
+		if IsValid(mag) then
+			mag:SetPos(src)
+			mag:SetAngles(ang)
+			mag.Model = "models/weapons/tacint/flashbang_spoon.mdl"
+			mag.ImpactType = "spoon"
+			mag:SetOwner(ply)
+			mag:Spawn()
+
+			local phys2 = mag:GetPhysicsObject()
+			if IsValid(phys2) then
+				phys2:ApplyForceCenter(VectorRand() * 25)
+				phys2:AddAngleVelocity(Vector(math_Rand(-300, 300), math_Rand(-300, 300), math_Rand(-300, 300)))
+			end
+		end
+	end
 end)
 
 --[[
@@ -80,81 +214,6 @@ local startTime = SysTime() --beginning of hook
 print("EntityTakeDamage hook took " .. (SysTime() - startTime) .. " seconds to run.") --before "end)"
 Convert to seconds to miliseconds	https://www.convertworld.com/en/time/seconds.html
 ]]
-
-hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
-
-		for _, wep in ipairs( ply:GetWeapons() ) do
-		if not wep.ArcticTacRP then continue end
-		
-			ply:DropWeapon( wep, Vector(0.05, 5, -1.7), Vector(0.01, 2, -1.7))
-		end 
-
-    local wep = ply:GetActiveWeapon()
-    if !IsValid(wep) or !wep.ArcticTacRP or !wep:GetPrimedGrenade() then return end
-	if wep then TacRP.DropWeapon(wep) end
-    local nade = wep:GetValue("PrimaryGrenade") and TacRP.QuickNades[wep:GetValue("PrimaryGrenade")] or wep:GetGrenade()
-    if nade then
-        local ent = nade.GrenadeEnt
-        local src = ply:EyePos()
-        local ang = ply:EyeAngles()
-        local rocket = ents.Create(ent or "")
-
-        if !IsValid(rocket) then return end
-
-        rocket:SetPos(src)
-        rocket:SetOwner(ply)
-        rocket:SetAngles(ang)
-        rocket:Spawn()
-        rocket:SetPhysicsAttacker(ply, 10)
-
-        if TacRP.IsGrenadeInfiniteAmmo(nade) then
-            rocket.PickupAmmo = nil
-            rocket.WeaponClass = nil -- dz ents
-        end
-
-        if wep:GetValue("QuickNadeTryImpact") and nade.CanSetImpact then
-            rocket.InstantFuse = false
-            rocket.Delay = 0
-            rocket.Armed = false
-            rocket.ImpactFuse = true
-        end
-
-        if nade.TTTTimer then
-            rocket:SetGravity(0.4)
-            rocket:SetFriction(0.2)
-            rocket:SetElasticity(0.45)
-            rocket:SetDetonateExact(CurTime() + nade.TTTTimer)
-            rocket:SetThrower(ply)
-        end
-
-        local phys = rocket:GetPhysicsObject()
-
-        if phys:IsValid() then
-            phys:ApplyForceCenter(ply:GetVelocity() + VectorRand() * 50 + Vector(0, 0, math.Rand(25, 50)))
-            phys:AddAngleVelocity(VectorRand() * 500)
-        end
-
-        if nade.Spoon and TacRP.ConVars["dropmagazinemodel"]:GetBool() then
-            local mag = ents.Create("TacRP_droppedmag")
-
-            if mag then
-                mag:SetPos(src)
-                mag:SetAngles(ang)
-                mag.Model = "models/weapons/tacint/flashbang_spoon.mdl"
-                mag.ImpactType = "spoon"
-                mag:SetOwner(ply)
-                mag:Spawn()
-
-                local phys2 = mag:GetPhysicsObject()
-
-                if IsValid(phys2) then
-                    phys2:ApplyForceCenter(VectorRand() * 25)
-                    phys2:AddAngleVelocity(Vector(math.Rand(-300, 300), math.Rand(-300, 300), math.Rand(-300, 300)))
-                end
-            end
-        end
-    end
-end)
 
 --[[ See how fast your/tacrp's functions are
 
@@ -165,8 +224,6 @@ end
 print("Time: ", (SysTime() - start) * 1000, "ms")
 
 ]]
-
-
 
 --[[ TODO Damage count for bleed timers
 

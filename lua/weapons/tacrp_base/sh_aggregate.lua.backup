@@ -111,8 +111,6 @@ function SWEP:GetSubClassName(tier)
     return "Weapon"
 end
 
-
-
 local hitgroups = {
     [HITGROUP_HEAD] = 0.1,
     [HITGROUP_CHEST] = 0.2,
@@ -505,7 +503,6 @@ SWEP.StatGroups = {
                 -- [-20] reload
                 score = score - math.Clamp(1 - (math.min(1, valfunc(self, "ReloadSpeedMult")) - 0.4) / 0.6, 0, 1) * 20
             end
-
 
             return score
         end,
@@ -1356,7 +1353,6 @@ SWEP.StatDisplayMelee = {
             return math.floor(val * 100)
         end,
     },
-
 
     {
         Name = "stat.melee2damage",

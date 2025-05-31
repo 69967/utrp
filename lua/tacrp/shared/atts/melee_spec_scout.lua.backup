@@ -17,6 +17,7 @@ end
 local jumpcost = 1 / 5
 ATT.Override_BreathSegmentSize = jumpcost
 
+
 local balldelay = 5
 
 ATT.Hook_PreReload = function(wep)

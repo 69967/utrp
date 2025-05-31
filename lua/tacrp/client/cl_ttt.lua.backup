@@ -137,7 +137,6 @@ hook.Add("TTTRenderEntityInfo", "TacRP_TTT", function(tData)
     local client = LocalPlayer()
     local ent = tData:GetEntity()
 
-
     if !IsValid(client) or !client:IsTerror() or !client:Alive()
     or !IsValid(ent) or tData:GetEntityDistance() > 100 or !ent:IsWeapon()
     or !ent.ArcticTacRP or ent.PrimaryGrenade then

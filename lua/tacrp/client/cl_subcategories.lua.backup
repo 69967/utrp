@@ -52,7 +52,6 @@ spawnmenu.AddContentType("tacrp_weapon", function(container, obj)
         SWEPinfo = list.Get("Weapon")[obj.spawnname]
     end
 
-
     if SWEPinfo then
         toolTip = toolTip .. "\n"
 
@@ -77,7 +76,6 @@ spawnmenu.AddContentType("tacrp_weapon", function(container, obj)
             oldpaint(self2, w, h)
         end
     end
-
 
     icon.DoClick = function()
         RunConsoleCommand("gm_giveswep", obj.spawnname)

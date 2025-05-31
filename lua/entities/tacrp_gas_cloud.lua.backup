@@ -100,7 +100,6 @@ function ENT:Initialize()
     self.dt = CurTime() + self.Life + self.BillowTime
 end
 
-
 function ENT:Think()
 
     if SERVER then

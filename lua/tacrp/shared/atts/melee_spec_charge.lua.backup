@@ -305,6 +305,7 @@ function ATT.TacticalDraw(self)
         end
     end
 
+
     local c = self:GetBreath() -- math.Clamp(ply:GetNWFloat("TacRPDashCharge", 0), 0, 1)
     local d = 1
 

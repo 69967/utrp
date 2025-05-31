@@ -189,7 +189,6 @@ function SWEP:PrimaryAttack()
         sshoot = self:GetValue("Sound_Shoot_Indoors")
     end
 
-
     if self:GetValue("Silencer") then
         sshoot = self:GetValue("Sound_Shoot_Silenced")
         if indoors == true then
