@@ -8,7 +8,7 @@ local utilTraceLine, utilDecal = util.TraceLine, util.Decal
 local entsCreate = ents.Create
 local isValid = IsValid
 local curTime = CurTime
-local vectorRand = VectorRand
+local vectorRand = VectorRand 
 
 -- Pre-computed constants for hot path optimization
 local dtb = bit.bor(DMG_BULLET, DMG_BUCKSHOT, DMG_BLAST, DMG_SLASH, DMG_CLUB)
@@ -73,64 +73,58 @@ function calcbleed(ply, hpl, hp)
 end
 
 -- Ultra-optimized damage scaling hook with CPU cache-friendly patterns
-hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
-	local ent = dmginfo:GetInflictor()
-	
-	-- Early exit for non-alive entities
-	if not ent:Alive() then return end
-	
-	-- Cache hot path variables for maximum CPU efficiency
-	local hp, ap, dmg = ply:Health(), ply:Armor(), dmginfo:GetDamage()
-	local apen, ab, dtype, b = 0, nil, nil, 0
-	
-	-- Fast path: non-weapon damage optimization
-	if ap > 0 and not dmginfo:IsDamageType(dtb) and hitgroup ~= 0 and hitgroup ~= 2 and hitgroup ~= 3 then 
-		ply:SetHealth(hp - dmg)
-		dmginfo:SetDamage(0)
-		return
-	end
-	
-	-- Weapon damage calculation with minimal validity checks
-	local wep = ent:GetActiveWeapon()
-	if isValid(wep) then
-		ab = wep:GetValue("ArmorBonus")
-		apen = wep:GetValue("ArmorPenetration")
-	end
+hook.Add("ScalePlayerDamage", "armordam", function(ply, hitgroup, dmginfo)
 
-	-- Optimized damage type detection with early break pattern
-	for dtkey, data in pairs(dtmap) do
-		if dmginfo:IsDamageType(dtkey) then
+	local ent = dmginfo:GetInflictor()
+	local a, hp, dmg, apen, hpl = ent:Alive(), ply:Health(), dmginfo:GetDamage(), 0
+  
+	if a and not dmginfo:IsDamageType(dtb) and not  (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
+	  ply:SetHealth(hp - dmg)
+	else
+  
+	  local ap, gdmg, wep, ab, dtype = ply:Armor(), 0
+  
+	  if a then
+		wep = ent:GetActiveWeapon() 
+		ab = wep:GetValue("ArmorBonus") 
+	  end
+  
+	  for dtkey, data in pairs(dtmap) do
+		  if dmginfo:IsDamageType(dtkey) then
 			ab = data.ab or ab
 			apen = data.apen
 			dtype = data.dtype
 			break
+		  end
 		end
+  
+		if dtype == 1 then
+		  if ap+ap < ab * 20 then
+			gdmg = ab * 4
+			apen = dmg * 0.015
+			dmg = 0
+		  else
+			gdmg = ab * 4
+			apen = 0
+			dmg = 0
+		  end
+		end
+		ply:SetArmor(math.max(ap - dmg * ab and ap - gdmg, 0))
+		ply:SetHealth(hp - dmg * apen and hp - apen)
+		
+		if ap > 0 then b=3 end
+	  end
+  
+	  hpl = dmg + apen
+	  print(hpl)
+	  ply:SetBloodColor(b)
+	  dmginfo:SetDamage(0)
+  
+	  if hpl > 10 then return 
+	  else
+		calcbleed(ply, hpl, dmginfo)
 	end
-
-	-- Branch prediction optimization: most common cases first
-	if dtype == 1 and ap * 3 < (ab or 0) * 50 then
-		apen = 0.5
-	elseif hitgroup == 2 then
-		dmg = dmg * chestDmgMultiplier
-	end
-
-	-- Apply damage calculations with optimized math operations
-	if ab then
-		ply:SetArmor(mathmax(ap - dmg * ab, 0))
-	end
-	ply:SetHealth(hp - dmg * apen)
-	
-	if ap > 0 then b = 3 end
-
-	ply:SetBloodColor(b)
-	dmginfo:SetDamage(0)
-
-	-- Threshold-based bleed calculation to minimize function calls
-	if dmg >= 20 then
-		calcbleed(ply, dmg, hp)
-	end
-end)
-
+  end)
 -- Optimized death hook with efficient weapon iteration
 hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
 	-- Cache weapon list for efficient iteration
