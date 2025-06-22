@@ -121,18 +121,45 @@ if o:IsNPC()then rocket.LockOnEntity=o:GetTarget()else local le=self:GetLockOnEn
 self:RunHook("Hook_PreShootEnt",rocket)rocket:Spawn()self:RunHook("Hook_PostShootEnt",rocket)
 local phys=rocket:GetPhysicsObject()if phys:IsValid()and(self:GetValue("ShootEntForce")or 0)>0 then phys:SetVelocityInstantaneous(dir:Forward()*(self:GetValue("ShootEntForce")or 0)*5)end end
 
-function SWEP:GetSpread(b)local spread=self:GetValue("Spread")or 0 if b then return spread end
-local ply,hippenalty,movepenalty=self:GetOwner(),self:GetValue("HipFireSpreadPenalty")or 0,self:GetValue("MoveSpreadPenalty")or 0
-if TacRP_ConVars.oldschool:GetBool()or TacRP_GetBalanceMode()==TacRP_BALANCE_OLDSCHOOL then movepenalty=movepenalty+hippenalty*0.25 hippenalty=hippenalty*Lerp(12/((self:GetValue("ScopeFOV")or 90)-1.1),0.05,0.5)end
-spread=spread+(self:GetInBipod()and self:GetScopeLevel()==0 and Lerp(1-(self:GetValue("PeekPenaltyFraction")or 0),hippenalty,0)or Lerp(self:GetSightAmount()-(self:GetPeeking()and(self:GetValue("PeekPenaltyFraction")or 0)or 0),hippenalty,0))
-if not self:UseAltRecoil()then spread=spread+self:GetRecoilAmount()*(self:GetValue("RecoilSpreadPenalty")or 0)end
-local v=ply:GetAbsVelocity()spread=spread+mathMin(mathSqrt(v.x*v.x+v.y*v.y)*0.004,1)*movepenalty
-local ct,gt=CurTime(),ct-(ply.TacRP_LastOnGroundTime or 0)local gd=mathClamp(ply:IsOnGround()and gt/mathClamp((ply.TacRP_LastAirDuration or 0)-0.25,0.1,1.5)or 0,0,1)^0.75
-if gd<1 and ply:GetMoveType()~=MOVETYPE_NOCLIP then spread=spread+Lerp(gd+((ply:WaterLevel()>0 or ply:GetMoveType()==MOVETYPE_LADDER)and 0.5 or 0),self:GetValue("MidAirSpreadPenalty")or 0,0)end
-if ply:OnGround()and ply:Crouching()then spread=spread+(self:GetValue("CrouchSpreadPenalty")or 0)end
-if self:GetBlindFire()then spread=spread+(self:GetValue("BlindFireSpreadPenalty")or 0)end
-local qsd=((ct-self:GetLastScopeTime())/(self:GetValue("QuickScopeTime")or 0.3))^4 if qsd<1 then spread=spread+Lerp(qsd,self:GetValue("QuickScopeSpreadPenalty")or 0,0)end
-return mathMax(spread,0)end
+function SWEP:GetSpread(b)
+    local vf=b and self.GetBaseValue or self.GetValue
+    local spread=self:GetValue("Spread")or 0
+    if b then return spread end
+    local ply,hippenalty,movepenalty=self:GetOwner(),self:GetValue("HipFireSpreadPenalty")or 0,self:GetValue("MoveSpreadPenalty")or 0
+
+    if TacRP_ConVars.oldschool:GetBool()or TacRP_GetBalanceMode()==TacRP_BALANCE_OLDSCHOOL then
+        movepenalty=movepenalty+hippenalty*0.25
+        hippenalty=hippenalty*Lerp(12/((self:GetValue("ScopeFOV")or 90)-1.1),0.05,0.5)
+    end
+
+    spread=spread+(self:GetInBipod()and self:GetScopeLevel()==0 and Lerp(1-(self:GetValue("PeekPenaltyFraction")or 0),hippenalty,0)or Lerp(self:GetSightAmount()-(self:GetPeeking()and(self:GetValue("PeekPenaltyFraction")or 0)or 0),hippenalty,0))
+
+    if not self:UseAltRecoil()then
+        spread=spread+self:GetRecoilAmount()*(self:GetValue("RecoilSpreadPenalty")or 0)
+    end
+
+    local v=ply:GetAbsVelocity()
+    spread=spread+mathMin(mathSqrt(v.x*v.x+v.y*v.y)*0.004,1)*movepenalty
+
+    local ct = CurTime()
+    local gt=ct-(ply.TacRP_LastOnGroundTime or 0)
+    local gd=mathClamp(ply:IsOnGround()and gt/mathClamp((ply.TacRP_LastAirDuration or 0)-0.25,0.1,1.5)or 0,0,1)^0.75
+
+    if gd<1 and ply:GetMoveType()~=MOVETYPE_NOCLIP then
+        spread=spread+Lerp(gd+((ply:WaterLevel()>0 or ply:GetMoveType()==MOVETYPE_LADDER)and 0.5 or 0),self:GetValue("MidAirSpreadPenalty")or 0,0)
+    end
+    if ply:OnGround()and ply:Crouching()then
+        spread=spread+(self:GetValue("CrouchSpreadPenalty")or 0)
+    end
+    if self:GetBlindFire()then
+        spread=spread+(self:GetValue("BlindFireSpreadPenalty")or 0)
+    end
+    local qsd=((ct-self:GetLastScopeTime())/(self:GetValue("QuickScopeTime")or 0.3))^4
+    if qsd<1 then
+        spread=spread+Lerp(qsd,self:GetValue("QuickScopeSpreadPenalty")or 0,0)
+    end
+    return mathMax(spread,0)
+end
 
 function SWEP:GetConfigDamageMultiplier()return self:IsShotgun()and TacRP_ConVars.mult_damage_shotgun:GetFloat()or(self:GetValue("PrimaryMelee")or false)and TacRP_ConVars.mult_damage_melee:GetFloat()or(type_to_cvar[self.SubCatType]or"mult_damage")==""and 1 or TacRP_ConVars[type_to_cvar[self.SubCatType]or"mult_damage"]:GetFloat()end
 
