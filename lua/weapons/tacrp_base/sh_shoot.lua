@@ -91,10 +91,24 @@ function SWEP:PrimaryAttack()
     else self:PlayAnimation(seq, mult, false, idle) end
     local sshoot = self:GetValue("Sound_Shoot"); local indoors = false
     local trace = util.TraceLine({start = self:GetPos(), endpos = self:GetPos() + Vector(0,0,1000), mask = MASK_PLAYERSOLID_BRUSHONLY})
-    if !trace.HitWorld or !trace.HitSky then indoors = true; sshoot = self:GetValue("Sound_Shoot_Indoors") end
+    if !trace.HitWorld or !trace.HitSky then
+        indoors = true
+        local indoor = self:GetValue("Sound_Shoot_Indoors")
+        if indoor and indoor ~= "" then
+            sshoot = indoor
+        end
+    end
     if self:GetValue("Silencer") then
-        sshoot = self:GetValue("Sound_Shoot_Silenced")
-        if indoors then sshoot = self:GetValue("Sound_Shoot_Silenced_Indoors") end
+        local sil = self:GetValue("Sound_Shoot_Silenced")
+        if sil and sil ~= "" then
+            sshoot = sil
+        end
+        if indoors then
+            local silindoor = self:GetValue("Sound_Shoot_Silenced_Indoors")
+            if silindoor and silindoor ~= "" then
+                sshoot = silindoor
+            end
+        end
     end
     self:GetOwner():DoAnimationEvent(self:GetValue("GestureShoot")); local pvar = self:GetValue("ShootPitchVariance")
     if self:GetValue("Silencer") then sshoot = self:GetValue("Sound_Shoot_Silenced") end
@@ -102,6 +116,7 @@ function SWEP:PrimaryAttack()
     if self:GetValue("Sound_ShootAdd") then
         self:EmitSound(self:GetValue("Sound_ShootAdd"), self:GetValue("Vol_Shoot"), self:GetValue("Pitch_Shoot") + util.SharedRandom("TacRP_sshoot", -pvar, pvar), self:GetValue("Loudness_Shoot"), CHAN_BODY)
     end
+    self:EmitSound("weapons/ar2/fire1.wav", 100, 100, 1, CHAN_WEAPON)
     if self:GetBlindFireMode() == TacRP.BLINDFIRE_KYS then
         if SERVER then sound.Play(sshoot, self:GetMuzzleOrigin(), self:GetValue("Vol_Shoot"), self:GetValue("Pitch_Shoot") + util.SharedRandom("TacRP_sshoot", -pvar, pvar), self:GetValue("Loudness_Shoot")) end
     else
