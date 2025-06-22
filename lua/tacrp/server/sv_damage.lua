@@ -72,59 +72,44 @@ function calcbleed(ply, hpl, hp)
 	end
 end
 
--- Ultra-optimized damage scaling hook with CPU cache-friendly patterns
-hook.Add("ScalePlayerDamage", "armordam", function(ply, hitgroup, dmginfo)
-
+hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
 	local ent = dmginfo:GetInflictor()
-	local a, hp, dmg, apen, hpl = ent:Alive(), ply:Health(), dmginfo:GetDamage(), 0
-  
-	if a and not dmginfo:IsDamageType(dtb) and not  (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
-	  ply:SetHealth(hp - dmg)
+	local a, hp, ap, dmg, apen, b, wep, ab, dtype = ent:Alive(), ply:Health(), ply:Armor(), dmginfo:GetDamage(), 0
+
+	if a and ap > 0 and not dmginfo:IsDamageType(dtb) and not (hitgroup == 0 or hitgroup == 2 or hitgroup == 3) then 
+		ply:SetHealth(hp - dmg)
 	else
-  
-	  local ap, gdmg, wep, ab, dtype = ply:Armor(), 0
-  
-	  if a then
-		wep = ent:GetActiveWeapon() 
-		ab = wep:GetValue("ArmorBonus") 
-	  end
-  
-	  for dtkey, data in pairs(dtmap) do
-		  if dmginfo:IsDamageType(dtkey) then
-			ab = data.ab or ab
-			apen = data.apen
-			dtype = data.dtype
-			break
-		  end
+		if a then
+			wep = ent:GetActiveWeapon()
+			ab = wep:GetValue("ArmorBonus")
+			apen = wep:GetValue("ArmorPenetration")
 		end
-  
-		if dtype == 1 then
-		  if ap+ap < ab * 20 then
-			gdmg = ab * 4
-			apen = dmg * 0.015
-			dmg = 0
-		  else
-			gdmg = ab * 4
-			apen = 0
-			dmg = 0
-		  end
+
+		for _, data in ipairs(dtmap) do
+			if dmginfo:IsDamageType(data.key) then
+				ab = data.ab or ab
+				apen = data.apen
+				break
+			end
 		end
-		ply:SetArmor(math.max(ap - dmg * ab and ap - gdmg, 0))
-		ply:SetHealth(hp - dmg * apen and hp - apen)
-		
+
+		if dtype == 1 and ap*3 < ab*50 then
+			apen = 0.5
+		else
+			if hitgroup == 2 then
+				dmg = dmg*0.6667 --inverts 1.5x dmgmult on chest
+			end
+		end
+
+		ply:SetArmor(mathmax(ap - dmg * ab, 0))
+		ply:SetHealth(hp - dmg * apen)
 		if ap > 0 then b=3 end
-	  end
-  
-	  hpl = dmg + apen
-	  print(hpl)
-	  ply:SetBloodColor(b)
-	  dmginfo:SetDamage(0)
-  
-	  if hpl > 10 then return 
-	  else
-		calcbleed(ply, hpl, dmginfo)
 	end
-  end)
+
+	ply:SetBloodColor(b)
+	dmginfo:SetDamage(0)
+end)
+  
 -- Optimized death hook with efficient weapon iteration
 hook.Add("DoPlayerDeath", "TacRP_DropGrenade", function(ply, attacker, dmginfo)
 	-- Cache weapon list for efficient iteration
