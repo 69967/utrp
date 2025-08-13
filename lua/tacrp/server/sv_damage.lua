@@ -97,7 +97,7 @@ hook.Add("ScalePlayerDamage", "utrpdam", function(ply, hitgroup, dmginfo)
 			apen = 0.5
 		else
 			if hitgroup == 2 then
-				dmg = dmg*0.6667 --inverts 1.5x dmgmult on chest
+				dmg = dmg*0.67 --inverts 1.5x dmgmult on chest
 			end
 		end
 
