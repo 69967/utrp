@@ -8,6 +8,31 @@ function SWEP:StillWaiting(cust, reload)
     return false
 end
 
+local pitchOffsets = {}
+hook.Add("UpdateAnimation", "TacRP_PlayerModelPitch", function(ply)
+    local wep = ply:GetActiveWeapon()
+    if !IsValid(wep) or !wep.GetScopeLevel or !wep.GetPeeking then 
+        pitchOffsets[ply] = nil
+        return 
+    end
+    
+    pitchOffsets[ply] = pitchOffsets[ply] or 0
+    local targetOffset = -18 or 0
+    
+    pitchOffsets[ply] = Lerp(FrameTime() * 8, pitchOffsets[ply], targetOffset)
+    
+    -- Keep the pitch pose parameter for vertical aiming
+    ply:SetPoseParameter("aim_pitch", ply:EyeAngles().p + pitchOffsets[ply])
+
+--[[
+    -- Use SetRenderAngles for visual-only rotation offset
+    local YAW_OFFSET = 0 -- Adjust this as needed
+    local renderAngles = Angle(ply:GetAngles()) -- Use body angles as base (not eye angles!)
+    renderAngles.y = renderAngles.y + YAW_OFFSET -- Add offset to current yaw
+    ply:SetEyeAngles(renderAngles) -- This only affects visual appearance
+]]
+end)
+
 function SWEP:SprintLock(shoot)
     if self:GetSprintLockTime() > CurTime() or self:GetIsSprinting() or self:ShouldLowerWeapon() then return true end
     if shoot and self:DoForceSightsBehavior() and (self:GetSprintDelta() > 0 or self:GetSightDelta() < 0.75) and !self:GetBlindFire() then return true end

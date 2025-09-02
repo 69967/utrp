@@ -23,6 +23,21 @@ local ammotypes = {
     ["ti_heal"] = {
         max = "tacrp_max_grenades",
     },
+	["9x19mm_FMJ"] = {
+		max = 36,
+    },
+	["9x19mm AP"] = {
+    },
+	["9x19mm_HP"] = {
+		max = 36,
+    },
+	["9x19mm Match"] = {
+    },
+
+	[".45 ACP"] = {
+    },
+
+
 
     -- Only used when tacrp_expandedammotypes 1
     ["ti_pistol_light"] = { -- .22LR, .380 ACP etc.
@@ -43,7 +58,7 @@ local ammotypes = {
     },
     ["ti_sniper"] = { -- sniper, amr calibers
         expanded = true,
-        max = 10,
+        max = 54,
     },
 }
 

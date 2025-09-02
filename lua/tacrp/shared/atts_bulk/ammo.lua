@@ -1660,3 +1660,43 @@ end
 
 TacRP.LoadAtt(ATT, "ammo_usp_9mm")
 -- #endregion
+
+
+-- 9MM HOLLOWPOINT
+ATT = {}
+
+ATT.PrintName = "9x19mm HP"
+ATT.FullName = "9x19mm Hollow-Points"
+
+ATT.Icon = Material("entities/tacrp_att_acc_hollowpoints.png", "mips smooth")
+ATT.Description = "Bullets that expand on hit, improving damage to flesh targets and limbs."
+
+ATT.Category = {"ammo_pistol", "ammo_pistol_sub"}
+
+ATT.SortOrder = 1
+
+ATT.OnDetach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+ATT.OnAttach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+ATT.Mult_Damage_Max = 1.5
+ATT.Mult_Penetration = 0.75
+ATT.Mult_ArmorPenetration = 0
+ATT.Mult_ArmorBonus = 0.5
+ATT.Ammo = "9x19mm HP"
+ATT.Free = true
+
+TacRP.LoadAtt(ATT, "9x19mm_hollowpoints")
+--END 9MM HOLLOWPOINT
