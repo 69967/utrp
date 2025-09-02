@@ -1695,7 +1695,7 @@ ATT.Mult_Damage_Max = 1.5
 ATT.Mult_Penetration = 0.75
 ATT.Mult_ArmorPenetration = 0
 ATT.Mult_ArmorBonus = 0.5
-ATT.Ammo = "9x19mm HP"
+ATT.Ammo = "9x19mm_HP"
 ATT.Free = true
 
 TacRP.LoadAtt(ATT, "9x19mm_hollowpoints")
