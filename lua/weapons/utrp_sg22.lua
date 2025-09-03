@@ -4,139 +4,63 @@ SWEP.Spawnable = true
 AddCSLuaFile()
 
 // names and stuff
-SWEP.PrintName = "Colt Woodsman"
-SWEP.AbbrevName = "Woodsman"
-SWEP.Category = "Tactical RP"
-
-SWEP.SubCatTier = "4Consumer"
-SWEP.SubCatType = "1Pistol"
-
-SWEP.Description = "Small caliber sporting pistol. Light and controllable enough to use one-handed, but lethality is low."
-SWEP.Description_Quote = "\"Oh, my God, is that a .22?\"" // El Camino
-
-SWEP.Trivia_Caliber = ".22 LR"
-SWEP.Trivia_Manufacturer = "Colt"
-SWEP.Trivia_Year = "1915"
-
-SWEP.Faction = TacRP.FACTION_NEUTRAL
-SWEP.Credits = [[
-Model: Kimono, Faffout
-Texture: Crash
-Sound: Vunsunta, DMG, Strelok]]
+SWEP.PrintName = "Slurpgewehr-22"
+SWEP.AbbrevName = "SG-22"
+SWEP.Category = "UTRP Handguns"
+SWEP.SubCatType = "0Other"
 
 SWEP.ViewModel = "models/weapons/tacint_extras/v_woodsman.mdl"
 SWEP.WorldModel = "models/weapons/tacint_extras/w_woodsman.mdl"
 
 SWEP.Slot = 1
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 16,
-        Damage_Min = 12,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 7,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.9,
-            [HITGROUP_RIGHTLEG] = 0.9,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 14,
-        Damage_Min = 8,
-        Range_Min = 500,
-        Range_Max = 3000,
-        RPM = 450,
-        RPMMultSemi = 1,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.9,
-            [HITGROUP_RIGHTLEG] = 0.9,
-            [HITGROUP_GEAR] = 0.9
-        },
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
-
 // "ballistics"
 
 SWEP.Damage_Max = 15
-SWEP.Damage_Min = 9
-SWEP.Range_Min = 900
-SWEP.Range_Max = 3000
+SWEP.Damage_Min = 5
+SWEP.Range_Min = 3000
+SWEP.Range_Max = 4000
 SWEP.Penetration = 4
-SWEP.ArmorPenetration = 0.625
-SWEP.ArmorBonus = 0.5
-
-SWEP.MuzzleVelocity = 32000
-
-SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 4,
-    [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 0.75,
-    [HITGROUP_RIGHTLEG] = 0.75,
-    [HITGROUP_GEAR] = 0.9
-}
-
-// misc. shooting
+SWEP.MuzzleVelocity = 27500
+SWEP.ArmorPenetration = 0
 
 SWEP.Firemode = 1
-
 SWEP.RPM = 500
-SWEP.RPMMultSemi = 0.8
-
-SWEP.Spread = 0.003
-
 SWEP.ShootTimeMult = 0.5
+SWEP.JamFactor = 0.5
 
-SWEP.RecoilResetInstant = false
+SWEP.Spread = 0.005
+SWEP.RecoilSpreadPenalty = 0.0015
+SWEP.HipFireSpreadPenalty = 0.01
+SWEP.MoveSpreadPenalty = 0.0033
+
 SWEP.RecoilPerShot = 1
-SWEP.RecoilMaximum = 4
-SWEP.RecoilResetTime = 0
-SWEP.RecoilDissipationRate = 10
+SWEP.RecoilMaximum = 20
+SWEP.RecoilResetTime = 0.275
+SWEP.RecoilDissipationRate = 50
 SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 0.5
-SWEP.RecoilKick = 2
-SWEP.RecoilStability = 0.6
+SWEP.RecoilVisualKick = 0.4
+SWEP.RecoilKick = 1
+SWEP.RecoilStability = 0
 
-SWEP.HipFireSpreadPenalty = 0.01
-SWEP.RecoilSpreadPenalty = 0.002
+SWEP.MoveSpeedMult = 1
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.9
+SWEP.ReloadSpeedMult = 0.75
+
+SWEP.AimDownSightsTime = 0.25
+SWEP.SprintToFireTime = 0.25
+
+SWEP.Sway = 0.33
+SWEP.ScopedSway = 0.2
+SWEP.FreeAimMaxAngle = 1
 
 SWEP.CanBlindFire = true
 
-// handling
-
-SWEP.MoveSpeedMult = 1
-SWEP.ShootingSpeedMult = 1
-SWEP.SightedSpeedMult = 0.9
-
-SWEP.ReloadSpeedMult = 0.75
-
-SWEP.AimDownSightsTime = 0.22
-SWEP.SprintToFireTime = 0.15
-
-SWEP.Sway = 0.5
-SWEP.ScopedSway = 0.5
-
-SWEP.FreeAimMaxAngle = 2
-
 // hold types
 
-SWEP.HoldType = "pistol"
+SWEP.HoldType = "slam"
 SWEP.HoldTypeSprint = "normal"
 SWEP.HoldTypeBlindFire = "pistol"
 
@@ -144,7 +68,7 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -1, -5)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)
@@ -152,8 +76,8 @@ SWEP.BlindFirePos = Vector(0, -2, -5)
 SWEP.BlindFireSuicideAng = Angle(-125, 0, 45)
 SWEP.BlindFireSuicidePos = Vector(25, 12, -6)
 
-SWEP.SprintAng = Angle(0, 30, 0)
-SWEP.SprintPos = Vector(2, 4, -12)
+SWEP.SprintAng = Angle(0, -20, 0)
+SWEP.SprintPos = Vector(0, 0, -9)
 
 SWEP.SightAng = Angle(-0.01, 0.5, 0)
 SWEP.SightPos = Vector(-3.2, 0, -2.99)
@@ -167,8 +91,7 @@ SWEP.HolsterAng = Angle(90, 0, 0)
 // reload
 
 SWEP.ClipSize = 12 // 10 irl but it should be slightly better than the Amphibian
-SWEP.Ammo = "pistol"
-SWEP.Ammo_Expanded = "ti_pistol_light"
+SWEP.Ammo = "9x19mm_sc"
 
 SWEP.ReloadUpInTime = 1
 SWEP.DropMagazineTime = 0.25
@@ -195,7 +118,7 @@ SWEP.ShootPitchVariance = 2.5 // amount to vary pitch by each shot
 // the .qc attachment for the muzzle
 SWEP.QCA_Muzzle = 4
 
-SWEP.MuzzleEffect = "muzzleflash_pistol"
+SWEP.MuzzleEffect = "muzzleflash_silenced"
 SWEP.EjectEffect = 1
 
 // anims
@@ -215,8 +138,7 @@ SWEP.HolsterTimeMult = 0.5
 SWEP.AnimationTranslationTable = {
     ["deploy"] = "sh_draw",
     ["unholster"] = "sh_unholster",
-    ["fire_iron"] = "sh_shoot3",
-    ["fire"] = {"sh_shoot1", "sh_shoot2", "sh_shoot3"},
+    ["fire"] = {"sh_shoot1"},
     ["blind_fire"] = {"blind_shoot1", "blind_shoot2", "blind_shoot3"},
     ["melee"] = {"melee1", "melee2"},
     ["jam"] = "sh_midreload",
@@ -258,20 +180,6 @@ SWEP.LastShot = false
 // attachments
 
 SWEP.Attachments = {
-    [1] = {
-        PrintName = "Optic",
-        Category = "optic_pistol",
-        Bone = "ValveBiped.slide",
-        WMBone = "Box01",
-        AttachSound = "TacRP/weapons/optic_on.wav",
-        DetachSound = "TacRP/weapons/optic_off.wav",
-        VMScale = 1,
-        WMScale = 1,
-        Pos_VM = Vector(0, 1, 0.15),
-        Ang_VM = Angle(0, 90, 180),
-        Pos_WM = Vector(0.125, -2.75, -1.2),
-        Ang_WM = Angle(0, -90, 0),
-    },
     [2] = {
         PrintName = "Muzzle",
         Category = "silencer",
@@ -317,18 +225,6 @@ SWEP.Attachments = {
         Category = {"trigger_semi"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
-    },
-    [7] = {
-        PrintName = "Ammo",
-        Category = {"ammo_pistol"},
-        AttachSound = "TacRP/weapons/flashlight_on.wav",
-        DetachSound = "TacRP/weapons/flashlight_off.wav",
-    },
-    [8] = {
-        PrintName = "Perk",
-        Category = {"perk", "perk_melee", "perk_shooting", "perk_reload"},
-        AttachSound = "tacrp/weapons/flashlight_on.wav",
-        DetachSound = "tacrp/weapons/flashlight_off.wav",
     },
 }
 

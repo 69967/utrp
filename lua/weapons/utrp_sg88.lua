@@ -105,7 +105,7 @@ SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
 SWEP.SprintAng = Angle(30, -22, -15)
-SWEP.SprintPos = Vector(0, 0, -7)
+SWEP.SprintPos = Vector(0, 0, -8)
 
 SWEP.SightAng = Angle(-0.74, 0.3, 0)
 SWEP.SightPos = Vector(-4.25, -7.5, -4.1)
@@ -161,7 +161,7 @@ SWEP.AnimationTranslationTable = {
     ["fire2"] = "fire2_M",
     ["fire3"] = "fire3_M",
     ["fire4"] = "fire4_M",
-    ["melee"] = {"melee1", "melee2"}
+    ["melee"] = "melee2"
 }
 
 SWEP.ProceduralIronFire = {
