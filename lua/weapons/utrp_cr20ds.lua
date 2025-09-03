@@ -119,7 +119,7 @@ SWEP.HolsterAng = Angle(90, 0, 0)
 // reload
 
 SWEP.ClipSize = 6
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1
 
@@ -235,7 +235,7 @@ SWEP.Attachments = {
     },
     [5] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol", "ammo_roulette"},
+        Category = {"9x19mm", "ammo_roulette"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

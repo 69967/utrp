@@ -718,7 +718,7 @@ ATT.Category = {"ammo_roulette"}
 
 ATT.Free = true
 
-ATT.SortOrder = -1
+ATT.SortOrder = 9
 
 --ATT.Mult_ShootChance = 1 / 6
 ATT.Override_ClipSize = 1
@@ -1667,13 +1667,18 @@ ATT = {}
 
 ATT.PrintName = "9x19mm HP"
 ATT.FullName = "9x19mm Hollow-Points"
-
 ATT.Icon = Material("entities/tacrp_att_acc_hollowpoints.png", "mips smooth")
-ATT.Description = "Bullets that expand on hit, improving damage to flesh targets and limbs."
+ATT.Description = "Increased damage against flesh targets, worse against body armor."
+ATT.Category = "9x19mm"
+ATT.SortOrder = 2
 
-ATT.Category = {"ammo_pistol", "ammo_pistol_sub"}
-
-ATT.SortOrder = 1
+ATT.Mult_Damage_Max = 1.5
+ATT.Mult_Damage_Min = 1.25
+ATT.Mult_Penetration = 0.8
+ATT.Mult_ArmorPenetration = 0
+ATT.Mult_ArmorBonus = 0.5
+ATT.Ammo = "9x19mm_HP"
+ATT.Free = true
 
 ATT.OnDetach = function(wep)
     if SERVER then
@@ -1691,12 +1696,120 @@ ATT.OnAttach = function(wep)
     end
 end
 
-ATT.Mult_Damage_Max = 1.5
-ATT.Mult_Penetration = 0.75
-ATT.Mult_ArmorPenetration = 0
-ATT.Mult_ArmorBonus = 0.5
-ATT.Ammo = "9x19mm_HP"
-ATT.Free = true
-
 TacRP.LoadAtt(ATT, "9x19mm_hollowpoints")
 --END 9MM HOLLOWPOINT
+
+-- 9MM AP
+ATT = {}
+
+ATT.PrintName = "9x19mm AP"
+ATT.FullName = "9x19mm Armor Piercing"
+ATT.Icon = Material("entities/tacrp_att_ammo_pistol_ap.png", "mips smooth")
+ATT.Description = "Better surface and armor penetration, but increased spread."
+ATT.Category = "9x19mm"
+ATT.SortOrder = 3
+
+ATT.Mult_Damage_Max = 0.9
+ATT.Mult_Damage_Min = 0.9
+ATT.Mult_Penetration = 1.25
+ATT.Mult_ArmorPenetration = 0.33
+ATT.Mult_ArmorBonus = 1.5
+
+ATT.Mult_MuzzleVelocity = 0.8
+ATT.Mult_RecoilSpreadPenalty = 1.2
+ATT.Ammo = "9x19mm_AP"
+ATT.Free = true
+
+ATT.OnDetach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+ATT.OnAttach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+TacRP.LoadAtt(ATT, "9x19mm_armorpiercing")
+--END 9MM AP
+
+--9MM MATCH
+ATT = {}
+
+ATT.PrintName = "9x19mm Match"
+ATT.FullName = "9x19mm Match"
+ATT.Icon = Material("entities/tacrp_att_ammo_pistol_match.png", "mips smooth")
+ATT.Description = "Bullets with improved range and accuracy."
+ATT.Category = "9x19mm"
+ATT.SortOrder = 1
+
+ATT.Mult_Range_Max = 1.25
+ATT.Mult_Spread = 0.67
+ATT.Ammo = "9x19mm_Match"
+ATT.Free = true
+
+ATT.OnDetach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+ATT.OnAttach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+TacRP.LoadAtt(ATT, "9x19mm_match")
+-- END 9MM MATCH 9x19mm_sc
+
+--9MM SLURP
+ATT = {}
+
+ATT.PrintName = "9x19mm Slurp"
+ATT.FullName = "9x19mm Slurpcorporate Premium"
+ATT.Icon = Material("entities/tacrp_att_acc_surplus.png", "mips smooth")
+ATT.Description = "All it says on the box is, <<Hell is real, send someone home.>>"
+ATT.Category = "9x19mm"
+ATT.SortOrder = 4
+
+ATT.Mult_Damage_Max = 0.5
+ATT.Mult_Damage_Min = 0.5
+ATT.Mult_Penetration = 0.5
+ATT.Mult_ArmorBonus = 0.5
+ATT.Mult_MuzzleVelocity = 0.5
+ATT.Mult_RecoilSpreadPenalty = 0.8
+ATT.Add_JamFactor = 6
+ATT.Add_ShootPitchVariance = 10
+
+ATT.Ammo = "9x19mm_sc"
+ATT.Free = true
+
+ATT.OnDetach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+ATT.OnAttach = function(wep)
+    if SERVER then
+        local ply = wep:GetOwner()
+        ply:GiveAmmo(wep:Clip1(), wep.Primary.Ammo)
+        wep:SetClip1(0)
+    end
+end
+
+TacRP.LoadAtt(ATT, "9x19mm_slurp")
+-- END 9MM SLURP

@@ -8,12 +8,11 @@ SWEP.PrintName = "Luty SMG"
 SWEP.Category = "UTRP Longarms"
 
 SWEP.SubCatTier = "5Value"
-SWEP.SubCatType = "29x19 Submachine Guns"
+SWEP.SubCatType = "29x19mm Submachine Guns"
 
 SWEP.Description = "Homemade SMG made as protest against UK firearm regulations. The first few shots in a burst have increased firerate, compensating for the weapon's terrible accuracy."
 SWEP.Description_Quote = "\"Let us never succumb to the evil doctrine of the antigun movement.\"" // From P.A. Luty's book, Expedient Homemade Firearms. Guy was quite dramatic.
 
-SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "P.A. Luty"
 SWEP.Trivia_Year = "1998"
 
@@ -117,7 +116,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 
 
 SWEP.ClipSize = 16
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineModel = "models/weapons/tacint_shark/magazines/luty.mdl"
@@ -243,7 +242,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

@@ -19,8 +19,10 @@ ENT.CollisionSounds = {
 
 function ENT:Initialize()
     self:SetModel(self.Model)
-    self.AmmoRemaining = 100
+    self.AmmoRemaining = 1000
     self.NextUse = 0
+	self:SetColor( Color( 178,132,190, 255 ) )
+	self:SetMaterial("phoenix_storms/trains/track_beamtop")
     
     if SERVER then
         self:SetMaterial("")
@@ -31,7 +33,7 @@ function ENT:Initialize()
         self:SetUseType(SIMPLE_USE)
         self:PhysWake()
 
-        self:SetNWInt("AmmoRemaining", 100)
+        self:SetNWInt("AmmoRemaining", 1000)
     end
     self.BaseClass.Initialize(self)
 end
@@ -97,7 +99,7 @@ if CLIENT then
 
         local resolution = 9
         local ammoType = "9x19mm HP"
-        local ammoCount = tostring(self:GetNWInt("AmmoRemaining", 100))
+        local ammoCount = tostring(self:GetNWInt("AmmoRemaining", 1000))
 
         cam.Start3D2D(pos, ang, 0.08 / resolution)
 

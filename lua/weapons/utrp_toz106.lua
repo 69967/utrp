@@ -6,13 +6,11 @@ AddCSLuaFile()
 // names and stuff
 SWEP.PrintName = "TOZ-106"
 SWEP.AbbrevName = "TOZ-106"
-SWEP.Category = "Tactical RP" // "Tactical RP (Arctic)"
+SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatTier = "5Value"
-SWEP.SubCatType = "5Shotgun"
+SWEP.SubCatType = "920 Gague Shotguns"
 
 SWEP.Description = "Bolt-action hunting shotgun. Small caliber shells have excellent accuracy but are not very lethal."
-SWEP.Description_Quote = "\"Head, eyes.\""
 
 SWEP.Trivia_Caliber = "20 Gauge"
 SWEP.Trivia_Manufacturer = "Tulsky Oruzheiny Zavod"
@@ -27,78 +25,30 @@ SWEP.WorldModel = "models/weapons/tacint/w_toz106.mdl"
 SWEP.Slot = 2
 SWEP.SlotAlt = 3
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 14,
-        Damage_Min = 6,
-        Range_Min = 1400,
-        ClipSize = 4,
-        ReloadTimeMult = 0.9,
-        MuzzleVelocity = 17000,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 3,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.9,
-            [HITGROUP_RIGHTLEG] = 0.9,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 14,
-        Damage_Min = 6,
-        Range_Min = 400,
-        Range_Max = 2500,
-        Num = 6,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 2.5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.5,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.5,
-    },
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.Shotgun
 
 // "ballistics"
 
-SWEP.Damage_Max = 11
+SWEP.Damage_Max = 7
 SWEP.Damage_Min = 4
-SWEP.Range_Min = 900 // distance for which to maintain maximum damage
-SWEP.Range_Max = 2800 // distance at which we drop to minimum damage
-SWEP.Penetration = 1 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.25
-SWEP.ArmorBonus = 1
+SWEP.Range_Min = 3000
+SWEP.Range_Max = 4000
+SWEP.Penetration = 3
+SWEP.ArmorPenetration = 0.1
+SWEP.ArmorBonus = 0
 
-SWEP.Num = 6
+SWEP.Num = 17
 
-SWEP.MuzzleVelocity = 11000
+SWEP.MuzzleVelocity = 30000
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 1,
-    [HITGROUP_CHEST] = 1,
+    [HITGROUP_HEAD] = 10,
+    [HITGROUP_CHEST] = 1.25,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 0.9,
-    [HITGROUP_RIGHTLEG] = 0.9,
-    [HITGROUP_GEAR] = 0.9
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
+    [HITGROUP_GEAR] = 0.8
 }
 
 // misc. shooting
@@ -111,17 +61,16 @@ SWEP.RPM = 42
 
 SWEP.ShootTimeMult = 0.85
 
-SWEP.Spread = 0.008
-SWEP.ShotgunPelletSpread = 0.008
+SWEP.Spread = 0.0075
+SWEP.ShotgunPelletSpread = 0.02
 
-SWEP.HipfireSpreadPenalty = 0.01
-SWEP.MidAirSpreadPenalty = 0.02
+SWEP.HipFireSpreadPenalty = 0.01
+SWEP.MoveSpreadPenalty = 0.0075
 
-SWEP.ScopedSpreadPenalty = 0
 
 SWEP.RecoilPerShot = 1
 SWEP.RecoilMaximum = 1
-SWEP.RecoilResetTime = 0.3 // time after you stop shooting for recoil to start dissipating
+SWEP.RecoilResetTime = 0.3
 SWEP.RecoilDissipationRate = 1
 SWEP.RecoilFirstShotMult = 1
 
@@ -136,23 +85,22 @@ SWEP.CanBlindFire = true
 
 // handling
 
-SWEP.MoveSpeedMult = 0.975
-SWEP.ShootingSpeedMult = 0.6
-SWEP.SightedSpeedMult = 0.75
+SWEP.MoveSpeedMult = 0.9
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.8
+SWEP.ReloadSpeedMult = 0.65
 
-SWEP.ReloadSpeedMult = 0.75
+SWEP.AimDownSightsTime = 0.36
+SWEP.SprintToFireTime = 0.36
 
-SWEP.AimDownSightsTime = 0.25
-SWEP.SprintToFireTime = 0.24
+SWEP.Sway = 0.5
+SWEP.ScopedSway = 0.1
 
-SWEP.Sway = 1
-SWEP.ScopedSway = 0.2
-
-SWEP.FreeAimMaxAngle = 5
+SWEP.FreeAimMaxAngle = 3
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 SWEP.HoldTypeNPC = "shotgun"
@@ -161,13 +109,13 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_AR2
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -4)
+SWEP.PassivePos = Vector(-1, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(4, -2, -4)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(5, 0, -2)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -7)
 
 SWEP.SightAng = Angle(0, 0, 0)
 SWEP.SightPos = Vector(-3.83424, -2, -3.2791)
@@ -182,7 +130,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 
 // reload
 
-SWEP.ClipSize = 3
+SWEP.ClipSize = 4
 SWEP.Ammo = "buckshot"
 
 SWEP.DropMagazineModel = "models/weapons/tacint/magazines/uratio.mdl"
@@ -205,7 +153,7 @@ SWEP.ShootPitchVariance = 0 // amount to vary pitch by each shot
 SWEP.QCA_Muzzle = 1
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_shotgun"
+SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.EjectEffect = 3
 SWEP.EjectDelay = 0.5
 
@@ -221,31 +169,10 @@ SWEP.AttachmentElements = {
     },
 }
 
-// anims
-
-// VM:
-// idle
-// fire
-// fire1, fire2...
-// dryfire
-// melee
-// reload
-// midreload
-// prime_grenade
-// throw_grenade
-// throw_grenade_underhand
-// deploy
-// blind_idle
-// blind_fire
-// blind_fire1, blind_fire2...
-// blind_dryfire
-
-// WM:
-// attack1
 SWEP.AnimationTranslationTable = {
     ["fire"] = {"shoot1", "shoot2"},
     ["blind_fire"] = {"blind_shoot1"},
-    ["melee"] = {"melee1", "melee2"},
+    ["melee"] = "melee2"	,
     ["reload"] = "reload",
     ["deploy"] = "unholster"
 }
@@ -253,17 +180,6 @@ SWEP.AnimationTranslationTable = {
 // attachments
 
 SWEP.Attachments = {
-    [1] = {
-        PrintName = "Optic",
-        Category = "optic_ak",
-        Bone = "ValveBiped.uratio_rootbone",
-        AttachSound = "tacrp/weapons/optic_on.wav",
-        DetachSound = "tacrp/weapons/optic_off.wav",
-        Pos_VM = Vector(-5.6, 0.5, 9),
-        Ang_VM = Angle(90, 0, 0),
-        Pos_WM = Vector(20, 1, -5.5),
-        Ang_WM = Angle(-10, 0, 0),
-    },
     [2] = {
         PrintName = "Tactical",
         Category = {"tactical", "tactical_ebullet"},
@@ -278,7 +194,7 @@ SWEP.Attachments = {
     },
     [3] = {
         PrintName = "Accessory",
-        Category = {"acc", "acc_foldstock", "acc_extmag_sniper", "acc_sling", "acc_duffle", "acc_bipod"},
+        Category = {"acc", "acc_foldstock2", "acc_extmag_sniper", "acc_sling", "acc_duffle", "acc_bipod"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },
@@ -299,12 +215,6 @@ SWEP.Attachments = {
         Category = {"ammo_shotgun2"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
-    },
-    [7] = {
-        PrintName = "Perk",
-        Category = {"perk", "perk_melee", "perk_shooting", "perk_reload"},
-        AttachSound = "tacrp/weapons/flashlight_on.wav",
-        DetachSound = "tacrp/weapons/flashlight_off.wav",
     },
 }
 

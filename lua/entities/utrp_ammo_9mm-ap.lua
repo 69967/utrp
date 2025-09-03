@@ -3,12 +3,12 @@ AddCSLuaFile()
 ENT.Type                     = "anim"
 ENT.Base                     = "base_entity"
 ENT.RenderGroup              = RENDERGROUP_OPAQUE
-ENT.PrintName                = "9mm FMJ"
+ENT.PrintName                = "9mm AP"
 ENT.Category                 = "Tactical RP"
 ENT.AdminOnly                = true
 ENT.Spawnable                = true
 ENT.Model                    = "models/props_junk/cardboard_box004a.mdl"
-ENT.Ammo                     = "9x19mm_FMJ"
+ENT.Ammo                     = "9x19mm_AP"
 
 ENT.CollisionSounds = {
     "physics/plaster/ceiling_tile_step1.wav",
@@ -21,9 +21,8 @@ function ENT:Initialize()
     self:SetModel(self.Model)
     self.AmmoRemaining = 1000
     self.NextUse = 0
-	self:SetColor( Color( 141,141,235, 255 ) )
+	self:SetColor( Color( 114,160,193, 255 ) )
 	self:SetMaterial("phoenix_storms/trains/track_beamtop")
-
     
     if SERVER then
         self:SetMaterial("")
@@ -59,11 +58,11 @@ function ENT:ApplyAmmo(ply)
     local ammoToGive = math.min(10, self.AmmoRemaining)  -- Don't give more than what's in the box
 
     if currentAmmo >= maxAmmo then
-        ply:ChatPrint("9x19mm FMJ full [" .. maxAmmo .. "]")
+        ply:ChatPrint("9x19mm AP full [" .. maxAmmo .. "]")
         return
     elseif currentAmmo + ammoToGive > maxAmmo then
         ammoToGive = maxAmmo - currentAmmo
-        ply:ChatPrint("All 9x19mm FMJ rounds didn't fit, got (" .. ammoToGive .. ")")
+        ply:ChatPrint("All 9x19mm AP rounds didn't fit, got (" .. ammoToGive .. ")")
     end
 
     ply:GiveAmmo(ammoToGive, self.Ammo)
@@ -96,10 +95,10 @@ if CLIENT then
         local pos = self:GetPos()
         pos = pos + self:GetForward() * -5.2
         pos = pos + self:GetRight() * 2.5
-        pos = pos + self:GetUp() * 4.05
+        pos = pos + self:GetUp() * 4.08
 
         local resolution = 9
-        local ammoType = "9x19mm FMJ"
+        local ammoType = "9x19mm AP"
         local ammoCount = tostring(self:GetNWInt("AmmoRemaining", 1000))
 
         cam.Start3D2D(pos, ang, 0.08 / resolution)

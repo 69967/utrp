@@ -8,11 +8,10 @@ SWEP.PrintName = "CZ Scorpion EVO 3"
 SWEP.AbbrevName = "EVO 3"
 SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatType = "29x19 Submachine Guns"
+SWEP.SubCatType = "29x19mm Submachine Guns"
 
 SWEP.Description = "Modern SMG boasting a very high rate of fire. Used for police applications."
 
-SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "CZ Uherský Brod"
 SWEP.Trivia_Year = "2009"
 
@@ -120,7 +119,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 // reload
 
 SWEP.ClipSize = 30
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1.1
 SWEP.DropMagazineModel = "models/weapons/tacint_shark/magazines/evo3.mdl"
@@ -261,7 +260,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     }

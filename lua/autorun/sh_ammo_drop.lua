@@ -243,6 +243,8 @@ local function CreateAmmoBox(ammo_type, ammo_name, amount, pos)
     ent:SetPos(pos + Vector(math.random(-40, 40), math.random(-40, 40), 20))
     ent:SetAngles(Angle(0, math.random(0, 360), 0))
     ent:Spawn()
+	
+	ent:SetColor( Color( 150, 150, 150, 150 ) ) 
     
     -- Set networked vars for client display
     ent:SetNWString("AmmoType", tostring(ammo_type))
@@ -260,22 +262,12 @@ local function CreateAmmoBox(ammo_type, ammo_name, amount, pos)
             end
         end
     end)
-    
-    -- Auto-remove after 5 minutes
-    timer.Simple(300, function()
-        if IsValid(ent) then
-            ent:Remove()
-        end
-    end)
-    
-    print("[Ammo Drop] Created ammo box: " .. ammo_name .. " with " .. amount .. " rounds")
-    return ent
 end
 
 -- Use only DoPlayerDeath to prevent duplicates
 hook.Add("DoPlayerDeath", "DropAmmoOnDoPlayerDeath", function(victim, attacker, dmginfo)
     if not IsValid(victim) then return end
-    
+
     -- Prevent duplicate processing
     local steamid = victim:SteamID()
     local time_key = steamid .. "_" .. math.floor(CurTime())
@@ -329,36 +321,6 @@ concommand.Add("drop_my_ammo", function(ply, cmd, args)
     end
     
     ply:ChatPrint("Dropped " .. dropped .. " ammo types!")
-end)
-
-concommand.Add("check_my_ammo", function(ply, cmd, args)
-    if not IsValid(ply) then return end
-    
-    local ammo_data = GetAllPlayerAmmo(ply)
-    ply:ChatPrint("=== Your Ammo ===")
-    
-    for ammo_type, info in pairs(ammo_data) do
-        ply:ChatPrint(info.name .. " (" .. ammo_type .. "): " .. info.count)
-    end
-    
-    if table.Count(ammo_data) == 0 then
-        ply:ChatPrint("You have no ammo!")
-    end
-end)
-
--- Debug command to test use function
-concommand.Add("test_ammo_use", function(ply, cmd, args)
-    if not IsValid(ply) or not ply:IsAdmin() then return end
-    
-    local trace = ply:GetEyeTrace()
-    local ent = trace.Entity
-    
-    if IsValid(ent) and ent:GetClass() == "custom_ammo_box" then
-        print("[Ammo Drop] Manually testing use on ammo box...")
-        ent:Use(ply, ply)
-    else
-        ply:ChatPrint("Look at an ammo box first! (Found: " .. (IsValid(ent) and ent:GetClass() or "nothing") .. ")")
-    end
 end)
 
 -- Client-side rendering

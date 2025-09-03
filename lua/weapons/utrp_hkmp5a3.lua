@@ -8,11 +8,10 @@ SWEP.PrintName = "HK MP5A3"
 SWEP.AbbrevName = "MP5A3"
 SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatType = "29x19 Submachine Guns"
+SWEP.SubCatType = "29x19mm Submachine Guns"
 
 SWEP.Description = "An early model in the crème of SMG development; used for police applications."
 
-SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
 SWEP.Trivia_Year = "1966"
 
@@ -113,7 +112,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 // reload
 
 SWEP.ClipSize = 30
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineModel = "models/weapons/tacint/magazines/mp5.mdl"
@@ -247,7 +246,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     }

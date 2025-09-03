@@ -8,11 +8,10 @@ SWEP.PrintName = "Kriss Vector"
 SWEP.AbbrevName = "Vector"
 SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatType = "29x19 Submachine Guns"
+SWEP.SubCatType = "29x19mm Submachine Guns"
 
 SWEP.Description = "Close range SMG with extremely high fire rate and practically no recoil. Low armor penetration, but can chew through it very quickly."
 
-SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Kriss USA, Inc."
 SWEP.Trivia_Year = "2009"
 
@@ -114,7 +113,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 // reload
 
 SWEP.ClipSize = 32
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineModel = "models/weapons/tacint/magazines/superv.mdl"
@@ -243,7 +242,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

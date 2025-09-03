@@ -75,7 +75,7 @@ SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
 SWEP.FreeAimMaxAngle = 1
 
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 SWEP.ClipSize = 15
 SWEP.DropMagazineTime = 0.25
 SWEP.ReloadTimeMult = 1.1
@@ -244,7 +244,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

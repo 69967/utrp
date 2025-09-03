@@ -8,11 +8,10 @@ SWEP.PrintName = "HK MP5SD6"
 SWEP.AbbrevName = "MP5SD"
 SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatType = "29x19 Submachine Guns"
+SWEP.SubCatType = "29x19mm Submachine Guns"
 
 SWEP.Description = "Intergrally suppressed model of the MP5. Ballistic performance suffers about 16% due to this; used for specops applications"
 
-SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
 SWEP.Trivia_Year = "1974"
 
@@ -119,7 +118,7 @@ SWEP.HolsterAng = Angle(0, 0, 0)
 // reload
 
 SWEP.ClipSize = 30
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineModel = "models/weapons/tacint_shark/magazines/mp5sd.mdl"
@@ -242,7 +241,7 @@ SWEP.Attachments = {
     },
     [6] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol_sub"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

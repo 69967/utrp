@@ -92,8 +92,8 @@ SWEP.HoldTypeBlindFire = false
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
-SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(-1, 0, -8)
+SWEP.PassiveAng = Angle(3, 0, 0)
+SWEP.PassivePos = Vector(-0.5, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)
@@ -102,7 +102,7 @@ SWEP.BlindFireSuicideAng = Angle(-130, -4, 45)
 SWEP.BlindFireSuicidePos = Vector(25, 15, -6)
 
 SWEP.SprintAng = Angle(0, -20, 0)
-SWEP.SprintPos = Vector(0, 0, -8)
+SWEP.SprintPos = Vector(-1, 0, -8)
 
 SWEP.SightAng = Angle(5, 0.6, 0)
 SWEP.SightPos = Vector(-2.375, 0, -3.85)
@@ -118,7 +118,7 @@ SWEP.HolsterAng = Angle(90, 0, 0)
 // reload
 
 SWEP.ClipSize = 12 // not realism capacity but it's the gun's gimmick
-SWEP.Ammo = "pistol"
+SWEP.Ammo = "9x19mm_FMJ"
 
 SWEP.ReloadTimeMult = 1.15
 
@@ -275,7 +275,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_pistol"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },

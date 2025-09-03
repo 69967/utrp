@@ -26,15 +26,21 @@ local ammotypes = {
 	["9x19mm_FMJ"] = {
 		max = 36,
     },
-	["9x19mm AP"] = {
+	["9x19mm_AP"] = {
+		max = 36,
     },
 	["9x19mm_HP"] = {
 		max = 36,
     },
-	["9x19mm Match"] = {
+	["9x19mm_Match"] = {
+		max = 36,
+    },
+	["9x19mm_sc"] = {
+		max = 72,
     },
 
-	[".45 ACP"] = {
+
+	[".45_ACP"] = {
     },
 
 

@@ -4,19 +4,17 @@ SWEP.Spawnable = true
 AddCSLuaFile()
 
 // names and stuff
-SWEP.PrintName = "Sturmgewehr 44"
-SWEP.AbbrevName = "Stg-44"
-SWEP.Category = "Tactical RP"
+SWEP.PrintName = "Slurpgewehr 88"
+SWEP.AbbrevName = "SG-88"
+SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatTier = "5Value"
-SWEP.SubCatType = "4Assault Rifle"
+SWEP.SubCatType = "0Other"
 
-SWEP.Description = "Vintage assault rifle, considered by many to be the first of its kind. Somewhat powerful but prone to malfunctions."
-SWEP.Description_Quote = "\"Mein carbine did not kill you? I will use gas! More gas!\"" // Killing Floor 2
+SWEP.Description = "Vintage assault rifle revamped, Uses a proprietary ammo type."
 
-SWEP.Trivia_Caliber = "7.92x33mm Kurz"
-SWEP.Trivia_Manufacturer = "C.G. Haenel"
-SWEP.Trivia_Year = "1943"
+SWEP.Trivia_Caliber = "9x19mm Slurpcorporate Premium"
+SWEP.Trivia_Manufacturer = "Jack Haenel"
+SWEP.Trivia_Year = "1988"
 
 SWEP.Faction = TacRP.FACTION_COALITION
 SWEP.Credits = [[
@@ -29,100 +27,71 @@ SWEP.WorldModel = "models/weapons/tacint_shark/w_stg44.mdl"
 
 SWEP.Slot = 2
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 30,
-        Damage_Min = 15,
-        RecoilKick = 4,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 4,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-
-        RPM = 550,
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 14,
-        Damage_Min = 10,
-        Range_Min = 600,
-        Range_Max = 2000,
-        RPM = 520,
-    },
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.AssaultRifle
-
 // "ballistics"
 
-SWEP.Damage_Max = 28
-SWEP.Damage_Min = 11
-SWEP.Range_Min = 1000 // distance for which to maintain maximum damage
-SWEP.Range_Max = 2800 // distance at which we drop to minimum damage
-SWEP.Penetration = 8 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.775
+SWEP.Damage_Max = 15
+SWEP.Damage_Min = 5
+SWEP.Range_Min = 4000
+SWEP.Range_Max = 5000
+SWEP.Penetration = 4
+SWEP.ArmorPenetration = 0
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 3.5,
-    [HITGROUP_CHEST] = 1,
+    [HITGROUP_HEAD] = 10,
+    [HITGROUP_CHEST] = 1.5,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 0.75,
-    [HITGROUP_RIGHTLEG] = 0.75,
-    [HITGROUP_GEAR] = 0.9
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
+    [HITGROUP_GEAR] = 0.8
 }
 
-SWEP.MuzzleVelocity = 19000
+SWEP.MuzzleVelocity = 32500
 
 // misc. shooting
 
-SWEP.Firemodes = {2, 1}
+SWEP.Firemodes = {1}
 
-SWEP.RPM = 520
+SWEP.RPM = 500
 
-SWEP.JamFactor = 0.01
+SWEP.JamFactor = 1
 
-SWEP.Spread = 0.0065
+SWEP.Spread = 0.003
 
-SWEP.RecoilResetInstant = false
+SWEP.RecoilSpreadPenalty = 0.0003
+SWEP.HipFireSpreadPenalty = 0.01
+SWEP.MoveSpreadPenalty = 0.0075
+
+SWEP.ShootTimeMult = 0.5
+
 SWEP.RecoilPerShot = 1
-SWEP.RecoilMaximum = 8
-SWEP.RecoilResetTime = 0.02
-SWEP.RecoilDissipationRate = 32
-SWEP.RecoilFirstShotMult = 1 // multiplier for the first shot's recoil amount
+SWEP.RecoilMaximum = 35
+SWEP.RecoilResetTime = 0.25
+SWEP.RecoilDissipationRate = 100
+SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 1
-SWEP.RecoilKick = 5
-SWEP.RecoilStability = 0.4
-
-SWEP.RecoilSpreadPenalty = 0.0025
-SWEP.HipFireSpreadPenalty = 0.03
-
-SWEP.CanBlindFire = true
-
-// handling
+SWEP.RecoilVisualKick = 0.4
+SWEP.RecoilKick = 0.6
+SWEP.RecoilStability = 0
+SWEP.RecoilAltMultiplier = 0
 
 SWEP.MoveSpeedMult = 0.9
-SWEP.ShootingSpeedMult = 0.75
-SWEP.SightedSpeedMult = 0.65
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.8
+SWEP.ReloadSpeedMult = 0.65
 
-SWEP.ReloadSpeedMult = 0.5
+SWEP.AimDownSightsTime = 0.45
+SWEP.SprintToFireTime = 0.45
 
-SWEP.AimDownSightsTime = 0.35
-SWEP.SprintToFireTime = 0.38
+SWEP.Sway = 0.5
+SWEP.ScopedSway = 0.1
 
-SWEP.FreeAimMaxAngle = 5
+SWEP.FreeAimMaxAngle = 3
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 
@@ -130,16 +99,16 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SMG1
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -5.5)
+SWEP.PassivePos = Vector(-2, 0, -10)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(5, 0, -2)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -7)
 
 SWEP.SightAng = Angle(-0.74, 0.3, 0)
-SWEP.SightPos = Vector(-4.25, -7.5, -4)
+SWEP.SightPos = Vector(-4.25, -7.5, -4.1)
 
 SWEP.CorrectivePos = Vector(0, 0, 0.1)
 SWEP.CorrectiveAng = Angle(0, 0, 0)
@@ -149,13 +118,13 @@ SWEP.HolsterSlot = TacRP.HOLSTER_SLOT_BACK
 SWEP.HolsterPos = Vector(5, 0, -6)
 SWEP.HolsterAng = Angle(0, 0, 0)
 
-SWEP.Sway = 1.25
-SWEP.ScopedSway = 0.15
+SWEP.Sway = 0.5
+SWEP.ScopedSway = 0.1
 
 // reload
 
-SWEP.ClipSize = 30
-SWEP.Ammo = "ar2"
+SWEP.ClipSize = 45
+SWEP.Ammo = "9x19mm_sc"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineModel = "models/weapons/tacint_shark/magazines/stg44.mdl"
@@ -181,7 +150,7 @@ SWEP.QCA_Muzzle = 1
 // ditto for shell
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_ak47"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.EjectEffect = 2
 
 // anims
@@ -290,7 +259,7 @@ SWEP.Attachments = {
     },
     [7] = {
         PrintName = "Ammo",
-        Category = {"ammo_rifle"},
+        Category = {"9x19mm"},
         AttachSound = "TacRP/weapons/flashlight_on.wav",
         DetachSound = "TacRP/weapons/flashlight_off.wav",
     },
