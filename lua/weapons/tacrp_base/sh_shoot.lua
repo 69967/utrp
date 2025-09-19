@@ -17,7 +17,7 @@ hook.Add("UpdateAnimation", "TacRP_PlayerModelPitch", function(ply)
     end
     
     pitchOffsets[ply] = pitchOffsets[ply] or 0
-    local targetOffset = -18 or 0
+    local targetOffset = -14 or 0
     
     pitchOffsets[ply] = Lerp(FrameTime() * 8, pitchOffsets[ply], targetOffset)
     

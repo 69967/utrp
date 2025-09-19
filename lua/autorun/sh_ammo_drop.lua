@@ -1,3 +1,5 @@
+
+--[[
 -- Server-side Lua code for dropping ammo on player death
 -- Place this in lua/autorun/server/sv_ammo_drop.lua
 
@@ -365,3 +367,5 @@ if CLIENT then
         cam.End3D2D()
     end
 end
+
+]]
