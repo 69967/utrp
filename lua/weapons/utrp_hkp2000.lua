@@ -10,14 +10,6 @@ SWEP.Category = "UTRP Handguns"
 
 SWEP.SubCatType = "29mm Pistols"
 
-SWEP.Description = "A compact, ergonomic pistol."
-
-SWEP.Trivia_Caliber = "9x19mm"
-SWEP.Trivia_Manufacturer = "Heckler & Koch"
-SWEP.Trivia_Year = "2002"
-
-SWEP.Faction = TacRP.FACTION_COALITION
-SWEP.Credits = "Assets: Tactical Intervention"
 
 SWEP.ViewModel = "models/weapons/tacint/v_p2000.mdl"
 SWEP.WorldModel = "models/weapons/tacint/w_p2000.mdl"
@@ -153,7 +145,7 @@ SWEP.ProceduralIronFire = {
     vm_pos = Vector(0, -0.5, -0.6),
     vm_ang = Angle(0, 2, 0),
     t = 0.2,
-    tmax = 0.2,
+    tmax = 0.1,
     bones = {
         {
             bone = "ValveBiped.slide",

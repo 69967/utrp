@@ -161,7 +161,7 @@ end
 scripted_ents.Register(ENT, "custom_ammo_box")
 
 -- Function to create ammo box entity
-local function CreateAmmoBox(ammo_type, ammo_name, amount, pos)
+function CreateAmmoBox(ammo_type, ammo_name, amount, pos)
     local ent = ents.Create("custom_ammo_box")
     if not IsValid(ent) then 
         print("[Ammo Drop] Failed to create custom_ammo_box")

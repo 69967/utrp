@@ -99,7 +99,7 @@ function SWEP:PrimaryAttack()
         end
     end
     local prociron = self:DoProceduralIrons()
-    if self:GetScopeLevel() > 0 and prociron then
+    if self:GetScopeLevel() > 0 and prociron or self.HoldType == "slam" then
         if self:GetValue("LastShot") and self:Clip1() == self:GetValue("AmmoPerShot") then
             self:PlayAnimation(self:TranslateSequence("dryfire"), mult, false)
         end

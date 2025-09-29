@@ -1,6 +1,5 @@
 -- local customizedelta = 0
 
-local news = Material("tacrp/hud/news.png", "mips smooth")
 
 local stk_clr = {
     [1] = Color(255, 75, 75),
@@ -21,6 +20,7 @@ local lastcustomize = false
 SWEP.CustomizeHUD = nil
 
 function SWEP:CreateCustomizeHUD()
+
     self:RemoveCustomizeHUD()
 
     gui.EnableScreenClicker(true)
@@ -71,7 +71,7 @@ function SWEP:CreateCustomizeHUD()
         surface.SetFont("TacRP_Myriad_Pro_12")
 
         if self:GetAmmoType() != "" then
-            local ammo_txt = language.GetPhrase(string.lower(self:GetAmmoType()) .. " ammo")
+            local ammo_txt = language.GetPhrase(string.lower(self:GetAmmoType()))
             local ammo_w = surface.GetTextSize(ammo_txt)
 
             surface.SetDrawColor(0, 0, 0, 150)
@@ -84,7 +84,9 @@ function SWEP:CreateCustomizeHUD()
         end
 
     end
-
+	
+		
+	
     local attachment_slots = {}
     local offset = (scrh - (TacRP.SS(34 + 8) * table.Count(self.Attachments))) / 2
     self.Attachments["BaseClass"] = nil
@@ -156,63 +158,26 @@ function SWEP:CreateCustomizeHUD()
         end
     end
 
-    -- tacrp_drop
-    local primarygrenade = self:GetValue("PrimaryGrenade")
-    if TacRP.ConVars["allowdrop"] and TacRP.ConVars["cust_drop"]:GetBool() and (!primarygrenade or !TacRP.IsGrenadeInfiniteAmmo(primarygrenade)) then
-        local phrase = primarygrenade and "cust.drop_nade" or "cust.drop_wep"
-        local dropbox = vgui.Create("DButton", bg)
-        local bw, bh = TacRP.SS(52), TacRP.SS(10)
-        dropbox:SetSize(bw, bh)
-        dropbox:SetPos(ScrW() / 2 - bw / 2, scrh - bh - smallgap / 2)
-        dropbox:SetText("")
-        function dropbox.Paint(self2, w, h)
-            local c_bg, c_cnr, c_txt = TacRP.GetPanelColors(self2:IsHovered(), self2:IsDown())
-            surface.SetDrawColor(c_bg)
-            -- surface.DrawRect(0, 0, w, h)
-            TacRP.DrawCorneredBox(0, 0, w, h, c_cnr)
-            draw.SimpleText(TacRP:GetPhrase(phrase), "TacRP_Myriad_Pro_8", w / 2, h / 2, c_txt, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-
-        end
-        function dropbox.DoClick(self2)
-            if engine.ActiveGamemode() == "terrortown" then
-                LocalPlayer():ConCommand("ttt_dropweapon")
-            else
-                LocalPlayer():ConCommand("tacrp_drop")
-            end
-        end
-    end
-
-    local news_s = TacRP.SS(12)
-    local news_i = TacRP.SS(8)
-    local newsbutton = vgui.Create("DButton", bg)
-    newsbutton:SetSize(news_s, news_s)
-    newsbutton:SetPos(smallgap, smallgap / 2)
-    newsbutton:SetText("")
-    function newsbutton.Paint(self2, w, h)
+-- tacrp_drop
+local primarygrenade = self:GetValue("PrimaryGrenade")
+if TacRP.ConVars["allowdrop"] and TacRP.ConVars["cust_drop"]:GetBool() and (!primarygrenade or !TacRP.IsGrenadeInfiniteAmmo(primarygrenade)) then
+    local phrase = primarygrenade and "cust.drop_nade" or "cust.drop_wep"
+    local dropbox = vgui.Create("DButton", bg)
+    local bw, bh = TacRP.SS(52), TacRP.SS(10)
+    dropbox:SetSize(bw, bh)
+    dropbox:SetPos(ScrW() / 2 - bw / 2, scrh - bh - smallgap / 2)
+    dropbox:SetText("")
+    function dropbox.Paint(self2, w, h)
         local c_bg, c_cnr, c_txt = TacRP.GetPanelColors(self2:IsHovered(), self2:IsDown())
         surface.SetDrawColor(c_bg)
+        -- surface.DrawRect(0, 0, w, h)
         TacRP.DrawCorneredBox(0, 0, w, h, c_cnr)
-
-        if self2.flash then
-            local todo = DisableClipping(true)
-            draw.NoTexture()
-            surface.SetDrawColor(c_bg)
-            draw.SimpleTextOutlined(string.upper(self2.flash), "TacRP_HD44780A00_5x8_6", w + smallgap, h / 2, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, 2, Color(0, 0, 0, 150))
-            DisableClipping(todo)
-            local c = (math.sin(SysTime() * 10)) * 30 + (self2:IsHovered() and 50 or 225)
-            surface.SetDrawColor(c, c, c, 255)
-        else
-            surface.SetDrawColor(c_txt)
+        draw.SimpleText(TacRP:GetPhrase(phrase), "TacRP_Myriad_Pro_8", w / 2, h / 2, c_txt, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    end
+    function dropbox.DoClick(self2)
+            LocalPlayer():ConCommand("tacrp_drop")
         end
-
-        surface.SetMaterial(news)
-        surface.DrawTexturedRect((news_s - news_i) / 2, (news_s - news_i) / 2, news_i,news_i)
     end
-    function newsbutton.DoClick(self2)
-        LocalPlayer():ConCommand("tacrp_news")
-    end
-
-    self.StaticStats = false
 end
 
 function SWEP:RemoveCustomizeHUD()
@@ -230,13 +195,17 @@ end
 
 function SWEP:DrawCustomizeHUD()
 
-    local customize = self:GetCustomize()
+    customize = self:GetCustomize()
 
     if customize and !lastcustomize then
         self:CreateCustomizeHUD()
     elseif !customize and lastcustomize then
         self:RemoveCustomizeHUD()
     end
+	
+	if customize then
+		local panel = CreateAmmoDropMenu()
+	end
 
     lastcustomize = self:GetCustomize()
 
