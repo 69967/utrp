@@ -6,24 +6,11 @@ AddCSLuaFile()
 // names and stuff
 SWEP.PrintName = "Karabiner 98k"
 SWEP.AbbrevName = "Kar98k"
-SWEP.Category = "Tactical RP"
+SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatTier = "5Value"
-SWEP.SubCatType = "6Marksman Rifle"
+SWEP.SubCatType = "0Other"
 
-SWEP.Description = "Antique bolt-action rifle with an enduring design. Powerful up close, but is essentially obsolete on the modern battlefield."
-SWEP.Description_Quote = "\"Do you want total war?\""
-SWEP.Trivia_Caliber = "7.92x57mm Mauser"
-SWEP.Trivia_Manufacturer = "Mauser"
-SWEP.Trivia_Year = "1935"
-
-SWEP.Faction = TacRP.FACTION_MILITIA
-SWEP.Credits = [[
-Model: Day of Defeat: Source, edited by 8Z
-Texture: Cafe Rev., rascal, 5hifty
-Sound: rzen1th
-Animations: Cry of Fear, Lazarus
-]]
+--7.92x57mm Mauser
 
 SWEP.ViewModel = "models/weapons/tacint_extras/v_k98.mdl"
 SWEP.WorldModel = "models/weapons/tacint_extras/w_k98.mdl"
@@ -31,128 +18,72 @@ SWEP.WorldModel = "models/weapons/tacint_extras/w_k98.mdl"
 SWEP.Slot = 2
 SWEP.SlotAlt = 3
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 80,
-        Damage_Min = 55,
-
-        HipFireSpreadPenalty = 0.03,
-        Spread = 0.002,
-        RPM = 50,
-        ShootTimeMult = 0.75,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 3,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1.25,
-            [HITGROUP_LEFTARM] = 0.75,
-            [HITGROUP_RIGHTARM] = 0.75,
-            [HITGROUP_LEFTLEG] = 0.5,
-            [HITGROUP_RIGHTLEG] = 0.5,
-            [HITGROUP_GEAR] = 0.5
-        },
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 70,
-        Damage_Min = 30,
-        Range_Min = 500,
-        Range_Max = 4000,
-
-        RPM = 35,
-        ShootTimeMult = 1.1,
-        Spread = 0.001,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 4,
-            [HITGROUP_CHEST] = 1.25,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 0.75,
-            [HITGROUP_RIGHTARM] = 0.75,
-            [HITGROUP_LEFTLEG] = 0.5,
-            [HITGROUP_RIGHTLEG] = 0.5,
-            [HITGROUP_GEAR] = 0.5
-        },
-    },
-    [TacRP.BALANCE_PVE] = {
-        Damage_Max = 50,
-        Damage_Min = 30,
-    },
-    [TacRP.BALANCE_OLDSCHOOL] = {
-        HipFireSpreadPenalty = 0.01,
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.SniperRifle
-
 // "ballistics"
 
-SWEP.Damage_Max = 85
-SWEP.Damage_Min = 46
-SWEP.Range_Min = 300
-SWEP.Range_Max = 2800
-SWEP.Penetration = 12
-SWEP.ArmorPenetration = 0.8
-SWEP.ArmorBonus = 1
+SWEP.Damage_Max = 75
+SWEP.Damage_Min = 40
+SWEP.Range_Min = 6000
+SWEP.Range_Max = 9000
+SWEP.Penetration = 5
+SWEP.ArmorPenetration = 0
+SWEP.ArmorBonus = 4
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 2,
-    [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 0.75,
-    [HITGROUP_RIGHTARM] = 0.75,
-    [HITGROUP_LEFTLEG] = 0.5,
-    [HITGROUP_RIGHTLEG] = 0.5,
-    [HITGROUP_GEAR] = 0.5
+    [HITGROUP_CHEST] = 1.34,
+    [HITGROUP_STOMACH] = 1.15,
+    [HITGROUP_LEFTARM] = 0.9,
+    [HITGROUP_RIGHTARM] = 0.9,
+    [HITGROUP_LEFTLEG] = 0.9,
+    [HITGROUP_RIGHTLEG] = 0.9,
+    [HITGROUP_GEAR] = 0.9
 }
 
-SWEP.MuzzleVelocity = 32000
+SWEP.MuzzleVelocity = 35000
 
 // misc. shooting
 
 SWEP.Firemode = 1
 
-SWEP.FiremodeName = "Bolt-Action" // only used externally for firemode name distinction
+SWEP.FiremodeName = "Bolt-Action"
 
-SWEP.RPM = 45
+SWEP.RPM = 50
 
-SWEP.Spread = 0.004 // WW2 rifles weren't all that accurate...
+SWEP.Spread = 0.003
+SWEP.RecoilSpreadPenalty = 0.0006
+SWEP.HipFireSpreadPenalty = 0.01
+SWEP.MoveSpreadPenalty = 0.0075
 
-SWEP.HipFireSpreadPenalty = 0.04
-SWEP.PeekPenaltyFraction = 0.3
 
 SWEP.RecoilPerShot = 1
 SWEP.RecoilMaximum = 1
-SWEP.RecoilResetTime = 0.2
+SWEP.RecoilResetTime = 1
 SWEP.RecoilDissipationRate = 1
-SWEP.RecoilFirstShotMult = 1 // multiplier for the first shot's recoil amount
+SWEP.RecoilFirstShotMult = 1
 
-SWEP.RecoilVisualKick = 5
-
-SWEP.RecoilKick = 5
-
-SWEP.RecoilSpreadPenalty = 0 // extra spread per one unit of recoil
+SWEP.RecoilVisualKick = 4
+SWEP.RecoilKick = 4
 
 SWEP.CanBlindFire = true
 
 // handling
 
-SWEP.MoveSpeedMult = 0.85
-SWEP.ShootingSpeedMult = 0.75
-SWEP.SightedSpeedMult = 0.55
+SWEP.MoveSpeedMult = 0.9
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.75
+SWEP.ReloadSpeedMult = 0.65
 
-SWEP.ReloadSpeedMult = 0.3
+SWEP.AimDownSightsTime = 0.45
+SWEP.SprintToFireTime = 0.45
 
-SWEP.AimDownSightsTime = 0.34
-SWEP.SprintToFireTime = 0.4
-
-SWEP.Sway = 1
+SWEP.Sway = 0.5
 SWEP.ScopedSway = 0.1
 
-SWEP.FreeAimMaxAngle = 7
+SWEP.FreeAimMaxAngle = 5
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 SWEP.HoldTypeNPC = "shotgun"
@@ -160,8 +91,8 @@ SWEP.HoldTypeNPC = "shotgun"
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_CROSSBOW
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN
 
-SWEP.PassiveAng = Angle(0, 2, 0)
-SWEP.PassivePos = Vector(1.25, 4.5, -0.5)
+SWEP.PassiveAng = Angle(0, 0, 0)
+SWEP.PassivePos = Vector(-1, 0, -4)
 
 SWEP.BlindFireAng = Angle(0, 15, -45)
 SWEP.BlindFirePos = Vector(1, -2, -3)
@@ -175,11 +106,11 @@ SWEP.BlindFireRightPos = Vector(-10, 10, -5)
 SWEP.BlindFireSuicideAng = Angle(0, 135, 0)
 SWEP.BlindFireSuicidePos = Vector(-2, 45, -35)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(2, 4.5, 0.75)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(-1, 0, -3)
 
-SWEP.SightAng = Angle(0, 0.1, -0.1)
-SWEP.SightPos = Vector(-2.3, 1, 1.88)
+SWEP.SightAng = Angle(0, 0.28, -0.2)
+SWEP.SightPos = Vector(-2.3, 1, 1.8)
 
 SWEP.CorrectivePos = Vector(0.05, 0, 0.2)
 SWEP.CorrectiveAng = Angle(0.1, -0.3, 0)
@@ -201,7 +132,6 @@ SWEP.ScopeFOV = 90 / 1.25
 
 SWEP.ClipSize = 5
 SWEP.Ammo = "ar2"
-SWEP.Ammo_Expanded = "ti_rifle"
 
 SWEP.ShotgunReload = true
 SWEP.ShotgunThreeload = false
@@ -209,7 +139,7 @@ SWEP.ShotgunFullCancel = true
 SWEP.ShotgunNoReverseStart = true
 
 SWEP.ReloadTimeMult = 0.95
-SWEP.ShootTimeMult = 0.8
+SWEP.ShootTimeMult = 0.6
 SWEP.DropMagazineModel = false
 
 SWEP.ShotgunLoadInTime = 0
@@ -235,7 +165,7 @@ SWEP.QCA_Muzzle = 1
 // ditto for shell
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_1"
+SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.EjectEffect = 2
 SWEP.EjectDelay = 0.7
 

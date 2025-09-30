@@ -1,6 +1,5 @@
 -- local customizedelta = 0
 
-
 local stk_clr = {
     [1] = Color(255, 75, 75),
     [2] = Color(120, 20, 20),
@@ -18,6 +17,168 @@ local stk_clr = {
 local lastcustomize = false
 
 SWEP.CustomizeHUD = nil
+SWEP.AmmoDropFrame = nil
+
+-- Function to get player's ammo data
+local function GetAmmoData()
+    local ply = LocalPlayer()
+    local ammos = ply:GetAmmo()
+    local ammoData = {}
+
+    for k, v in pairs(ammos) do
+        if v > 0 then
+            table.insert(ammoData, {
+                index = k,
+                name = game.GetAmmoName(k),
+                count = v,
+                max = game.GetAmmoMax(k) or 9999
+            })
+        end
+    end
+
+    return ammoData
+end
+
+-- Function to create ammo drop panel
+local function CreateAmmoDropPanel(parent)
+    local ammoData = GetAmmoData()
+    
+    -- Don't create if no ammo
+    if #ammoData == 0 then
+        return nil
+    end
+
+    -- Create main frame
+    local frame = vgui.Create("DPanel", parent)
+    frame:SetSize(295, 495)
+    frame:SetPos(ScrW() - 300, ScrH() - 790)
+    
+    frame.Paint = function(self, w, h)
+        draw.RoundedBox(8, 0, 0, w, h, Color(0, 30, 35, 250))
+    end
+
+    -- Create scroll panel for ammo list
+    local scroll = vgui.Create("DScrollPanel", frame)
+    scroll:SetSize(295, 485)
+    scroll:SetPos(0, 5)
+
+    -- Style the scrollbar
+    local sbar = scroll:GetVBar()
+    sbar:SetWide(8)
+    sbar.Paint = function(self, w, h)
+        draw.RoundedBox(4, 0, 0, w, h, Color(50, 50, 55, 100))
+    end
+    sbar.btnUp.Paint = function(self, w, h)
+        draw.RoundedBox(4, 0, 0, w, h, Color(255, 100, 100, 150))
+    end
+    sbar.btnDown.Paint = function(self, w, h)
+        draw.RoundedBox(4, 0, 0, w, h, Color(255, 100, 100, 150))
+    end
+    sbar.btnGrip.Paint = function(self, w, h)
+        draw.RoundedBox(4, 0, 0, w, h, self:IsHovered() and Color(233, 233, 233, 200) or Color(200, 200, 200, 150))
+    end
+
+    -- Create ammo panels
+    for _, ammo in ipairs(ammoData) do
+        local ammoPanel = vgui.Create("DPanel")
+        ammoPanel:SetSize(280, 53)
+        ammoPanel:Dock(TOP)
+        ammoPanel:DockMargin(0, 0, 0, 5)
+
+        ammoPanel.Paint = function(self, w, h)
+            local bgColor = self:IsHovered() and Color(60, 55, 50, 225) or Color(30, 30, 45, 225)
+            draw.RoundedBox(6, 0, 0, w, h, bgColor)
+
+            -- Ammo name
+            draw.SimpleText(ammo.name, "TargetID", 67, 41, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+
+            -- Ammo count
+            local countText = ammo.count .. " / " .. ammo.max
+            draw.SimpleText(countText, "DermaDefault", 6, 40, Color(255, 255, 0), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+
+        ammoPanel.IsHovered = function(self)
+            local x, y = self:CursorPos()
+            return x >= 0 and y >= 0 and x <= self:GetWide() and y <= self:GetTall()
+        end
+
+        -- Drop amount slider
+        local slider = vgui.Create("DNumSlider", ammoPanel)
+        slider:SetPos(60, -3)
+        slider:SetSize(220, 35)
+        slider:SetText("")
+        slider:SetMin(1)
+        slider:SetMax(ammo.count)
+        slider:SetDecimals(0)
+        slider:SetValue(math.min(1, ammo.count))
+
+        -- Style the slider
+        slider.Label:SetVisible(false)
+        slider.TextArea:SetFont("HudHintTextLarge")
+        slider.TextArea:SetTextColor(Color(255, 255, 255))
+        slider.TextArea.Paint = function(self, w, h)
+            self:DrawTextEntryText(Color(255, 255, 255), Color(100, 100, 255), Color(255, 255, 255))
+        end
+
+        -- Drop button
+        local dropBtn = vgui.Create("DButton", ammoPanel)
+        dropBtn:SetPos(5, 8)
+        dropBtn:SetSize(40, 25)
+        dropBtn:SetText("")
+
+        dropBtn.Paint = function(self, w, h)
+            local bgColor = Color(0, 150, 10, 200)
+            if self:IsHovered() then
+                bgColor = Color(0, 110, 5, 255)
+            end
+            if self:IsDown() then
+                bgColor = Color(80, 120, 80, 255)
+            end
+            draw.RoundedBox(3, 0, 0, w, h, bgColor)
+            draw.SimpleText("DROP", "DermaDefault", w / 2, h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        end
+
+		local nextUseTime = 0
+        dropBtn.DoClick = function()
+		
+			
+			
+			local ct = CurTime()
+				if ct < nextUseTime then
+				draw.RoundedBox(0, 0, 0, 500, 500, Color(100, 100, 100))
+				surface.PlaySound("buttons/button10.wav")
+				return
+			end
+
+			
+            local dropAmount = math.floor(slider:GetValue())
+            if dropAmount > 0 and dropAmount <= ammo.count then
+                -- Send drop request to server
+                net.Start("RequestAmmoDrop")
+                net.WriteInt(ammo.index, 16)
+                net.WriteInt(dropAmount, 32)
+                net.SendToServer()
+
+                surface.PlaySound("items/ammocrate_open.wav")
+
+                -- Update ammo count
+                ammo.count = math.max(0, ammo.count - dropAmount)
+                slider:SetMax(ammo.count)
+                slider:SetValue(math.min(1, ammo.count))
+				nextUseTime = ct + 5
+
+                -- Remove panel if no ammo left
+                if #GetAmmoData() == 0 and IsValid(frame) then
+                    frame:Remove()
+                end
+            end
+        end
+
+        scroll:AddItem(ammoPanel)
+    end
+
+    return frame
+end
 
 function SWEP:CreateCustomizeHUD()
 
@@ -43,6 +204,11 @@ function SWEP:CreateCustomizeHUD()
         if !IsValid(self) then return end
         if TacRP.ConVars["autosave"]:GetBool() and TacRP.ConVars["free_atts"]:GetBool() then
             self:SavePreset()
+        end
+        -- Clean up ammo drop frame
+        if IsValid(self.AmmoDropFrame) then
+            self.AmmoDropFrame:Remove()
+            self.AmmoDropFrame = nil
         end
     end
     bg.Paint = function(self2, w, h)
@@ -84,9 +250,7 @@ function SWEP:CreateCustomizeHUD()
         end
 
     end
-	
-		
-	
+    
     local attachment_slots = {}
     local offset = (scrh - (TacRP.SS(34 + 8) * table.Count(self.Attachments))) / 2
     self.Attachments["BaseClass"] = nil
@@ -120,7 +284,6 @@ function SWEP:CreateCustomizeHUD()
         if self.LastCustomizeSlot then
             slotlayout:SetSlot(self.LastCustomizeSlot)
         end
-        -- slotlayout:Dock(FILL)
 
         for slot, attslot in pairs(self.Attachments) do
             attachment_slots[slot] = {}
@@ -158,25 +321,29 @@ function SWEP:CreateCustomizeHUD()
         end
     end
 
--- tacrp_drop
-local primarygrenade = self:GetValue("PrimaryGrenade")
-if TacRP.ConVars["allowdrop"] and TacRP.ConVars["cust_drop"]:GetBool() and (!primarygrenade or !TacRP.IsGrenadeInfiniteAmmo(primarygrenade)) then
-    local phrase = primarygrenade and "cust.drop_nade" or "cust.drop_wep"
-    local dropbox = vgui.Create("DButton", bg)
-    local bw, bh = TacRP.SS(52), TacRP.SS(10)
-    dropbox:SetSize(bw, bh)
-    dropbox:SetPos(ScrW() / 2 - bw / 2, scrh - bh - smallgap / 2)
-    dropbox:SetText("")
-    function dropbox.Paint(self2, w, h)
-        local c_bg, c_cnr, c_txt = TacRP.GetPanelColors(self2:IsHovered(), self2:IsDown())
-        surface.SetDrawColor(c_bg)
-        -- surface.DrawRect(0, 0, w, h)
-        TacRP.DrawCorneredBox(0, 0, w, h, c_cnr)
-        draw.SimpleText(TacRP:GetPhrase(phrase), "TacRP_Myriad_Pro_8", w / 2, h / 2, c_txt, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    end
-    function dropbox.DoClick(self2)
+    -- tacrp_drop
+    local primarygrenade = self:GetValue("PrimaryGrenade")
+    if TacRP.ConVars["allowdrop"] and TacRP.ConVars["cust_drop"]:GetBool() and (!primarygrenade or !TacRP.IsGrenadeInfiniteAmmo(primarygrenade)) then
+        local phrase = primarygrenade and "cust.drop_nade" or "cust.drop_wep"
+        local dropbox = vgui.Create("DButton", bg)
+        local bw, bh = TacRP.SS(52), TacRP.SS(10)
+        dropbox:SetSize(bw, bh)
+        dropbox:SetPos(ScrW() / 2 - bw / 2, scrh - bh - smallgap / 2)
+        dropbox:SetText("")
+        function dropbox.Paint(self2, w, h)
+            local c_bg, c_cnr, c_txt = TacRP.GetPanelColors(self2:IsHovered(), self2:IsDown())
+            surface.SetDrawColor(c_bg)
+            TacRP.DrawCorneredBox(0, 0, w, h, c_cnr)
+            draw.SimpleText(TacRP:GetPhrase(phrase), "TacRP_Myriad_Pro_8", w / 2, h / 2, c_txt, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        end
+        function dropbox.DoClick(self2)
             LocalPlayer():ConCommand("tacrp_drop")
         end
+    end
+
+    -- Create ammo drop panel (only once)
+    if !IsValid(self.AmmoDropFrame) then
+        self.AmmoDropFrame = CreateAmmoDropPanel(bg)
     end
 end
 
@@ -191,6 +358,12 @@ function SWEP:RemoveCustomizeHUD()
 
         self.LastHintLife = CurTime()
     end
+
+    -- Clean up ammo drop frame
+    if IsValid(self.AmmoDropFrame) then
+        self.AmmoDropFrame:Remove()
+        self.AmmoDropFrame = nil
+    end
 end
 
 function SWEP:DrawCustomizeHUD()
@@ -202,10 +375,6 @@ function SWEP:DrawCustomizeHUD()
     elseif !customize and lastcustomize then
         self:RemoveCustomizeHUD()
     end
-	
-	if customize then
-		local panel = CreateAmmoDropMenu()
-	end
 
     lastcustomize = self:GetCustomize()
 
