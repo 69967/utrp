@@ -1,22 +1,38 @@
 SWEP.StatCache = {}
 SWEP.HookCache = {}
-SWEP.StatScoreCache = {} -- used by cust menu
+SWEP.StatScoreCache = {}
 SWEP.MiscCache = {}
 
-SWEP.ExcludeFromRawStats = {
-    ["FullName"] = true,
-    ["PrintName"] = true,
-    ["Description"] = true,
+local ExcludeFromRawStats = {
+    FullName = true,
+    PrintName = true,
+    Description = true,
 }
 
-SWEP.IntegerStats = {
-    ["ClipSize"] = true,
-    ["Num"] = true,
+local IntegerStats = {
+    ClipSize = true,
+    Num = true,
 }
 
-SWEP.AllowNegativeStats = {
-    ["RecoilKick"] = true,
+local AllowNegativeStats = {
+    RecoilKick = true,
 }
+
+SWEP.ExcludeFromRawStats = ExcludeFromRawStats
+SWEP.IntegerStats = IntegerStats
+SWEP.AllowNegativeStats = AllowNegativeStats
+
+local math_ceil = math.ceil
+local math_max = math.max
+local table_insert = table.insert
+local table_Count = table.Count
+local pairs = pairs
+local ipairs = ipairs
+local isnumber = isnumber
+local istable = istable
+local isfunction = isfunction
+local hook_Run = hook.Run
+local hook_GetTable = hook.GetTable
 
 function SWEP:InvalidateCache()
     self.StatCache = {}
@@ -24,204 +40,261 @@ function SWEP:InvalidateCache()
     self.StatScoreCache = {}
     self.MiscCache = {}
     self.RecoilPatternCache = {}
-
     self.AutoSightPos = nil
     self.AutoSightAng = nil
 end
 
 function SWEP:RunHook(val, data)
-    if !self.HookCache[val] then
-        self.HookCache[val] = {}
-
-        if self:GetTable()[val] then
-            table.insert(self.HookCache[val], self:GetTable()[val])
+    local hcache = self.HookCache
+    local cached = hcache[val]
+    
+    if !cached then
+        cached = {}
+        hcache[val] = cached
+        
+        local tbl = self:GetTable()
+        local hookfn = tbl[val]
+        if hookfn then
+            cached[1] = hookfn
         end
-
-        for slot, slottbl in pairs(self.Attachments) do
-            if !slottbl.Installed then continue end
-
-            local atttbl = TacRP.GetAttTable(slottbl.Installed)
-
-            if atttbl[val] then
-                table.insert(self.HookCache[val], atttbl[val])
+        
+        local atts = self.Attachments
+        for slot, slottbl in pairs(atts) do
+            if slottbl.Installed then
+                local atttbl = TacRP.GetAttTable(slottbl.Installed)
+                local attval = atttbl[val]
+                if attval then
+                    cached[#cached + 1] = attval
+                end
             end
         end
     end
-
-    for _, chook in pairs(self.HookCache[val]) do
-        local d = chook(self, data)
+    
+    for i = 1, #cached do
+        local d = cached[i](self, data)
         if d != nil then
             data = d
         end
     end
-
-    data = hook.Run("TacRP_" .. val, self, data) or data
-
+    
+    data = hook_Run("TacRP_" .. val, self, data) or data
     return data
 end
 
 function SWEP:GetBaseValue(val)
+    local mcache = self.MiscCache
+    local ckey = "b" .. val
+    local cached = mcache[ckey]
+    if cached != nil then
+        return cached
+    end
+    
     local stat = self:GetTable()[val]
-
-    local b = TacRP.GetBalanceMode()
-    if b > 0 and self.BalanceStats != nil then
-        if TacRP.BalanceDefaults[b] and TacRP.BalanceDefaults[b][val] != nil then
-            stat = TacRP.BalanceDefaults[b][val]
-        end
-        for j = b, 1, -1 do
-            if self.BalanceStats[j] and self.BalanceStats[j][val] != nil then -- Fixed: was using [b] instead of [j]
-                stat = self.BalanceStats[j][val]
-                break
+    local bstats = self.BalanceStats
+    
+    if bstats then
+        local b = TacRP.GetBalanceMode()
+        if b > 0 then
+            local bdef = TacRP.BalanceDefaults[b]
+            if bdef then
+                local bval = bdef[val]
+                if bval != nil then
+                    stat = bval
+                end
+            end
+            for j = b, 1, -1 do
+                local bs = bstats[j]
+                if bs then
+                    local bval = bs[val]
+                    if bval != nil then
+                        stat = bval
+                        break
+                    end
+                end
             end
         end
     end
-
+    
     if isnumber(stat) then
-        if self.IntegerStats[val] then
-            stat = math.ceil(stat)
+        if IntegerStats[val] then
+            stat = math_ceil(stat)
         end
-        if !self.AllowNegativeStats[val] then
-            stat = math.max(stat, 0)
+        if !AllowNegativeStats[val] then
+            stat = math_max(stat, 0)
         end
     end
-
+    
+    mcache[ckey] = stat
     return stat
 end
 
 function SWEP:GetValue(val, static, invert)
-    -- Create a proper cache key that includes all parameters that affect the result
-    local cacheKey = val .. "_" .. tostring(static or self.StaticStats) .. "_" .. tostring(invert or false)
+    local useStatic = static != nil and static or self.StaticStats
     
-    -- Check if we have a cached result for this exact combination
-    if self.StatCache[cacheKey] then
-        return self.StatCache[cacheKey]
+    local scache = self.StatCache
+    local ckey
+    if invert then
+        ckey = useStatic and (val .. "si") or (val .. "i")
+    else
+        ckey = useStatic and (val .. "s") or val
     end
-
+    
+    local cached = scache[ckey]
+    if cached != nil then
+        return cached
+    end
+    
     local stat = self:GetBaseValue(val)
-
-    local modifiers = {
-        ["stat"] = nil, -- return this unless hook is set
-        ["hook"] = nil, -- if set, always call hook and use the following values
-        ["func"] = {}, -- modifying functions
-        ["set"] = stat, -- override and no prefix
-        ["prio"] = 0, -- override priority
-        ["add"] = 0,
-        ["mul"] = 1,
-    }
-
-    if !self.ExcludeFromRawStats[val] then
-        for slot, slottbl in pairs(self.Attachments) do
-            if !slottbl.Installed then continue end
-
+    local mcache = self.MiscCache
+    local modkey = "m" .. val
+    local mods = mcache[modkey]
+    
+    local set, prio, add, mul, func, hook
+    if mods then
+        set = stat
+        prio = 0
+        add = 0
+        mul = 1
+        func = mods[1]
+        hook = mods[2]
+    else
+        set = stat
+        prio = 0
+        add = 0
+        mul = 1
+        func = {}
+        
+        local hkey = "h" .. val
+        local hcached = mcache[hkey]
+        if hcached == nil then
+            local htbl = hook_GetTable()["TacRP_Stat_" .. val]
+            hcached = htbl and table_Count(htbl) > 0 or false
+            mcache[hkey] = hcached
+        end
+        hook = hcached
+        
+        mods = {func, hook}
+        mcache[modkey] = mods
+    end
+    
+    local atts = self.Attachments
+    local excluded = ExcludeFromRawStats[val]
+    
+    if !excluded then
+        for slot, slottbl in pairs(atts) do
+            if slottbl.Installed then
+                local atttbl = TacRP.GetAttTable(slottbl.Installed)
+                local attval = atttbl[val]
+                if attval != nil then
+                    local ap = atttbl["Priority_" .. val] or 1
+                    if ap > prio then
+                        set = attval
+                        prio = ap
+                    end
+                end
+            end
+        end
+    end
+    
+    local invertMul = invert and -1 or 1
+    for slot, slottbl in pairs(atts) do
+        if slottbl.Installed then
             local atttbl = TacRP.GetAttTable(slottbl.Installed)
-
-            local att_priority = atttbl["Priority_" .. val] or 1
-
-            if atttbl[val] != nil and att_priority > modifiers.prio then
-                modifiers.set = atttbl[val]
-                modifiers.prio = att_priority
+            
+            local ov = atttbl["Override_" .. val]
+            if ov != nil then
+                local ap = atttbl["Override_Priority_" .. val] or 1
+                if ap > prio then
+                    set = ov
+                    prio = ap
+                end
+            end
+            
+            local av = atttbl["Add_" .. val]
+            if av then
+                add = add + av * invertMul
+            end
+            
+            local mv = atttbl["Mult_" .. val]
+            if mv then
+                mul = invert and (mul / mv) or (mul * mv)
+            end
+            
+            local fv = atttbl["Func_" .. val]
+            if fv then
+                func[#func + 1] = fv
             end
         end
     end
-
-    for slot, slottbl in pairs(self.Attachments) do
-        if !slottbl.Installed then continue end
-
-        local atttbl = TacRP.GetAttTable(slottbl.Installed)
-
-        local att_priority = atttbl["Override_Priority_" .. val] or 1
-
-        if atttbl["Override_" .. val] != nil and att_priority > modifiers.prio then
-            modifiers.set = atttbl["Override_" .. val]
-            modifiers.prio = att_priority
-        end
-
-        if atttbl["Add_" .. val] then
-            modifiers.add = modifiers.add + atttbl["Add_" .. val] * (invert and -1 or 1)
-        end
-
-        if atttbl["Mult_" .. val] then
-            if invert then
-                modifiers.mul = modifiers.mul / atttbl["Mult_" .. val]
-            else
-                modifiers.mul = modifiers.mul * atttbl["Mult_" .. val]
-            end
-        end
-
-        if atttbl["Func_" .. val] then
-            table.insert(modifiers.func, atttbl["Func_" .. val])
-        end
+    
+    local selfFunc = self["Func_" .. val]
+    if isfunction(selfFunc) then
+        func[#func + 1] = selfFunc
     end
-
-    if isfunction(self["Func_" .. val]) then
-        table.insert(modifiers.func, self["Func_" .. val])
-    end
-
-    -- Check for stat hooks only if we haven't cached this check yet
-    local hookCacheKey = "hook_check_" .. val
-    if self.MiscCache[hookCacheKey] == nil then
-        self.MiscCache[hookCacheKey] = table.Count(hook.GetTable()["TacRP_Stat_" .. val] or {}) > 0
-    end
-    modifiers.hook = self.MiscCache[hookCacheKey]
-
-    -- Calculate the final value
-    if isnumber(modifiers.set) then
-        modifiers.stat = (modifiers.set + modifiers.add) * modifiers.mul
-        if self.IntegerStats[val] then
-            modifiers.stat = math.ceil(modifiers.stat)
+    
+    local statval
+    if isnumber(set) then
+        statval = (set + add) * mul
+        if IntegerStats[val] then
+            statval = math_ceil(statval)
         end
-        if !self.AllowNegativeStats[val] then
-            modifiers.stat = math.max(modifiers.stat, 0)
+        if !AllowNegativeStats[val] then
+            statval = math_max(statval, 0)
         end
     else
-        modifiers.stat = modifiers.set
+        statval = set
     end
-
-    local finalStat = modifiers.stat
-
-    -- Only run dynamic hooks/functions if not in static mode
-    if static != true and (modifiers.hook or #modifiers.func > 0) then
-        local dynamicModifiers = {set = nil, prio = 0, add = 0, mul = 1}
-
-        if #modifiers.func > 0 then
-            for _, f in ipairs(modifiers.func) do
-                f(self, dynamicModifiers)
+    
+    local finalStat = statval
+    local hasDynamic = hook or #func > 0
+    
+    if !useStatic and hasDynamic then
+        local dset, dprio, dadd, dmul = nil, 0, 0, 1
+        
+        local fcount = #func
+        if fcount > 0 then
+            local dmods = {set = dset, prio = dprio, add = dadd, mul = dmul}
+            for i = 1, fcount do
+                func[i](self, dmods)
+            end
+            dset = dmods.set
+            dprio = dmods.prio
+            dadd = dmods.add
+            dmul = dmods.mul
+        end
+        
+        if hook then
+            local dmods = {set = dset, prio = dprio, add = dadd, mul = dmul}
+            hook_Run("TacRP_Stat_" .. val, self, dmods)
+            if istable(dmods) then
+                dset = dmods.set
+                dprio = dmods.prio
+                dadd = dmods.add
+                dmul = dmods.mul
             end
         end
         
-        if modifiers.hook then
-            hook.Run("TacRP_Stat_" .. val, self, dynamicModifiers)
-            if !istable(dynamicModifiers) then 
-                dynamicModifiers = {set = nil, prio = 0, add = 0, mul = 1}
-            end
-        end
-
-        if dynamicModifiers.prio > modifiers.prio then
-            finalStat = dynamicModifiers.set
-        else
-            finalStat = modifiers.set
-        end
-
+        finalStat = dprio > prio and dset or set
+        
         if isnumber(finalStat) then
             if invert then
-                finalStat = (finalStat - dynamicModifiers.add - modifiers.add) / dynamicModifiers.mul / modifiers.mul
+                finalStat = (finalStat - dadd - add) / dmul / mul
             else
-                finalStat = (finalStat + dynamicModifiers.add + modifiers.add) * dynamicModifiers.mul * modifiers.mul
+                finalStat = (finalStat + dadd + add) * dmul * mul
             end
-
-            if self.IntegerStats[val] then
-                finalStat = math.ceil(finalStat)
+            
+            if IntegerStats[val] then
+                finalStat = math_ceil(finalStat)
             end
-            if !self.AllowNegativeStats[val] then
-                finalStat = math.max(finalStat, 0)
+            if !AllowNegativeStats[val] then
+                finalStat = math_max(finalStat, 0)
             end
         end
     end
-
-    -- Cache the final result only if we're in static mode or there are no dynamic modifiers
-    if static == true or (!modifiers.hook and #modifiers.func == 0) then
-        self.StatCache[cacheKey] = finalStat
+    
+    if useStatic or !hasDynamic then
+        scache[ckey] = finalStat
     end
-
+    
     return finalStat
 end
