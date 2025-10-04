@@ -84,9 +84,9 @@ SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
 SWEP.FreeAimMaxAngle = 1
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
-SWEP.HoldTypeBlindFire = false
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
+SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL

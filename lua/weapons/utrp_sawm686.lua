@@ -81,8 +81,8 @@ SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER

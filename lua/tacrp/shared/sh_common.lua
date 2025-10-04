@@ -231,7 +231,7 @@ TacRP.AmmoJamMSB = {
 }
 
 TacRP.HoldTypeSightedLookup = {
-    ["revolver"] = "revolver",
+    ["pistol"] = "revolver",
     ["smg"] = "rpg",
     ["ar2"] = "rpg",
     ["shotgun"] = "ar2",

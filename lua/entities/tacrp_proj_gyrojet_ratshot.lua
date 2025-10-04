@@ -39,15 +39,15 @@ function ENT:Detonate()
     if self:WaterLevel() > 0 then
         util.Effect("WaterSurfaceExplosion", fx)
     else
-        fx:SetMagnitude(4)
-        fx:SetScale(4)
-        fx:SetRadius(8)
+        fx:SetMagnitude(6)
+        fx:SetScale(2)
+        fx:SetRadius(4)
         fx:SetNormal(dir)
         util.Effect("Sparks", fx)
         util.Effect("HelicopterMegaBomb", fx)
     end
 
-    util.BlastDamage(self, attacker, src, 200, damage)
+    util.BlastDamage(self, attacker, src, 125, damage)
 
     self:EmitSound(table.Random(self.ExplodeSounds), 90, 110, 0.75)
     self:EmitSound("physics/metal/metal_box_break1.wav", 90, 175)

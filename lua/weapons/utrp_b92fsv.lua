@@ -86,8 +86,8 @@ SWEP.DeployTimeMult = 1
 SWEP.SupplyAmmoAmount = false // overrides clipsize/ammo for ammo pickups
 SWEP.SupplyLimit = 0.1 // Multiplier for supply ammo
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL

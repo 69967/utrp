@@ -8,30 +8,29 @@ function SWEP:StillWaiting(cust, reload)
     return false
 end
 
+--different target offsets for different holdtypes
 local pitchOffsets = {}
-hook.Add("UpdateAnimation", "TacRP_PlayerModelPitch", function(ply)
-    local wep = ply:GetActiveWeapon()
-    if !IsValid(wep) or !wep.GetScopeLevel or !wep.GetPeeking then 
-        pitchOffsets[ply] = nil
-        return 
-    end
-    
-    pitchOffsets[ply] = pitchOffsets[ply] or 0
-    local targetOffset = -14 or 0
-    
-    pitchOffsets[ply] = Lerp(FrameTime() * 8, pitchOffsets[ply], targetOffset)
-    
-    -- Keep the pitch pose parameter for vertical aiming
+hook.Add("UpdateAnimation", "UTRP_PMOffset", function(ply)
+
+    local wep, to = ply:GetActiveWeapon()
+	if wep.HoldType == "pistol" then
+		to = -6
+	else
+		to = -16
+	end
+	
+	pitchOffsets[ply] = pitchOffsets[ply] or 0
+    pitchOffsets[ply] = Lerp(FrameTime() * 8, pitchOffsets[ply], to)
     ply:SetPoseParameter("aim_pitch", ply:EyeAngles().p + pitchOffsets[ply])
+end)
 
 --[[
-    -- Use SetRenderAngles for visual-only rotation offset
-    local YAW_OFFSET = 0 -- Adjust this as needed
-    local renderAngles = Angle(ply:GetAngles()) -- Use body angles as base (not eye angles!)
-    renderAngles.y = renderAngles.y + YAW_OFFSET -- Add offset to current yaw
-    ply:SetEyeAngles(renderAngles) -- This only affects visual appearance
+    local YAW_OFFSET = 0
+    local renderAngles = Angle(ply:GetAngles())
+    renderAngles.y = renderAngles.y + YAW_OFFSET
+    ply:SetEyeAngles(renderAngles)
 ]]
-end)
+
 
 function SWEP:SprintLock(shoot)
     if self:GetSprintLockTime() > CurTime() or self:GetIsSprinting() or self:ShouldLowerWeapon() then return true end
@@ -99,7 +98,7 @@ function SWEP:PrimaryAttack()
         end
     end
     local prociron = self:DoProceduralIrons()
-    if self:GetScopeLevel() > 0 and prociron or self.HoldType == "slam" then
+    if self:GetScopeLevel() > 0 and prociron or self.HoldType == "pistol" then
         if self:GetValue("LastShot") and self:Clip1() == self:GetValue("AmmoPerShot") then
             self:PlayAnimation(self:TranslateSequence("dryfire"), mult, false)
         end

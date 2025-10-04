@@ -30,13 +30,13 @@ SWEP.Slot = 1
 
 // "ballistics"
 
-SWEP.Damage_Max = 20
+SWEP.Damage_Max = 22
 SWEP.Damage_Min = 5
-SWEP.Range_Min = 4500
-SWEP.Range_Max = 6500
+SWEP.Range_Min = 4000
+SWEP.Range_Max = 6000
 SWEP.Penetration = 7
 SWEP.ArmorPenetration = 0
-SWEP.ArmorBonus = 1.75
+SWEP.ArmorBonus = 8
 
 SWEP.MuzzleVelocity = 33500
 
@@ -44,11 +44,11 @@ SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
     [HITGROUP_CHEST] = 1.5,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 0.8,
-    [HITGROUP_RIGHTARM] = 0.8,
-    [HITGROUP_LEFTLEG] = 0.8,
-    [HITGROUP_RIGHTLEG] = 0.8,
-    [HITGROUP_GEAR] = 0.8
+    [HITGROUP_LEFTARM] = 0.75,
+    [HITGROUP_RIGHTARM] = 0.75,
+    [HITGROUP_LEFTLEG] = 0.75,
+    [HITGROUP_RIGHTLEG] = 0.75,
+    [HITGROUP_GEAR] = 0.75
 }
 
 SWEP.Firemode = 1
@@ -89,9 +89,9 @@ SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
-SWEP.HoldTypeBlindFire = false
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
+SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL

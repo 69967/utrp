@@ -4,16 +4,14 @@ SWEP.Spawnable = true
 AddCSLuaFile()
 
 // names and stuff
-SWEP.PrintName = "Inventar M1-B"
+SWEP.PrintName = "Inventar GyroJet"
 SWEP.Category = "UTRP Handguns"
 
 SWEP.SubCatType = "0Other Pistols"
 
-SWEP.Description = "A British-made rocket pistol.\n\n\n[for law enforcement use only.]"
+SWEP.Description = "A rocket pistol.\n\n\n[for law enforcement use only.]"
 
 SWEP.Trivia_Caliber = "12mm Minirockets"
-SWEP.Trivia_Manufacturer = "Inventar"
-SWEP.Trivia_Year = "1962"
 
 SWEP.Faction = TacRP.FACTION_NEUTRAL
 SWEP.Credits = [[
@@ -30,28 +28,29 @@ SWEP.NoRanger = false
 SWEP.Slot = 1
 
 // "ballistics"
+-- it speeds up and deals more damage, this is correct leave it alone
+SWEP.Damage_Max = 50
+SWEP.Damage_Min = 100
 
-SWEP.Damage_Max = 150
-SWEP.Damage_Min = 150
+SWEP.Range_Min = 750
+SWEP.Range_Max = 1000
 
-SWEP.Range_Min = 9000
-SWEP.Range_Max = 9000
-
-SWEP.Penetration = 1
-SWEP.ArmorPenetration = 100
+SWEP.Penetration = 0
+SWEP.ArmorPenetration = 2
+SWEP.ArmorBonus = 50
 
 SWEP.ShootEnt = "tacrp_proj_gyrojet"
-SWEP.ShootEntForce = 60000
+SWEP.ShootEntForce = 990000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 10,
     [HITGROUP_CHEST] = 1.5,
     [HITGROUP_STOMACH] = 1.25,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 1,
-    [HITGROUP_RIGHTLEG] = 1,
-    [HITGROUP_GEAR] = 1
+    [HITGROUP_LEFTARM] = 0.75,
+    [HITGROUP_RIGHTARM] = 0.75,
+    [HITGROUP_LEFTLEG] = 0.75,
+    [HITGROUP_RIGHTLEG] = 0.75,
+    [HITGROUP_GEAR] = 0.75
 }
 
 // misc. shooting
@@ -95,8 +94,8 @@ SWEP.FreeAimMaxAngle = 1
 
 // hold types
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
@@ -183,6 +182,27 @@ SWEP.AnimationTranslationTable = {
     ["fire"] = {"shoot1", "shoot2", "shoot3"},
     ["blind_fire"] = {"blind_shoot1", "blind_shoot2", "blind_shoot3"},
     ["melee"] = {"melee1", "melee2"}
+}
+
+SWEP.ProceduralIronFire = {
+    vm_pos = Vector(0, -1.25, -0.6),
+    vm_ang = Angle(0, 2, 0),
+    t = 0.2,
+    tmax = 0.2,
+    bones = {
+        {
+            bone = "ValveBiped.slide",
+            pos = Vector(0, 0, -3),
+            t0 = 0,
+            t1 = 0.1,
+        },
+        {
+            bone = "ValveBiped.hammer",
+            ang = Angle(-15, 0, 0),
+            t0 = 0,
+            t1 = 0.15,
+        },
+    },
 }
 
 SWEP.LastShot = false

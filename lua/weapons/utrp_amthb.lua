@@ -88,8 +88,8 @@ SWEP.ReloadUpInTime = 1
 SWEP.DropMagazineTime = 0.25
 SWEP.ReloadTimeMult = 1
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL

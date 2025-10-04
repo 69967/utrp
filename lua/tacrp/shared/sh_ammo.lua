@@ -23,50 +23,88 @@ local ammotypes = {
     ["ti_heal"] = {
         max = "tacrp_max_grenades",
     },
+	["22LR"] = {
+		max = 54,
+    },
+	["380_ACP"] = {
+		max = 54,
+    },
+	["38_Special"] = {
+		max = 54,
+    },
+	["38_Super"] = {
+		max = 54,
+    },
+	["5.7×28mm"] = {
+		max = 60,
+    },
 	["9x19mm_FMJ"] = {
-		max = 36,
+		max = 54,
     },
 	["9x19mm_AP"] = {
-		max = 36,
+		max = 54,
     },
 	["9x19mm_HP"] = {
-		max = 36,
+		max = 54,
     },
 	["9x19mm_Match"] = {
-		max = 36,
+		max = 54,
     },
 	["9x19mm_sc"] = {
-		max = 72,
+		max = 90,
+    },
+	["45_ACP_FMJ"] = {
+		max = 36,
+    },
+	["45_ACP_AP"] = {
+		max = 36,
+    },
+	["45_ACP_HP"] = {
+		max = 36,
+    },
+	["45_ACP_Match"] = {
+		max = 36,
+    },
+	["357_Magnum_FMJ"] = {
+		max = 36,
+    },
+	["357_Magnum_HP"] = {
+		max = 36,
+    },
+	["50_AE"] = {
+		max = 21,
+    },
+	["5.56x45mm_FMJ"] = {
+	max = 90,
+    },
+	["5.56x45mm_AP"] = {
+	max = 90,
+    },
+	["5.56x45mm_HP"] = {
+	max = 90,
+    },
+	["7.62x39mm_FMJ"] = {
+	max = 90,
+    },
+	["7.62x39mm_AP"] = {
+	max = 90,
+    },
+	["7.62x39mm_HP"] = {
+	max = 90,
+    },
+	["7.62x51mm_FMJ"] = {
+	max = 90,
+    },
+	["7.62x51mm_AP"] = {
+	max = 90,
+    },
+	["7.62x51mm_HP"] = {
+	max = 90,
     },
 
 
-	[".45_ACP"] = {
-    },
-
-
-
-    -- Only used when tacrp_expandedammotypes 1
-    ["ti_pistol_light"] = { -- .22LR, .380 ACP etc.
-        expanded = true,
-        max = 200,
-    },
-    ["ti_pistol_heavy"] = { -- .45 ACP, 10mm etc.
-        expanded = true,
-        max = 120,
-    },
-    ["ti_pdw"] = { -- 4.6mm, 5.7mm etc.
-        expanded = true,
-        max = 225,
-    },
-    ["ti_rifle"] = { -- above 7.62mm but below sniper caliber
-        expanded = true,
-        max = 50,
-    },
-    ["ti_sniper"] = { -- sniper, amr calibers
-        expanded = true,
-        max = 54,
-    },
 }
+
 
 hook.Add("Initialize", "tacrp_ammo", function()
     local expanded = TacRP.ConVars["expandedammotypes"]:GetBool()

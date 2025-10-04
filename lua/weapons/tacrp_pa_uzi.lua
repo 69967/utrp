@@ -123,7 +123,7 @@ SWEP.FreeAimMaxAngle = 4
 
 // hold types
 
-SWEP.HoldType = "revolver"
+SWEP.HoldType = "slam"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 

@@ -96,9 +96,9 @@ SWEP.Ammo_Expanded = "ti_pistol_light"
 
 SWEP.ReloadTimeMult = 1
 
-SWEP.HoldType = "slam"
-SWEP.HoldTypeSprint = "normal"
-SWEP.HoldTypeBlindFire = false
+SWEP.HoldType = "pistol"
+SWEP.HoldTypeSprint = "slam"
+SWEP.HoldTypeBlindFire = "pistol"
 
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
