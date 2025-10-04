@@ -163,10 +163,10 @@ SWEP.AnimationTranslationTable = {
 SWEP.DeployTimeMult = 0.7
 
 SWEP.ProceduralIronFire = {
-    vm_pos = Vector(0, -3, -3.5),
-    vm_ang = Angle(0, 12, 0),
+    vm_pos = Vector(0, -1, -1),
+    vm_ang = Angle(0, 4, 0),
     t = 0.25,
-    tmax = 0.3,
+    tmax = 0.25,
     bones = {
         {
             bone = "ValveBiped.cylinder",
