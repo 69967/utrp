@@ -95,8 +95,8 @@ SWEP.HoldTypeBlindFire = "pistol"
 SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_PISTOL
 
-SWEP.PassiveAng = Angle(2, 0, 0)
-SWEP.PassivePos = Vector(-1, 0, -8)
+SWEP.PassiveAng = Angle(3, 0, 0)
+SWEP.PassivePos = Vector(-0.5, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(0, -2, -5)
@@ -149,14 +149,14 @@ SWEP.AnimationTranslationTable = {
 
 
 SWEP.ProceduralIronFire = {
-    vm_pos = Vector(0, -0.5, -0.6),
-    vm_ang = Angle(0, 2, 0),
-    t = 0.2,
+    vm_pos = Vector(0, -1, -1.1),
+    vm_ang = Angle(0, 3.25, 0),
+    t = 0.3,
     tmax = 0.2,
     bones = {
         {
             bone = "slide",
-            pos = Vector(0, 0, -3),
+            pos = Vector(-0.1, 0, -2.33),
             t0 = 0,
             t1 = 0.1,
         },
