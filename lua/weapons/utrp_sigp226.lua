@@ -154,7 +154,7 @@ SWEP.ProceduralIronFire = {
     vm_pos = Vector(0, -0.5, -0.6),
     vm_ang = Angle(0, 2.5, 0),
     t = 0.3,
-    tmax = 0.2,
+    tmax = 0.175,
     bones = {
         {
             bone = "ValveBiped.slide",
