@@ -259,46 +259,17 @@ end
 
 -- Client-side rendering and menu
 if CLIENT then
-    surface.CreateFont("ammoinbox", {
-        font = "Arial",
-        size = 200,
-        weight = 500,
-        antialias = true,
-    })
-    
     function ENT:Draw()
         self:DrawModel()
-        
         local ang = self:GetAngles()
         ang:RotateAroundAxis(self:GetUp(), 90)
-        ang:RotateAroundAxis(self:GetRight(), 0)
-        ang:RotateAroundAxis(self:GetForward(), 0)
-        
-        local pos = self:GetPos()
-        pos = pos + self:GetForward() * -5.2
-        pos = pos + self:GetRight() * 2.5
-        pos = pos + self:GetUp() * 4.05
-        
-        local resolution = 9
-        local ammoType = self:GetNWString("AmmoName", "Unknown Ammo")
-        local ammoCount = tostring(self:GetNWInt("amount", 0))
-        
-        cam.Start3D2D(pos, ang, 0.08 / resolution)
-            surface.SetFont("ammoinbox")
-            
-            local tW1, tH1 = surface.GetTextSize(ammoType)
-            local tW2, tH2 = surface.GetTextSize(ammoCount)
-            
-            if tW1 and tH1 then
-                draw.SimpleText(ammoType, "ammoinbox", -tW1 / 2 + 285, -7, Color(255, 255, 255, 255))
                 
-                if tW2 and tH2 then
-                    draw.SimpleText(ammoCount, "ammoinbox", -tW2 / 2 + 285, -7 + tH1 + 5, Color(255, 255, 0, 255))
-                end
-            end
+        cam.Start3D2D(self:GetPos() + self:GetUp()*4.1, ang, 0.07)
+            draw.SimpleText(self:GetNWString("AmmoName", "Unknown Ammo"), "Trebuchet24", 0, -80, color_white, TEXT_ALIGN_CENTER)
+            draw.SimpleText(self:GetNWInt("amount", 0), "Trebuchet24", 0, 0, Color(255, 255, 0), TEXT_ALIGN_CENTER)
         cam.End3D2D()
     end
-    
+
     -- Menu system
     net.Receive("imenu_ammodrop", function()
         local e = net.ReadEntity()

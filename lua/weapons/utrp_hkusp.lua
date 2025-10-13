@@ -159,14 +159,14 @@ SWEP.AnimationTranslationTable = {
 }
 
 SWEP.ProceduralIronFire = {
-    vm_pos = Vector(0, -1, -1.1),
-    vm_ang = Angle(0, 3.5, 0),
-    t = 0.3,
+    vm_pos = Vector(0, -0.7, -0.2),
+    vm_ang = Angle(0, 2, 0),
+    t = 0.2,
     tmax = 0.2,
     bones = {
         {
             bone = "ValveBiped.slide",
-            pos = Vector(-0.1, 0, -2.25),
+            pos = Vector(0, 0, -2.25),
             t0 = 0,
             t1 = 0.1,
         },

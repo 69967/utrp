@@ -100,7 +100,7 @@ SWEP.FreeAimMaxAngle = 3
 
 // hold types
 
-SWEP.HoldType = "pistol"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
 
