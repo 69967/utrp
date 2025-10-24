@@ -6,20 +6,8 @@ AddCSLuaFile()
 // names and stuff
 SWEP.PrintName = "Tomahawk Matador" -- https://www.tomahawk.com.tr/older.html#lg=1&slide=3
 SWEP.AbbrevName = "Matador"
-SWEP.Category = "Tactical RP"
-
-SWEP.SubCatTier = "3Security"
-SWEP.SubCatType = "5Shotgun"
-
-SWEP.Description = "Short barrel pistol grip shotgun. High mobility and recoil, and most effective at close range."
-SWEP.Description_Quote = "For years, its true identity was a mystery."
-
-SWEP.Trivia_Caliber = "12 Gauge"
-SWEP.Trivia_Manufacturer = "Tomahawk Shotguns"
-SWEP.Trivia_Year = "2006"
-
-SWEP.Faction = TacRP.FACTION_NEUTRAL
-SWEP.Credits = "Assets: Tactical Intervention"
+SWEP.Category = "UTRP Longarms"
+SWEP.SubCatType = "912ga Shotguns"
 
 SWEP.ViewModel = "models/weapons/tacint/v_tgs12_2.mdl"
 SWEP.WorldModel = "models/weapons/tacint/w_tgs12.mdl"
@@ -27,83 +15,29 @@ SWEP.WorldModel = "models/weapons/tacint/w_tgs12.mdl"
 SWEP.Slot = 2
 SWEP.SlotAlt = 3
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 18,
-        Damage_Min = 3,
-        ClipSize = 5,
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 10,
-        Damage_Min = 2,
-        Range_Min = 300,
-        Range_Max = 1200,
-        Num = 9,
-        ClipSize = 6,
-
-        Spread = 0.05,
-        ShotgunPelletSpread = 0.025,
-        HipFireSpreadPenalty = 0.01,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 2,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_PVE] = {
-        Damage_Max = 12,
-        Damage_Min = 3,
-        Range_Min = 100,
-        Range_Max = 1200,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 1.5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 0.75,
-            [HITGROUP_RIGHTARM] = 0.75,
-            [HITGROUP_LEFTLEG] = 0.5,
-            [HITGROUP_RIGHTLEG] = 0.5,
-            [HITGROUP_GEAR] = 0.9
-        },
-    },
-    [TacRP.BALANCE_OLDSCHOOL] = {
-        RecoilDissipationRate = 1.5,
-        HipFireSpreadPenalty = 0.04
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.Shotgun
-
 // "ballistics"
 
-SWEP.Damage_Max = 16
-SWEP.Damage_Min = 2
-SWEP.Range_Min = 150 // distance for which to maintain maximum damage
-SWEP.Range_Max = 1200 // distance at which we drop to minimum damage
-SWEP.Penetration = 1 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.7
-SWEP.ArmorBonus = 1.25
+SWEP.Damage_Max = 12
+SWEP.Damage_Min = 5
+SWEP.Range_Min = 3000
+SWEP.Range_Max = 4000
+SWEP.Penetration = 1
+SWEP.ArmorPenetration = 0
+SWEP.ArmorBonus = 0.5
 
-SWEP.Num = 8
+SWEP.Num = 10
 
-SWEP.MuzzleVelocity = 8000
+SWEP.MuzzleVelocity = 30000
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 1.5,
-    [HITGROUP_CHEST] = 1,
+    [HITGROUP_HEAD] = 10,
+    [HITGROUP_CHEST] = 1.25,
     [HITGROUP_STOMACH] = 1,
-    [HITGROUP_LEFTARM] = 1,
-    [HITGROUP_RIGHTARM] = 1,
-    [HITGROUP_LEFTLEG] = 0.9,
-    [HITGROUP_RIGHTLEG] = 0.9,
-    [HITGROUP_GEAR] = 0.9
+    [HITGROUP_LEFTARM] = 0.8,
+    [HITGROUP_RIGHTARM] = 0.8,
+    [HITGROUP_LEFTLEG] = 0.8,
+    [HITGROUP_RIGHTLEG] = 0.8,
+    [HITGROUP_GEAR] = 0.8
 }
 
 // misc. shooting
@@ -114,48 +48,42 @@ SWEP.FiremodeName = "Pump-Action" // only used externally for firemode name dist
 
 SWEP.RPM = 70
 
-SWEP.Spread = 0.04
-SWEP.ShotgunPelletSpread = 0.03
+SWEP.Spread = 0.0175
+SWEP.ShotgunPelletSpread = 0.02
 
-SWEP.ShootTimeMult = 0.8
+SWEP.ShootTimeMult = 0.7
 
-SWEP.MidAirSpreadPenalty = 0
-SWEP.MoveSpreadPenalty = 0
-
-SWEP.RecoilPerShot = 1
-SWEP.RecoilMaximum = 2.5
-SWEP.RecoilResetTime = 0.2
-SWEP.RecoilDissipationRate = 1
-SWEP.RecoilFirstShotMult = 1 // multiplier for the first shot's recoil amount
+SWEP.RecoilPerShot = 2
+SWEP.RecoilMaximum = 10
+SWEP.RecoilResetTime = 0.33
+SWEP.RecoilDissipationRate = 3.25
 
 SWEP.RecoilVisualKick = 4
-SWEP.RecoilKick = 16
-SWEP.RecoilStability = 0.25
+SWEP.RecoilKick = 12
+SWEP.RecoilStability = 0
+SWEP.RecoilAltMultiplier = 0
 
-SWEP.RecoilSpreadPenalty = 0.02
-SWEP.HipFireSpreadPenalty = 0.015
-
-SWEP.CanBlindFire = true
-
-SWEP.Sway = 0.5
-SWEP.ScopedSway = 0.5
-
-SWEP.FreeAimMaxAngle = 2
+SWEP.RecoilSpreadPenalty = 0.05
+SWEP.HipFireSpreadPenalty = 0.02
 
 // handling
 
-SWEP.MoveSpeedMult = 0.95
+SWEP.MoveSpeedMult = 1
 SWEP.ShootingSpeedMult = 0.8
-SWEP.SightedSpeedMult = 0.75
+SWEP.SightedSpeedMult = 0.9
 
-SWEP.ReloadSpeedMult = 0.5
+SWEP.ReloadSpeedMult = 0.75
 
-SWEP.AimDownSightsTime = 0.25
+SWEP.AimDownSightsTime = 0.3
 SWEP.SprintToFireTime = 0.3
+SWEP.FreeAimMaxAngle = 1
+
+SWEP.Sway = 0.5
+SWEP.ScopedSway = 0.1
 
 // hold types
 
-SWEP.HoldType = "ar2"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 SWEP.HoldTypeNPC = "shotgun"
@@ -164,16 +92,16 @@ SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN
 
 SWEP.PassiveAng = Angle(0, 0, 0)
-SWEP.PassivePos = Vector(0, -2, -4)
+SWEP.PassivePos = Vector(-1, 0, -8)
 
 SWEP.BlindFireAng = Angle(0, 5, 0)
 SWEP.BlindFirePos = Vector(3, -2, -5)
 
-SWEP.SprintAng = Angle(30, -15, 0)
-SWEP.SprintPos = Vector(5, 0, -2)
+SWEP.SprintAng = Angle(30, -22, -15)
+SWEP.SprintPos = Vector(0, 0, -7)
 
 SWEP.SightAng = Angle(-0.2, 0, 0)
-SWEP.SightPos = Vector(-2.98, -3, -2.9)
+SWEP.SightPos = Vector(-2.98, -4, -2.9)
 
 SWEP.CorrectivePos = Vector(0.09, 0, 0.05)
 SWEP.CorrectiveAng = Angle(0.25, -0.05, 0)
@@ -207,7 +135,7 @@ SWEP.ShootPitchVariance = 0 // amount to vary pitch by each shot
 SWEP.QCA_Muzzle = 1
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = "muzzleflash_shotgun"
+SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.EjectEffect = 3
 SWEP.EjectDelay = 0.5
 
@@ -216,7 +144,7 @@ SWEP.EjectDelay = 0.5
 SWEP.AnimationTranslationTable = {
     ["fire"] = {"shoot1", "shoot2"},
     ["blind_fire"] = {"blind_shoot1"},
-    ["melee"] = {"melee1", "melee2"},
+    ["melee"] = "melee1",
     ["reload"] = {"reload", "reload2"},
     ["jam"] = "reload_finish"
 }

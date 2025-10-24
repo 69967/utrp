@@ -1,30 +1,14 @@
 SWEP.Base = "tacrp_base"
 SWEP.Spawnable = true
-
-AddCSLuaFile()
-
-// names and stuff
 SWEP.PrintName = "Walther PPK"
 SWEP.AbbrevName = "PPK"
 SWEP.Category = "UTRP Handguns"
-
 SWEP.SubCatType = "0Other Pistols"
-
-SWEP.Description = "A compact German pistol—no one can see you're packing until it's in your hands."
-
-SWEP.Trivia_Caliber = ".380 ACP"
-SWEP.Trivia_Manufacturer = "Walther"
-SWEP.Trivia_Year = "1929"
-
-SWEP.Faction = TacRP.FACTION_NEUTRAL
-SWEP.Credits = "Model & Texture: Kimono\nSound: HK & Vunsunta\nAnimation: Tactical Intervention, edited by speedonerd"
 
 SWEP.ViewModel = "models/weapons/tacint_shark/v_ppk.mdl"
 SWEP.WorldModel = "models/weapons/tacint_shark/w_ppk.mdl"
 
 SWEP.Slot = 1
-
-// "ballistics"
 
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
@@ -45,8 +29,6 @@ SWEP.BodyDamageMultipliers = {
     [HITGROUP_RIGHTLEG] = 0.9,
     [HITGROUP_GEAR] = 0.9
 }
-
-// misc. shooting
 
 SWEP.Firemode = 1
 
@@ -82,8 +64,6 @@ SWEP.Sway = 0.33
 SWEP.ScopedSway = 0.2
 SWEP.FreeAimMaxAngle = 1
 
-// hold types
-
 SWEP.HoldType = "pistol"
 SWEP.HoldTypeSprint = "slam"
 SWEP.HoldTypeBlindFire = "pistol"
@@ -112,7 +92,6 @@ SWEP.HolsterPos = Vector(0, 3, -4)
 SWEP.HolsterAng = Angle(90, 0, 0)
 
 
-// reload
 
 SWEP.ClipSize = 7
 SWEP.Ammo = "pistol"
@@ -128,7 +107,6 @@ SWEP.DeployTimeMult = 0.75
 SWEP.DropMagazineModel = "models/weapons/tacint_shark/magazines/ppk.mdl"
 SWEP.DropMagazineImpact = "pistol"
 
-// sounds
 
 local path = "tacint_shark/weapons/cz52/cz52_"
 local path1 = "tacint_shark/weapons/ppk/"
@@ -139,15 +117,11 @@ SWEP.Sound_Shoot_Silenced = path1 .. "suppressed_fire-1.wav"
 SWEP.Vol_Shoot = 110
 SWEP.ShootPitchVariance = 2.5
 
-// effects
 
-// the .qc attachment for the muzzle
 SWEP.QCA_Muzzle = 4
 
 SWEP.MuzzleEffect = "muzzleflash_suppressed"
 SWEP.EjectEffect = 1
-
-// anims
 
 SWEP.AnimationTranslationTable = {
     ["deploy"] = "draw",
@@ -192,8 +166,6 @@ SWEP.ProceduralIronFire = {
 
 SWEP.LastShot = true
 
-// attachments
-
 SWEP.NoTactical = true
 
 SWEP.Attachments = {
@@ -213,7 +185,7 @@ SWEP.Attachments = {
     --},
     [1] = {
         PrintName = "Muzzle",
-        Category = {"lc_silencer", "barrel"},
+        Category = {"lc_s", "barrel"},
         Bone = "ValveBiped.vertec_rootbone",
         WMBone = "Box01",
         AttachSound = "TacRP/weapons/silencer_on.wav",

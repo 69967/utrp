@@ -3,21 +3,11 @@ SWEP.Spawnable = true
 
 AddCSLuaFile()
 
-// names and stuff
-SWEP.PrintName = "Luty SMG"
+SWEP.PrintName = "Homemade SMG"
+SWEP.AbbrevName = "HSMG"
 SWEP.Category = "UTRP Longarms"
 
-SWEP.SubCatTier = "5Value"
 SWEP.SubCatType = "29x19mm Submachine Guns"
-
-SWEP.Description = "Homemade SMG made as protest against UK firearm regulations. The first few shots in a burst have increased firerate, compensating for the weapon's terrible accuracy."
-SWEP.Description_Quote = "\"Let us never succumb to the evil doctrine of the antigun movement.\"" // From P.A. Luty's book, Expedient Homemade Firearms. Guy was quite dramatic.
-
-SWEP.Trivia_Manufacturer = "P.A. Luty"
-SWEP.Trivia_Year = "1998"
-
-SWEP.Faction = TacRP.FACTION_MILITIA
-SWEP.Credits = "Model/Texture: Vasily\nSound: New World Interactive, Firearms: Source\nAssets: Tactical Intervention"
 
 SWEP.ViewModel = "models/weapons/tacint_extras/v_luty.mdl"
 SWEP.WorldModel = "models/weapons/tacint_extras/w_luty.mdl"
@@ -28,8 +18,8 @@ SWEP.Slot = 2
 
 SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 4500
-SWEP.Range_Max = 7000
+SWEP.Range_Min = 3500
+SWEP.Range_Max = 6000
 SWEP.Penetration = 5
 SWEP.ArmorPenetration = 0
 SWEP.ArmorBonus = 1.2
@@ -135,8 +125,8 @@ local path1 = "tacint_extras/luty/"
 SWEP.Sound_Shoot = "^" .. path1 .. "tmp-1.wav"
 
 SWEP.Vol_Shoot = 110
-SWEP.Pitch_Shoot = 98
-SWEP.ShootPitchVariance = 0 // amount to vary pitch by each shot
+SWEP.Pitch_Shoot = 100
+SWEP.ShootPitchVariance = 10 // amount to vary pitch by each shot
 
 // effects
 

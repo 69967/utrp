@@ -30,34 +30,6 @@ SWEP.WorldModel = "models/weapons/tacint/w_uzi_b.mdl"
 
 SWEP.Slot = 2
 
-SWEP.BalanceStats = {
-    [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 25,
-        Damage_Min = 14,
-        HipFireSpreadPenalty = 0.01,
-    },
-    [TacRP.BALANCE_TTT] = {
-        Damage_Max = 20,
-        Damage_Min = 10,
-        Range_Min = 500,
-        Range_Max = 1800,
-        RPM = 500,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 2.5,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 0.9,
-            [HITGROUP_RIGHTARM] = 0.9,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-    }
-}
-
-SWEP.TTTReplace = TacRP.TTTReplacePreset.MachinePistol
-
 // "ballistics"
 
 SWEP.Damage_Max = 22
@@ -123,7 +95,7 @@ SWEP.FreeAimMaxAngle = 4
 
 // hold types
 
-SWEP.HoldType = "slam"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeBlindFire = false
 

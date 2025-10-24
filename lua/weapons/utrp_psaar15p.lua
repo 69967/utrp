@@ -51,7 +51,7 @@ SWEP.MuzzleVelocity = 37500
 // misc. shooting
 
 SWEP.Firemode = 1
-SWEP.RPM = 650
+SWEP.RPM = 600
 SWEP.RPMMultSemi = 0.7
 
 SWEP.Spread = 0.003

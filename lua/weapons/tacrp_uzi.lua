@@ -122,7 +122,7 @@ SWEP.SprintToFireTime = 0.30
 
 // hold types
 
-SWEP.HoldType = "slam"
+SWEP.HoldType = "shotgun"
 SWEP.HoldTypeSprint = "normal"
 SWEP.HoldTypeBlindFire = "pistol"
 
